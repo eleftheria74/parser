@@ -4,8 +4,10 @@ const merge = (extractor, domains) =>
     return acc;
   }, {});
 
-export default function mergeSupportedDomains(extractor) {
+function mergeSupportedDomains(extractor) {
   return extractor.supportedDomains
     ? merge(extractor, [extractor.domain, ...extractor.supportedDomains])
     : merge(extractor, [extractor.domain]);
 }
+
+module.exports = mergeSupportedDomains;
