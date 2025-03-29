@@ -1,9 +1,10 @@
-import cleanAuthor from './author';
-import cleanImage from './lead-image-url';
-import cleanDek from './dek';
-import cleanDatePublished from './date-published';
-import cleanContent from './content';
-import cleanTitle from './title';
+const cleanAuthor = require('./author');
+const cleanImage = require('./lead-image-url');
+const cleanDek = require('./dek');
+const cleanDatePublished = require('./date-published');
+const cleanContent = require('./content');
+const cleanTitle = require('./title');
+const resolveSplitTitle = require('./resolve-split-title');
 
 const Cleaners = {
   author: cleanAuthor,
@@ -14,12 +15,13 @@ const Cleaners = {
   title: cleanTitle,
 };
 
-export default Cleaners;
-
-export { cleanAuthor };
-export { cleanImage };
-export { cleanDek };
-export { cleanDatePublished };
-export { cleanContent };
-export { cleanTitle };
-export { default as resolveSplitTitle } from './resolve-split-title';
+module.exports = {
+  Cleaners,
+  cleanAuthor,
+  cleanImage,
+  cleanDek,
+  cleanDatePublished,
+  cleanContent,
+  cleanTitle,
+  resolveSplitTitle
+};
