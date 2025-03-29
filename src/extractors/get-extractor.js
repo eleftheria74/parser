@@ -1,12 +1,12 @@
-import URL from 'url';
+const { parse } = require('url');
 
-import Extractors from './all';
-import GenericExtractor from './generic';
-import detectByHtml from './detect-by-html';
-import { apiExtractors } from './add-extractor';
+const Extractors = require('./all');
+const GenericExtractor = require('./generic');
+const detectByHtml = require('./detect-by-html');
+const { apiExtractors } = require('./add-extractor');
 
-export default function getExtractor(url, parsedUrl, $) {
-  parsedUrl = parsedUrl || URL.parse(url);
+function getExtractor(url, parsedUrl, $) {
+  parsedUrl = parsedUrl || parse(url);
   const { hostname } = parsedUrl;
   const baseDomain = hostname
     .split('.')
@@ -22,3 +22,5 @@ export default function getExtractor(url, parsedUrl, $) {
     GenericExtractor
   );
 }
+
+module.exports = getExtractor;
