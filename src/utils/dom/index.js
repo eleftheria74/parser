@@ -1,28 +1,28 @@
-// DOM manipulation
-export {
-  default as stripUnlikelyCandidates,
-} from './strip-unlikely-candidates';
-export { default as brsToPs } from './brs-to-ps';
-export { default as paragraphize } from './paragraphize';
-export { default as convertToParagraphs } from './convert-to-paragraphs';
-export { default as convertNodeTo } from './convert-node-to';
-export { default as cleanImages } from './clean-images';
-export { default as markToKeep } from './mark-to-keep';
-export { default as stripJunkTags } from './strip-junk-tags';
-export { default as cleanHOnes } from './clean-h-ones';
-export { default as cleanAttributes } from './clean-attributes';
-export { default as removeEmpty } from './remove-empty';
-export { default as cleanTags } from './clean-tags';
-export { default as cleanHeaders } from './clean-headers';
-export { default as rewriteTopLevel } from './rewrite-top-level';
-export { default as makeLinksAbsolute } from './make-links-absolute';
-export { textLength, linkDensity } from './link-density';
-export { default as extractFromMeta } from './extract-from-meta';
-export { default as extractFromSelectors } from './extract-from-selectors';
-export { default as stripTags } from './strip-tags';
-export { default as withinComment } from './within-comment';
-export { default as nodeIsSufficient } from './node-is-sufficient';
-export { default as isWordpress } from './is-wordpress';
-export { default as getAttrs } from './get-attrs';
-export { default as setAttr } from './set-attr';
-export { default as setAttrs } from './set-attrs';
+module.exports = {
+  stripUnlikelyCandidates: require('./strip-unlikely-candidates'),
+  brsToPs: require('./brs-to-ps'),
+  paragraphize: require('./paragraphize'),
+  convertToParagraphs: require('./convert-to-paragraphs'),
+  convertNodeTo: require('./convert-node-to'),
+  cleanImages: require('./clean-images'),
+  markToKeep: require('./mark-to-keep'),
+  stripJunkTags: require('./strip-junk-tags'),
+  cleanHOnes: require('./clean-h-ones'),
+  cleanAttributes: require('./clean-attributes'),
+  removeEmpty: require('./remove-empty'),
+  cleanTags: require('./clean-tags'),
+  cleanHeaders: require('./clean-headers'),
+  rewriteTopLevel: require('./rewrite-top-level'),
+  makeLinksAbsolute: require('./make-links-absolute'),
+  textLength: require('./link-density').textLength,
+  linkDensity: require('./link-density').linkDensity,
+  extractFromMeta: require('./extract-from-meta'),
+  extractFromSelectors: require('./extract-from-selectors'),
+  stripTags: require('./strip-tags'),
+  withinComment: require('./within-comment'),
+  nodeIsSufficient: require('./node-is-sufficient'),
+  isWordpress: require('./is-wordpress'),
+  getAttrs: require('./get-attrs'),
+  setAttr: require('./set-attr'),
+  setAttrs: require('./set-attrs'),
+};
