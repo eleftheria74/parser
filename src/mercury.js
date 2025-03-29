@@ -1,13 +1,14 @@
 const { URL } = require('url');
-import cheerio from 'cheerio';
-import TurndownService from 'turndown';
+const cheerio = require('cheerio')
+const TurndownService = require('turndown');
 
-import Resource from 'resource';
-import { validateUrl } from 'utils';
-import addCustomExtractor from 'extractors/add-extractor';
-import getExtractor from 'extractors/get-extractor';
-import RootExtractor, { selectExtendedTypes } from 'extractors/root-extractor';
-import collectAllPages from 'extractors/collect-all-pages';
+const Resource = require('./resource');
+const { validateUrl } = require('./utils');
+const addCustomExtractor = require('./extractors/add-extractor');
+const getExtractor = require('./extractors/get-extractor');
+const RootExtractor = require('./extractors/root-extractor');
+const { selectExtendedTypes } = require('./extractors/root-extractor');
+const collectAllPages = require('./extractors/collect-all-pages');
 
 const Parser = {
   async parse(url, { html, ...opts } = {}) {
@@ -125,4 +126,4 @@ const Parser = {
   },
 };
 
-export default Parser;
+module.exports = Parser;
