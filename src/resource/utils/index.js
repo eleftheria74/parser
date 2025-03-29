@@ -1,1 +1,3 @@
-export { default as fetchResource } from './fetch-resource';
+module.exports = {
+  fetchResource: require('./fetch-resource'),
+};
