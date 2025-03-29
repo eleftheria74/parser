@@ -1,10 +1,12 @@
-import mergeSupportedDomains from 'utils/merge-supported-domains';
-import * as CustomExtractors from './custom/index';
+const mergeSupportedDomains = require('../utils/merge-supported-domains');
+const CustomExtractors = require('./custom');
 
-export default Object.keys(CustomExtractors).reduce((acc, key) => {
+const allExtractors = Object.keys(CustomExtractors).reduce((acc, key) => {
   const extractor = CustomExtractors[key];
   return {
     ...acc,
     ...mergeSupportedDomains(extractor),
   };
 }, {});
+
+module.exports = allExtractors;
