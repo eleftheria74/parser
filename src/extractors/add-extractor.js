@@ -1,8 +1,8 @@
-import mergeSupportedDomains from '../utils/merge-supported-domains';
+const mergeSupportedDomains = require('../utils/merge-supported-domains');
 
-export const apiExtractors = {};
+const apiExtractors = {};
 
-export default function addExtractor(extractor) {
+function addExtractor(extractor) {
   if (!extractor || !extractor.domain) {
     return {
       error: true,
@@ -14,3 +14,8 @@ export default function addExtractor(extractor) {
 
   return apiExtractors;
 }
+
+module.exports = {
+  apiExtractors,
+  addExtractor
+};
