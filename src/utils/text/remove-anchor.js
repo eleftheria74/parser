@@ -1,3 +1,5 @@
-export default function removeAnchor(url) {
-  return url.split('#')[0].replace(/\/$/, '');
+function removeAnchor(url) {
+  return url.replace(/#.*$/, '');
 }
+
+module.exports = removeAnchor;
