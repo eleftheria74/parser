@@ -1,9 +1,9 @@
-import { removeAnchor } from 'utils/text';
-import RootExtractor from 'extractors/root-extractor';
-import GenericExtractor from 'extractors/generic';
-import Resource from 'resource';
+const { removeAnchor } = require('../utils/text');
+const RootExtractor = require('./root-extractor');
+const GenericExtractor = require('./generic');
+const Resource = require('../resource');
 
-export default async function collectAllPages({
+async function collectAllPages({
   next_page_url,
   html,
   $,
@@ -16,8 +16,8 @@ export default async function collectAllPages({
   // At this point, we've fetched just the first page
   let pages = 1;
   const previousUrls = [removeAnchor(url)];
-  // If we've gone over 26 pages, something has
-  // likely gone wrong.
+
+  // If we've gone over 26 pages, something has likely gone wrong.
   while (next_page_url && pages < 26) {
     pages += 1;
     // eslint-disable-next-line no-await-in-loop
@@ -38,9 +38,7 @@ export default async function collectAllPages({
     previousUrls.push(next_page_url);
     result = {
       ...result,
-      content: `${result.content}<hr><h4>Page ${pages}</h4>${
-        nextPageResult.content
-      }`,
+      content: `${result.content}<hr><h4>Page ${pages}</h4>${nextPageResult.content}`,
     };
 
     // eslint-disable-next-line prefer-destructuring
@@ -50,6 +48,7 @@ export default async function collectAllPages({
   const word_count = GenericExtractor.word_count({
     content: `<div>${result.content}</div>`,
   });
+
   return {
     ...result,
     total_pages: pages,
@@ -57,3 +56,6 @@ export default async function collectAllPages({
     word_count,
   };
 }
+
+module.exports = collectAllPages;
+
