@@ -1,6 +1,5 @@
-import URL from 'url';
-
-import { getAttrs, setAttr } from 'utils/dom';
+const URL = require('url');
+const { getAttrs, setAttr } = require('../dom');
 
 function absolutize($, rootUrl, attr) {
   const baseUrl = $('base').attr('href');
@@ -21,16 +20,11 @@ function absolutizeSet($, rootUrl, $content) {
     const urlSet = attrs.srcset;
 
     if (urlSet) {
-      // a comma should be considered part of the candidate URL unless preceded by a descriptor
-      // descriptors can only contain positive numbers followed immediately by either 'w' or 'x'
-      // space characters inside the URL should be encoded (%20 or +)
       const candidates = urlSet.match(
         /(?:\s*)(\S+(?:\s*[\d.]+[wx])?)(?:\s*,\s*)?/g
       );
       if (!candidates) return;
       const absoluteCandidates = candidates.map(candidate => {
-        // a candidate URL cannot start or end with a comma
-        // descriptors are separated from the URLs by unescaped whitespace
         const parts = candidate
           .trim()
           .replace(/,$/, '')
@@ -44,9 +38,12 @@ function absolutizeSet($, rootUrl, $content) {
   });
 }
 
-export default function makeLinksAbsolute($content, $, url) {
+function makeLinksAbsolute($content, $, url) {
   ['href', 'src'].forEach(attr => absolutize($, url, attr));
   absolutizeSet($, url, $content);
 
   return $content;
 }
+
+module.exports = makeLinksAbsolute;
+
