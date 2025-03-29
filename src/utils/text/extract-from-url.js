@@ -3,7 +3,8 @@
 // that each expression in r_list will return group(1) as the proper
 // string to be cleaned.
 // Only used for date_published currently.
-export default function extractFromUrl(url, regexList) {
+
+function extractFromUrl(url, regexList) {
   const matchRe = regexList.find(re => re.test(url));
   if (matchRe) {
     return matchRe.exec(url)[1];
@@ -11,3 +12,5 @@ export default function extractFromUrl(url, regexList) {
 
   return null;
 }
+
+module.exports = extractFromUrl;
