@@ -1,8 +1,8 @@
-export { default as normalizeSpaces } from './normalize-spaces';
-export { default as extractFromUrl } from './extract-from-url';
-export { default as pageNumFromUrl } from './page-num-from-url';
-export { default as removeAnchor } from './remove-anchor';
-export { default as articleBaseUrl } from './article-base-url';
-export { default as hasSentenceEnd } from './has-sentence-end';
-export { default as excerptContent } from './excerpt-content';
-export { default as getEncoding } from './get-encoding';
+module.exports.normalizeSpaces = require('./normalize-spaces');
+module.exports.extractFromUrl = require('./extract-from-url');
+module.exports.pageNumFromUrl = require('./page-num-from-url');
+module.exports.removeAnchor = require('./remove-anchor');
+module.exports.articleBaseUrl = require('./article-base-url');
+module.exports.hasSentenceEnd = require('./has-sentence-end');
+module.exports.excerptContent = require('./excerpt-content');
+module.exports.getEncoding = require('./get-encoding');
