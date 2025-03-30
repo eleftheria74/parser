@@ -1,6 +1,6 @@
 import assert from 'assert';
 
-import { scoreLength } from './index';
+const { scoreLength } = require('./index');
 
 describe('Scoring utils', () => {
   describe('scoreLength(textLength, tagName)', () => {

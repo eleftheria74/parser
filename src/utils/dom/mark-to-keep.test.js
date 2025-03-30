@@ -1,10 +1,10 @@
 import cheerio from 'cheerio';
 import assert from 'assert';
 
-import { assertClean } from 'test-helpers';
+const { assertClean } = require('test-helpers');
 
-import { markToKeep } from './index';
-import { KEEP_CLASS } from './constants';
+const { markToKeep } = require('./index');
+const { KEEP_CLASS } = require('./constants');
 
 describe('markToKeep($)', () => {
   it('marks elements that should be kept', () => {

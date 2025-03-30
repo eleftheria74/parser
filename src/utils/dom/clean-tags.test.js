@@ -1,8 +1,8 @@
 import cheerio from 'cheerio';
 
-import { assertClean } from 'test-helpers';
+const { assertClean } = require('test-helpers');
 
-import { cleanTags } from './index';
+const { cleanTags } = require('./index');
 
 describe('cleanTags($)', () => {
   it('drops a matching node with a negative score', () => {

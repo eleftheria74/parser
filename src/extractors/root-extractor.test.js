@@ -1,14 +1,14 @@
 import assert from 'assert';
 import cheerio from 'cheerio';
 
-import { assertClean } from 'test-helpers';
+const { assertClean } = require('test-helpers');
 import RootExtractor, {
   select,
   cleanBySelectors,
   transformElements,
 } from './root-extractor';
 
-import { NYMagExtractor } from './custom/nymag.com';
+const { NYMagExtractor } = require('./custom/nymag.com');
 
 const fs = require('fs');
 

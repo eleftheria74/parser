@@ -1,9 +1,9 @@
-import {
+const {
   getScore,
   setScore,
   getOrInitScore,
   scoreCommas,
-} from 'extractors/generic/content/scoring';
+} = require('extractors/generic/content/scoring');
 
 const { CLEAN_CONDITIONALLY_TAGS, KEEP_CLASS } = require('./constants');
 const { normalizeSpaces } = require('../text');

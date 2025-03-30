@@ -36,7 +36,7 @@ export default function(file, url, dir, result, name) {
 
     import Parser from 'mercury';
     import getExtractor from 'extractors/get-extractor';
-    import { excerptContent } from 'utils/text';
+    const { excerptContent } = require('utils/text');
 
     const fs = require('fs');
 

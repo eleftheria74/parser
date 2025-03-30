@@ -1,6 +1,6 @@
 import assert from 'assert';
 
-import { MockDomNode } from 'test-helpers';
+const { MockDomNode } = require('test-helpers');
 import setAttrs from './set-attrs';
 
 describe('setAttrs(node, attrs)', () => {

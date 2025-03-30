@@ -1,8 +1,8 @@
 import cheerio from 'cheerio';
 
-import { assertClean } from 'test-helpers';
+const { assertClean } = require('test-helpers');
 
-import { cleanAttributes } from './index';
+const { cleanAttributes } = require('./index');
 
 describe('cleanAttributes($)', () => {
   it('removes style attributes from nodes', () => {

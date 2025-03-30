@@ -1,8 +1,8 @@
 import assert from 'assert';
 import cheerio from 'cheerio';
-import { getEncoding } from 'utils/text';
+const { getEncoding } = require('utils/text');
 
-import { record } from 'test-helpers';
+const { record } = require('test-helpers');
 import Resource from './index';
 
 describe('Resource', () => {

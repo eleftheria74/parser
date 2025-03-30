@@ -1,14 +1,14 @@
 import assert from 'assert';
 import cheerio from 'cheerio';
 
-import {
+const {
   scoreImageUrl,
   scoreAttr,
   scoreByParents,
   scoreBySibling,
   scoreByDimensions,
   scoreByPosition,
-} from './score-image';
+} = require('./score-image');
 
 describe('scoreImageUrlUrl(url)', () => {
   it('gets 20 points for a positive lead img hint', () => {

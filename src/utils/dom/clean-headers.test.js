@@ -1,8 +1,8 @@
 import cheerio from 'cheerio';
 
-import { assertClean } from 'test-helpers';
+const { assertClean } = require('test-helpers');
 
-import { cleanHeaders } from './index';
+const { cleanHeaders } = require('./index');
 
 describe('cleanHeaders(article, $)', () => {
   it('parses html and returns the article', () => {

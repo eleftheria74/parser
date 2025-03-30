@@ -1,9 +1,9 @@
-import {
+const {
   POSITIVE_LEAD_IMAGE_URL_HINTS_RE,
   NEGATIVE_LEAD_IMAGE_URL_HINTS_RE,
   GIF_RE,
   JPG_RE,
-} from './constants';
+} = require('./constants');
 
 const { PHOTO_HINTS_RE } = require('../content/scoring/constants');
 

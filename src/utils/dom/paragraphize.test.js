@@ -1,8 +1,8 @@
 import assert from 'assert';
 import cheerio from 'cheerio';
 
-import { clean } from 'test-helpers';
-import { paragraphize } from './index';
+const { clean } = require('test-helpers');
+const { paragraphize } = require('./index');
 
 describe('Generic Extractor Utils', () => {
   describe('paragraphize(node)', () => {

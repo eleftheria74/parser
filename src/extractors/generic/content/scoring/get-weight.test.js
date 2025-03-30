@@ -1,7 +1,7 @@
 import assert from 'assert';
 import cheerio from 'cheerio';
 
-import { getWeight } from './index';
+const { getWeight } = require('./index');
 
 describe('Generic Extractor Utils', () => {
   describe('getWeight(node)', () => {

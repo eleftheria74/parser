@@ -1,6 +1,6 @@
 import assert from 'assert';
 
-import { clean } from 'test-helpers';
+const { clean } = require('test-helpers');
 
 import GenericContentExtractor from './extractor';
 

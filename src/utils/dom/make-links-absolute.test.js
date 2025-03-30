@@ -1,5 +1,5 @@
 import cheerio from 'cheerio';
-import { assertClean } from 'test-helpers';
+const { assertClean } = require('test-helpers');
 
 import makeLinksAbsolute from './make-links-absolute';
 

@@ -2,11 +2,11 @@ const { cleanDatePublished } = require('cleaners');
 const { extractFromMeta, extractFromSelectors } = require('../../../resource/utils/dom');
 const { extractFromUrl } = require('../../../utils/text');
 
-import {
+const {
   DATE_PUBLISHED_META_TAGS,
   DATE_PUBLISHED_SELECTORS,
   DATE_PUBLISHED_URL_RES,
-} from './constants';
+} = require('./constants');
 
 const GenericDatePublishedExtractor = {
   extract({ $, url, metaCache }) {

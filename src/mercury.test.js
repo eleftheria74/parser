@@ -1,5 +1,5 @@
 import assert from 'assert';
-import { record } from 'test-helpers';
+const { record } = require('test-helpers');
 import Parser from './mercury';
 
 const fs = require('fs');

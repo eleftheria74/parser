@@ -1,8 +1,8 @@
 import cheerio from 'cheerio';
 
-import { assertClean } from 'test-helpers';
+const { assertClean } = require('test-helpers');
 
-import { removeEmpty } from './index';
+const { removeEmpty } = require('./index');
 
 describe('removeEmpty($)', () => {
   it('removes empty P tags', () => {

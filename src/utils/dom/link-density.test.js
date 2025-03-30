@@ -1,7 +1,7 @@
 import assert from 'assert';
 import cheerio from 'cheerio';
 
-import { linkDensity } from './index';
+const { linkDensity } = require('./index');
 
 describe('linkDensity($)', () => {
   it('returns 0.5 if half of the text is a link', () => {

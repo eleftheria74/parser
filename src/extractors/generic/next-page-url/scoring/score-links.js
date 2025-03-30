@@ -3,7 +3,7 @@ const URL = require('url');
 const { getAttrs, isWordpress } = require('../../../../resource/utils/dom');
 const { removeAnchor, pageNumFromUrl } = require('../../../../utils/text');
 
-import {
+const {
   scoreSimilarity,
   scoreLinkText,
   scorePageInLink,
@@ -14,7 +14,7 @@ import {
   scoreBaseUrl,
   scoreCapLinks,
   scoreNextLinkText,
-} from './utils';
+} = require('./utils');
 
 export function makeBaseRegex(baseUrl) {
   return new RegExp(`^${baseUrl}`, 'i');

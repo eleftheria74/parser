@@ -1,7 +1,7 @@
 import assert from 'assert';
 import cheerio from 'cheerio';
 
-import { scoreNode, scoreParagraph } from './index';
+const { scoreNode, scoreParagraph } = require('./index');
 
 describe('scoreNode(node)', () => {
   it('scores P, LI, SPAN, and PRE using scoreParagraph', () => {

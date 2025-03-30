@@ -1,7 +1,7 @@
 import assert from 'assert';
 import cheerio from 'cheerio';
 
-import { assertClean } from 'test-helpers';
+const { assertClean } = require('test-helpers');
 import brsToPs from './brs-to-ps';
 
 describe('Generic Extractor Utils', () => {

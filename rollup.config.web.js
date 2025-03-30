@@ -1,6 +1,6 @@
 import nodeResolve from 'rollup-plugin-node-resolve';
 import globals from 'rollup-plugin-node-globals';
-import { uglify } from 'rollup-plugin-uglify'; // eslint-disable-line import/extensions
+const { uglify } = require('rollup-plugin-uglify'); // eslint-disable-line import/extensions
 import babel from 'rollup-plugin-babel';
 import commonjs from 'rollup-plugin-commonjs';
 

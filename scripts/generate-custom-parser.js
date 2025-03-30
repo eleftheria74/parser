@@ -5,9 +5,9 @@ import fs from 'fs';
 import URL from 'url';
 import inquirer from 'inquirer';
 import ora from 'ora';
-import { exec } from 'child_process';
+const { exec } = require('child_process');
 
-import { stripJunkTags, makeLinksAbsolute } from 'utils/dom';
+const { stripJunkTags, makeLinksAbsolute } = require('utils/dom');
 import Parser from '../dist/mercury';
 import extractorTemplate from './templates/custom-extractor';
 import extractorTestTemplate from './templates/custom-extractor-test';

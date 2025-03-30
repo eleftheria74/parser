@@ -1,7 +1,7 @@
 import assert from 'assert';
 import cheerio from 'cheerio';
 
-import { getScore, findTopCandidate, scoreContent } from './index';
+const { getScore, findTopCandidate, scoreContent } = require('./index');
 
 const fs = require('fs');
 

@@ -1,8 +1,8 @@
 import cheerio from 'cheerio';
 
-import { assertClean } from 'test-helpers';
+const { assertClean } = require('test-helpers');
 
-import { cleanHOnes } from './index';
+const { cleanHOnes } = require('./index');
 
 describe('cleanHOnes($)', () => {
   it('removes H1s if there are less than 3 of them', () => {

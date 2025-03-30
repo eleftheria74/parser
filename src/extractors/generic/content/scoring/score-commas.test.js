@@ -1,6 +1,6 @@
 import assert from 'assert';
 
-import { scoreCommas } from './index';
+const { scoreCommas } = require('./index');
 
 describe('Scoring utils', () => {
   describe('scoreCommas(text)', () => {

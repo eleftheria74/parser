@@ -1,12 +1,12 @@
 const { cleanTitle } = require('cleaners');
 const { extractFromMeta, extractFromSelectors } = require('../../../resource/utils/dom');
 
-import {
+const {
   STRONG_TITLE_META_TAGS,
   WEAK_TITLE_META_TAGS,
   STRONG_TITLE_SELECTORS,
   WEAK_TITLE_SELECTORS,
-} from './constants';
+} = require('./constants');
 
 const GenericTitleExtractor = {
   extract({ $, url, metaCache }) {

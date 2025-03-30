@@ -1,19 +1,19 @@
 const { extractFromMeta } = require('../../../resource/utils/dom');
 const { cleanImage } = require('cleaners');
 
-import {
+const {
   LEAD_IMAGE_URL_META_TAGS,
   LEAD_IMAGE_URL_SELECTORS,
-} from './constants';
+} = require('./constants');
 
-import {
+const {
   scoreImageUrl,
   scoreAttr,
   scoreByParents,
   scoreBySibling,
   scoreByDimensions,
   scoreByPosition,
-} from './score-image';
+} = require('./score-image');
 
 // Given a resource, try to find the lead image URL from within
 // it. Like content and next page extraction, uses a scoring system

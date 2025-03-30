@@ -4,7 +4,7 @@ const parseFormat = require('moment-parseformat');
 // Mostly only being used for the isValid() method,
 // but could just check for 'Invalid Date' string.
 
-import {
+const {
   MS_DATE_STRING,
   SEC_DATE_STRING,
   CLEAN_DATE_STRING_RE,
@@ -14,7 +14,7 @@ import {
   TIME_MERIDIAN_SPACE_RE,
   TIME_MERIDIAN_DOTS_RE,
   TIME_WITH_OFFSET_RE,
-} from './constants';
+} = require('./constants');
 
 export function cleanDateString(dateString) {
   return (dateString.match(SPLIT_DATE_STRING) || [])

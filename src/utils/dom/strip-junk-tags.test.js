@@ -1,9 +1,9 @@
 import cheerio from 'cheerio';
 import assert from 'assert';
 
-import { assertClean } from 'test-helpers';
+const { assertClean } = require('test-helpers');
 
-import { stripJunkTags } from './index';
+const { stripJunkTags } = require('./index');
 
 describe('stripJunkTags($)', () => {
   it('strips script and other junk tags', () => {

@@ -1,7 +1,7 @@
 import assert from 'assert';
 
 import scoreBaseUrl from './score-base-url';
-import { makeBaseRegex } from '../score-links';
+const { makeBaseRegex } = require('../score-links');
 
 describe('scoreBaseUrl(href, baseRegex)', () => {
   it('returns -25 if url does not contain the base url', () => {

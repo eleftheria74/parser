@@ -1,7 +1,7 @@
 import assert from 'assert';
 import cheerio from 'cheerio';
 
-import { setScore, getScore } from './index';
+const { setScore, getScore } = require('./index');
 
 describe('Scoring utils', () => {
   describe('setScore(node, $, amount)', () => {

@@ -1,4 +1,4 @@
-import {
+const {
   cleanAttributes,
   cleanHeaders,
   cleanHOnes,
@@ -9,7 +9,7 @@ import {
   markToKeep,
   stripJunkTags,
   makeLinksAbsolute,
-} from 'utils/dom';
+} = require('utils/dom');
 
 // Clean our article content, returning a new, cleaned node.
 module.exports = function extractCleanNode(

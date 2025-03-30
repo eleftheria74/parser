@@ -1,7 +1,7 @@
 import assert from 'assert';
 import cheerio from 'cheerio';
 
-import { cleanTitle } from './index';
+const { cleanTitle } = require('./index');
 
 describe('cleanTitle(title, { url, $ })', () => {
   it('only uses h1 if there is only one on the page', () => {

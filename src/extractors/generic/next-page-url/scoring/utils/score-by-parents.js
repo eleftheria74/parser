@@ -1,9 +1,9 @@
 const { range } = require('utils');
-import {
+const {
   NEGATIVE_SCORE_RE,
   POSITIVE_SCORE_RE,
   PAGE_RE,
-} from 'utils/dom/constants';
+} = require('utils/dom/constants');
 const { EXTRANEOUS_LINK_HINTS_RE } = require('../constants');
 
 function makeSig($link) {

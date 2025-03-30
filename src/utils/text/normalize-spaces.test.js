@@ -1,7 +1,7 @@
 import assert from 'assert';
 import cheerio from 'cheerio';
 
-import { normalizeSpaces } from './index';
+const { normalizeSpaces } = require('./index');
 
 describe('normalizeSpaces(text)', () => {
   it('normalizes spaces from text', () => {

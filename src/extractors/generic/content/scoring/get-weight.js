@@ -1,9 +1,9 @@
-import {
+const {
   NEGATIVE_SCORE_RE,
   POSITIVE_SCORE_RE,
   PHOTO_HINTS_RE,
   READABILITY_ASSET,
-} from './constants';
+} = require('./constants');
 
 // Get the score of a node based on its className and id.
 module.exports = function getWeight(node) {

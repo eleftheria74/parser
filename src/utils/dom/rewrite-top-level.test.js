@@ -1,7 +1,7 @@
 import cheerio from 'cheerio';
 import assert from 'assert';
 
-import { assertClean } from 'test-helpers';
+const { assertClean } = require('test-helpers');
 
 import rewriteTopLevel from './rewrite-top-level';
 

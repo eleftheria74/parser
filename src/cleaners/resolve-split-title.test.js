@@ -1,6 +1,6 @@
 import assert from 'assert';
 
-import { resolveSplitTitle } from './index';
+const { resolveSplitTitle } = require('./index');
 
 describe('resolveSplitTitle(text)', () => {
   it('does nothing if title not splittable', () => {

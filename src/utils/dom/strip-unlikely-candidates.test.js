@@ -1,7 +1,7 @@
 import assert from 'assert';
 import cheerio from 'cheerio';
 
-import { assertClean } from 'test-helpers';
+const { assertClean } = require('test-helpers');
 import stripUnlikelyCandidates from './strip-unlikely-candidates';
 
 describe('Generic Extractor Utils', () => {

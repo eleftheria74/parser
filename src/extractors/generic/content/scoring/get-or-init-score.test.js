@@ -1,7 +1,7 @@
 import assert from 'assert';
 import cheerio from 'cheerio';
 
-import { getOrInitScore, getScore } from './index';
+const { getOrInitScore, getScore } = require('./index');
 
 describe('getOrInitScore(node, $)', () => {
   describe('when score set', () => {

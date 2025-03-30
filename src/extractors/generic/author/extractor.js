@@ -1,12 +1,12 @@
 const { cleanAuthor } = require('cleaners');
 const { extractFromMeta, extractFromSelectors } = require('../../../resource/utils/dom');
 
-import {
+const {
   AUTHOR_META_TAGS,
   AUTHOR_MAX_LENGTH,
   AUTHOR_SELECTORS,
   BYLINE_SELECTORS_RE,
-} from './constants';
+} = require('./constants');
 
 const GenericAuthorExtractor = {
   extract({ $, metaCache }) {

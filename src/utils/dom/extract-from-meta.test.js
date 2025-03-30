@@ -1,7 +1,7 @@
 import assert from 'assert';
 import cheerio from 'cheerio';
 
-import { extractFromMeta } from './index';
+const { extractFromMeta } = require('./index');
 
 describe('extractFromMeta($, metaNames, cachedNames, cleanTags)', () => {
   it('extracts an arbitrary meta tag by name', () => {

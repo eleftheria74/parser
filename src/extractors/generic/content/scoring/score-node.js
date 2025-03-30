@@ -1,9 +1,9 @@
 const { scoreParagraph } = require('./index');
-import {
+const {
   PARAGRAPH_SCORE_TAGS,
   CHILD_CONTENT_TAGS,
   BAD_TAGS,
-} from './constants';
+} = require('./constants');
 
 // Score an individual node. Has some smarts for paragraphs, otherwise
 // just scores based on tag.

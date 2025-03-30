@@ -1,7 +1,7 @@
 import assert from 'assert';
 import cheerio from 'cheerio';
 
-import { addToParent, getScore } from './index';
+const { addToParent, getScore } = require('./index');
 
 describe('Scoring utils', () => {
   describe('addToParent(node, $, amount)', () => {

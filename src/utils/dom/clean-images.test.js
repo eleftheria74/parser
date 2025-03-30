@@ -1,8 +1,8 @@
 import cheerio from 'cheerio';
 
-import { assertClean } from 'test-helpers';
+const { assertClean } = require('test-helpers');
 
-import { cleanImages } from './index';
+const { cleanImages } = require('./index');
 
 describe('cleanImages($)', () => {
   it('removes images with small heights/widths', () => {

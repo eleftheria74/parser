@@ -3,7 +3,7 @@ import cheerio from 'cheerio';
 import URL from 'url';
 
 import getExtractor from 'extractors/get-extractor';
-import { excerptContent } from 'utils/text';
+const { excerptContent } = require('utils/text');
 import Mercury from 'mercury';
 
 const fs = require('fs');
