@@ -41,6 +41,3 @@ module.exports = function cleanDatePublished(dateString, { timezone, format } = 
   }
   return date.isValid() ? date.toISOString() : null;
 };
-module.exports = {
-  linkDensity
-};
