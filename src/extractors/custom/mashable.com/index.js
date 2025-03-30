@@ -1,4 +1,4 @@
-export const MashableComExtractor = {
+const MashableComExtractor = {
   domain: 'mashable.com',
 
   title: {
@@ -32,3 +32,4 @@ export const MashableComExtractor = {
     clean: [],
   },
 };
+module.exports.MashableComExtractor = MashableComExtractor;

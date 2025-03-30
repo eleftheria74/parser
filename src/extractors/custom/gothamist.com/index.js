@@ -1,4 +1,4 @@
-export const GothamistComExtractor = {
+const GothamistComExtractor = {
   domain: 'gothamist.com',
 
   supportedDomains: [
@@ -61,3 +61,4 @@ export const GothamistComExtractor = {
     ],
   },
 };
+module.exports.GothamistComExtractor = GothamistComExtractor;

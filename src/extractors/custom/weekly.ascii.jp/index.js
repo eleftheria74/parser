@@ -1,4 +1,4 @@
-export const WeeklyAsciiJpExtractor = {
+const WeeklyAsciiJpExtractor = {
   domain: 'weekly.ascii.jp',
 
   title: {
@@ -31,3 +31,4 @@ export const WeeklyAsciiJpExtractor = {
     clean: [],
   },
 };
+module.exports.WeeklyAsciiJpExtractor = WeeklyAsciiJpExtractor;

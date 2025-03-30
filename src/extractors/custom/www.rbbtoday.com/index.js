@@ -1,4 +1,4 @@
-export const WwwRbbtodayComExtractor = {
+const WwwRbbtodayComExtractor = {
   domain: 'www.rbbtoday.com',
 
   title: {
@@ -29,3 +29,4 @@ export const WwwRbbtodayComExtractor = {
     clean: ['.arti-giga'],
   },
 };
+module.exports.WwwRbbtodayComExtractor = WwwRbbtodayComExtractor;

@@ -1,4 +1,4 @@
-export const ObamawhitehouseArchivesGovExtractor = {
+const ObamawhitehouseArchivesGovExtractor = {
   domain: 'obamawhitehouse.archives.gov',
 
   supportedDomains: ['whitehouse.gov'],
@@ -38,3 +38,4 @@ export const ObamawhitehouseArchivesGovExtractor = {
     clean: ['.pane-node-title', '.pane-custom.pane-1'],
   },
 };
+module.exports.ObamawhitehouseArchivesGovExtractor = ObamawhitehouseArchivesGovExtractor;

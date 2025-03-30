@@ -1,4 +1,4 @@
-export const NYTimesExtractor = {
+const NYTimesExtractor = {
   domain: 'www.nytimes.com',
 
   title: {
@@ -26,6 +26,7 @@ export const NYTimesExtractor = {
     transforms: {
       'img.g-lazy': $node => {
         let src = $node.attr('src');
+module.exports.NYTimesExtractor = NYTimesExtractor;
         const width = 640;
 
         src = src.replace('{{size}}', width);

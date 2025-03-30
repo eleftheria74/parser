@@ -1,4 +1,4 @@
-export const JapanZdnetComExtractor = {
+const JapanZdnetComExtractor = {
   domain: 'japan.zdnet.com',
 
   title: {
@@ -27,3 +27,4 @@ export const JapanZdnetComExtractor = {
     clean: [],
   },
 };
+module.exports.JapanZdnetComExtractor = JapanZdnetComExtractor;

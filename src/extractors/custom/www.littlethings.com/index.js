@@ -1,7 +1,7 @@
 // Rename CustomExtractor
 // to fit your publication
 // (e.g., NYTimesExtractor)
-export const LittleThingsExtractor = {
+const LittleThingsExtractor = {
   domain: 'www.littlethings.com',
   title: {
     selectors: [
@@ -45,3 +45,4 @@ export const LittleThingsExtractor = {
 
   excerpt: null,
 };
+module.exports.LittleThingsExtractor = LittleThingsExtractor;

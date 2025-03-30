@@ -1,4 +1,4 @@
-export const WwwCnnComExtractor = {
+const WwwCnnComExtractor = {
   domain: 'www.cnn.com',
 
   title: {
@@ -31,6 +31,7 @@ export const WwwCnnComExtractor = {
     transforms: {
       '.zn-body__paragraph, .el__leafmedia--sourced-paragraph': $node => {
         const $text = $node.html();
+module.exports.WwwCnnComExtractor = WwwCnnComExtractor;
         if ($text) {
           return 'p';
         }

@@ -1,4 +1,4 @@
-export const TakagihiromitsuJpExtractor = {
+const TakagihiromitsuJpExtractor = {
   domain: 'takagi-hiromitsu.jp',
 
   title: {
@@ -27,3 +27,4 @@ export const TakagihiromitsuJpExtractor = {
     clean: [],
   },
 };
+module.exports.TakagihiromitsuJpExtractor = TakagihiromitsuJpExtractor;

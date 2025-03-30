@@ -1,4 +1,4 @@
-export const twofortysevensportsComExtractor = {
+const twofortysevensportsComExtractor = {
   domain: '247sports.com',
 
   title: {
@@ -30,3 +30,4 @@ export const twofortysevensportsComExtractor = {
     clean: [],
   },
 };
+module.exports.twofortysevensportsComExtractor = twofortysevensportsComExtractor;

@@ -1,4 +1,4 @@
-export const WwwPhoronixComExtractor = {
+const WwwPhoronixComExtractor = {
   domain: 'www.phoronix.com',
 
   title: {
@@ -33,3 +33,4 @@ export const WwwPhoronixComExtractor = {
     clean: [],
   },
 };
+module.exports.WwwPhoronixComExtractor = WwwPhoronixComExtractor;

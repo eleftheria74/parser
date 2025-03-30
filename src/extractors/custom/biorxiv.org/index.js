@@ -1,4 +1,4 @@
-export const BiorxivOrgExtractor = {
+const BiorxivOrgExtractor = {
   domain: 'biorxiv.org',
 
   title: {
@@ -24,3 +24,4 @@ export const BiorxivOrgExtractor = {
     clean: [],
   },
 };
+module.exports.BiorxivOrgExtractor = BiorxivOrgExtractor;

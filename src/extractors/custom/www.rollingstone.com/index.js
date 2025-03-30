@@ -1,4 +1,4 @@
-export const WwwRollingstoneComExtractor = {
+const WwwRollingstoneComExtractor = {
   domain: 'www.rollingstone.com',
 
   title: {
@@ -43,3 +43,4 @@ export const WwwRollingstoneComExtractor = {
     clean: ['.c-related-links-wrapper', '.module-related'],
   },
 };
+module.exports.WwwRollingstoneComExtractor = WwwRollingstoneComExtractor;

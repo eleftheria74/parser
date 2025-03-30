@@ -1,7 +1,7 @@
 // Rename CustomExtractor
 // to fit your publication
 // (e.g., NYTimesExtractor)
-export const BroadwayWorldExtractor = {
+const BroadwayWorldExtractor = {
   domain: 'www.broadwayworld.com',
   title: {
     selectors: ['h1[itemprop=headline]', 'h1.article-title'],
@@ -48,3 +48,4 @@ export const BroadwayWorldExtractor = {
     ],
   },
 };
+module.exports.BroadwayWorldExtractor = BroadwayWorldExtractor;

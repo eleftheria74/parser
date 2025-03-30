@@ -1,4 +1,4 @@
-export const WwwNationalgeographicComExtractor = {
+const WwwNationalgeographicComExtractor = {
   domain: 'www.nationalgeographic.com',
 
   title: {
@@ -33,6 +33,7 @@ export const WwwNationalgeographicComExtractor = {
     transforms: {
       '.parsys.content': ($node, $) => {
         const $imageParent = $node.children().first();
+module.exports.WwwNationalgeographicComExtractor = WwwNationalgeographicComExtractor;
         if ($imageParent.hasClass('imageGroup')) {
           const $dataAttrContainer = $imageParent
             .find('.media--medium__container')

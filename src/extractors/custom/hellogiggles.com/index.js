@@ -1,4 +1,4 @@
-export const HellogigglesComExtractor = {
+const HellogigglesComExtractor = {
   domain: 'hellogiggles.com',
 
   title: {
@@ -33,3 +33,4 @@ export const HellogigglesComExtractor = {
     clean: [],
   },
 };
+module.exports.HellogigglesComExtractor = HellogigglesComExtractor;

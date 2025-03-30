@@ -1,4 +1,4 @@
-export const BlisterreviewComExtractor = {
+const BlisterreviewComExtractor = {
   domain: 'blisterreview.com',
 
   title: {
@@ -53,3 +53,4 @@ export const BlisterreviewComExtractor = {
     clean: ['.comments-area'],
   },
 };
+module.exports.BlisterreviewComExtractor = BlisterreviewComExtractor;

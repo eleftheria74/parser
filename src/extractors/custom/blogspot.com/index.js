@@ -1,4 +1,4 @@
-export const BloggerExtractor = {
+const BloggerExtractor = {
   domain: 'blogspot.com',
   content: {
     // Blogger is insane and does not load its content
@@ -27,3 +27,4 @@ export const BloggerExtractor = {
     selectors: ['span.publishdate'],
   },
 };
+module.exports.BloggerExtractor = BloggerExtractor;

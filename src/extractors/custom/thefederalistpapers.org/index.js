@@ -1,4 +1,4 @@
-export const ThefederalistpapersOrgExtractor = {
+const ThefederalistpapersOrgExtractor = {
   domain: 'thefederalistpapers.org',
 
   title: {
@@ -37,3 +37,4 @@ export const ThefederalistpapersOrgExtractor = {
     ],
   },
 };
+module.exports.ThefederalistpapersOrgExtractor = ThefederalistpapersOrgExtractor;

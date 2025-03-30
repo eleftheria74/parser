@@ -1,4 +1,4 @@
-export const WwwJnsaOrgExtractor = {
+const WwwJnsaOrgExtractor = {
   domain: 'www.jnsa.org',
 
   title: {
@@ -27,3 +27,4 @@ export const WwwJnsaOrgExtractor = {
     clean: ['#pankuzu', '#side'],
   },
 };
+module.exports.WwwJnsaOrgExtractor = WwwJnsaOrgExtractor;

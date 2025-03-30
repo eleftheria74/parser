@@ -1,4 +1,4 @@
-export const WwwQdailyComExtractor = {
+const WwwQdailyComExtractor = {
   domain: 'www.qdaily.com',
 
   title: {
@@ -34,3 +34,4 @@ export const WwwQdailyComExtractor = {
     clean: ['.lazyload', '.lazylad', '.lazylood'],
   },
 };
+module.exports.WwwQdailyComExtractor = WwwQdailyComExtractor;

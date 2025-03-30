@@ -1,4 +1,4 @@
-export const WwwAsahiComExtractor = {
+const WwwAsahiComExtractor = {
   domain: 'www.asahi.com',
 
   title: {
@@ -33,3 +33,4 @@ export const WwwAsahiComExtractor = {
     clean: ['div.AdMod', 'div.LoginSelectArea', 'time', 'div.notPrint'],
   },
 };
+module.exports.WwwAsahiComExtractor = WwwAsahiComExtractor;

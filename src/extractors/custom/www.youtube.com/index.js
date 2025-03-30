@@ -1,4 +1,4 @@
-export const WwwYoutubeComExtractor = {
+const WwwYoutubeComExtractor = {
   domain: 'www.youtube.com',
 
   title: {
@@ -43,6 +43,7 @@ export const WwwYoutubeComExtractor = {
     transforms: {
       '#player-api': ($node, $) => {
         const videoId = $('meta[itemProp="videoId"]').attr('value');
+module.exports.WwwYoutubeComExtractor = WwwYoutubeComExtractor;
         $node.html(`
           <iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>`);
       },

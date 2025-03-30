@@ -1,4 +1,4 @@
-export const WwwEngadgetComExtractor = {
+const WwwEngadgetComExtractor = {
   domain: 'www.engadget.com',
 
   title: {
@@ -23,7 +23,8 @@ export const WwwEngadgetComExtractor = {
   },
 
   // Engadget stories do have lead images specified by an og:image meta tag, but selecting
-  // the value attribute of that tag fails. I believe the "&#x2111;" sequence of characters
+  // the value attribute of that tag fails. I believe the "&#x2111;
+module.exports.WwwEngadgetComExtractor = WwwEngadgetComExtractor;" sequence of characters
   // is triggering this inability to select the attribute value.
   lead_image_url: {
     selectors: [

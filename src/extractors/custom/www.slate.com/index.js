@@ -1,4 +1,4 @@
-export const WwwSlateComExtractor = {
+const WwwSlateComExtractor = {
   domain: 'www.slate.com',
 
   title: {
@@ -41,3 +41,4 @@ export const WwwSlateComExtractor = {
     ],
   },
 };
+module.exports.WwwSlateComExtractor = WwwSlateComExtractor;

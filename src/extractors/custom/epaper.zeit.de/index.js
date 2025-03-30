@@ -1,4 +1,4 @@
-export const EpaperZeitDeExtractor = {
+const EpaperZeitDeExtractor = {
   domain: 'epaper.zeit.de',
 
   title: {
@@ -35,3 +35,4 @@ export const EpaperZeitDeExtractor = {
     clean: ['image-credits', 'box[type=citation]'],
   },
 };
+module.exports.EpaperZeitDeExtractor = EpaperZeitDeExtractor;

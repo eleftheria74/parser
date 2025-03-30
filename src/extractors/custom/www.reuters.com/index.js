@@ -1,4 +1,4 @@
-export const WwwReutersComExtractor = {
+const WwwReutersComExtractor = {
   domain: 'www.reuters.com',
 
   title: {
@@ -35,3 +35,4 @@ export const WwwReutersComExtractor = {
     ],
   },
 };
+module.exports.WwwReutersComExtractor = WwwReutersComExtractor;

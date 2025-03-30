@@ -1,7 +1,7 @@
 // Rename CustomExtractor
 // to fit your publication
 // (e.g., NYTimesExtractor)
-export const WikiaExtractor = {
+const WikiaExtractor = {
   domain: 'fandom.wikia.com',
   title: {
     selectors: [
@@ -51,3 +51,4 @@ export const WikiaExtractor = {
 
   excerpt: null,
 };
+module.exports.WikiaExtractor = WikiaExtractor;

@@ -1,4 +1,4 @@
-export const WwwVoxComExtractor = {
+const WwwVoxComExtractor = {
   domain: 'www.vox.com',
 
   title: {
@@ -32,6 +32,7 @@ export const WwwVoxComExtractor = {
     transforms: {
       'figure .e-image__image noscript': $node => {
         const imgHtml = $node.html();
+module.exports.WwwVoxComExtractor = WwwVoxComExtractor;
         $node
           .parents('.e-image__image')
           .find('.c-dynamic-image')

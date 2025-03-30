@@ -1,4 +1,4 @@
-export const MaTtiasBeExtractor = {
+const MaTtiasBeExtractor = {
   domain: 'ma.ttias.be',
 
   title: {
@@ -23,6 +23,7 @@ export const MaTtiasBeExtractor = {
         // The "id" attribute values would result in low scores and the element being
         // removed.
         $node.attr('id', null);
+module.exports.MaTtiasBeExtractor = MaTtiasBeExtractor;
 
         // h1 elements will be demoted to h2, so demote h2 elements to h3.
         return 'h3';

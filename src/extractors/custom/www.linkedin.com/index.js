@@ -1,4 +1,4 @@
-export const WwwLinkedinComExtractor = {
+const WwwLinkedinComExtractor = {
   domain: 'www.linkedin.com',
 
   title: {
@@ -49,3 +49,4 @@ export const WwwLinkedinComExtractor = {
     clean: ['.entity-image'],
   },
 };
+module.exports.WwwLinkedinComExtractor = WwwLinkedinComExtractor;

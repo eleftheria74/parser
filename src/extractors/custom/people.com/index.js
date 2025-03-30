@@ -1,4 +1,4 @@
-export const PeopleComExtractor = {
+const PeopleComExtractor = {
   domain: 'people.com',
 
   title: {
@@ -37,3 +37,4 @@ export const PeopleComExtractor = {
     clean: [],
   },
 };
+module.exports.PeopleComExtractor = PeopleComExtractor;

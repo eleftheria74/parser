@@ -1,4 +1,4 @@
-export const MoneyCnnComExtractor = {
+const MoneyCnnComExtractor = {
   domain: 'money.cnn.com',
 
   title: {
@@ -36,3 +36,4 @@ export const MoneyCnnComExtractor = {
     clean: ['.inStoryHeading'],
   },
 };
+module.exports.MoneyCnnComExtractor = MoneyCnnComExtractor;

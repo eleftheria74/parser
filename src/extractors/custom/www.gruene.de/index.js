@@ -1,4 +1,4 @@
-export const WwwGrueneDeExtractor = {
+const WwwGrueneDeExtractor = {
   domain: 'www.gruene.de',
 
   title: {
@@ -29,3 +29,4 @@ export const WwwGrueneDeExtractor = {
     clean: ['figcaption', 'p[class]'],
   },
 };
+module.exports.WwwGrueneDeExtractor = WwwGrueneDeExtractor;

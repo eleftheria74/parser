@@ -1,4 +1,4 @@
-export const WwwNydailynewsComExtractor = {
+const WwwNydailynewsComExtractor = {
   domain: 'www.nydailynews.com',
 
   title: {
@@ -33,3 +33,4 @@ export const WwwNydailynewsComExtractor = {
     clean: ['dl#ra-tags', '.ra-related', 'a.ra-editor', 'dl#ra-share-bottom'],
   },
 };
+module.exports.WwwNydailynewsComExtractor = WwwNydailynewsComExtractor;

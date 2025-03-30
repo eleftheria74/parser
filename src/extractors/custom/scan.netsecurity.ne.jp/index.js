@@ -1,4 +1,4 @@
-export const ScanNetsecurityNeJpExtractor = {
+const ScanNetsecurityNeJpExtractor = {
   domain: 'scan.netsecurity.ne.jp',
 
   title: {
@@ -29,3 +29,4 @@ export const ScanNetsecurityNeJpExtractor = {
     clean: ['aside.arti-giga'],
   },
 };
+module.exports.ScanNetsecurityNeJpExtractor = ScanNetsecurityNeJpExtractor;

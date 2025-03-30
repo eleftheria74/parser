@@ -1,4 +1,4 @@
-export const WwwCnetComExtractor = {
+const WwwCnetComExtractor = {
   domain: 'www.cnet.com',
 
   title: {
@@ -34,6 +34,7 @@ export const WwwCnetComExtractor = {
     transforms: {
       'figure.image': $node => {
         const $img = $node.find('img');
+module.exports.WwwCnetComExtractor = WwwCnetComExtractor;
         $img.attr('width', '100%');
         $img.attr('height', '100%');
         $img.addClass('__image-lead__');

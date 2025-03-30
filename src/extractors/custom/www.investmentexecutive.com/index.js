@@ -1,4 +1,4 @@
-export const WwwInvestmentexecutiveComExtractor = {
+const WwwInvestmentexecutiveComExtractor = {
   domain: 'www.investmentexecutive.com',
 
   title: {
@@ -27,3 +27,4 @@ export const WwwInvestmentexecutiveComExtractor = {
     clean: ['.hidden'],
   },
 };
+module.exports.WwwInvestmentexecutiveComExtractor = WwwInvestmentexecutiveComExtractor;

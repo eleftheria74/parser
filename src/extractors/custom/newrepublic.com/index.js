@@ -1,4 +1,4 @@
-export const NewrepublicComExtractor = {
+const NewrepublicComExtractor = {
   domain: 'newrepublic.com',
 
   title: {
@@ -36,3 +36,4 @@ export const NewrepublicComExtractor = {
     clean: ['aside'],
   },
 };
+module.exports.NewrepublicComExtractor = NewrepublicComExtractor;

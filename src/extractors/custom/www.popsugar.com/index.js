@@ -1,4 +1,4 @@
-export const WwwPopsugarComExtractor = {
+const WwwPopsugarComExtractor = {
   domain: 'www.popsugar.com',
 
   title: {
@@ -30,3 +30,4 @@ export const WwwPopsugarComExtractor = {
     clean: ['.share-copy-title', '.post-tags', '.reactions'],
   },
 };
+module.exports.WwwPopsugarComExtractor = WwwPopsugarComExtractor;

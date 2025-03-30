@@ -1,8 +1,10 @@
 // CLEAN AUTHOR CONSTANTS
-export const CLEAN_AUTHOR_RE = /^\s*(posted |written )?by\s*:?\s*(.*)/i;
+const CLEAN_AUTHOR_RE = /^\s*(posted |written )?by\s*:?\s*(.*)/i;
+module.exports.CLEAN_AUTHOR_RE = CLEAN_AUTHOR_RE;
 
 // CLEAN DEK CONSTANTS
-export const TEXT_LINK_RE = new RegExp('http(s)?://', 'i');
+const TEXT_LINK_RE = new RegExp('http(s)?://', 'i');
+module.exports.TEXT_LINK_RE = TEXT_LINK_RE;
 // An ordered list of meta tag names that denote likely article deks.
 // From most distinct to least distinct.
 //
@@ -12,22 +14,30 @@ export const TEXT_LINK_RE = new RegExp('http(s)?://', 'i');
 //  - dc.description
 // However, these tags often have SEO-specific junk in them that's not
 // header-worthy like a dek is. Excerpt material at best.
-export const DEK_META_TAGS = [];
+const DEK_META_TAGS = [];
+module.exports.DEK_META_TAGS = DEK_META_TAGS;
 
 // An ordered list of Selectors to find likely article deks. From
 // most explicit to least explicit.
 //
 // Should be more restrictive than not, as a failed dek can be pretty
 // detrimental to the aesthetics of an article.
-export const DEK_SELECTORS = ['.entry-summary'];
+const DEK_SELECTORS = ['.entry-summary'];
+module.exports.DEK_SELECTORS = DEK_SELECTORS;
 
 // CLEAN DATE PUBLISHED CONSTANTS
-export const MS_DATE_STRING = /^\d{13}$/i;
-export const SEC_DATE_STRING = /^\d{10}$/i;
-export const CLEAN_DATE_STRING_RE = /^\s*published\s*:?\s*(.*)/i;
-export const TIME_MERIDIAN_SPACE_RE = /(.*\d)(am|pm)(.*)/i;
-export const TIME_MERIDIAN_DOTS_RE = /\.m\./i;
-export const TIME_NOW_STRING = /^\s*(just|right)?\s*now\s*/i;
+const MS_DATE_STRING = /^\d{13}$/i;
+module.exports.MS_DATE_STRING = MS_DATE_STRING;
+const SEC_DATE_STRING = /^\d{10}$/i;
+module.exports.SEC_DATE_STRING = SEC_DATE_STRING;
+const CLEAN_DATE_STRING_RE = /^\s*published\s*:?\s*(.*)/i;
+module.exports.CLEAN_DATE_STRING_RE = CLEAN_DATE_STRING_RE;
+const TIME_MERIDIAN_SPACE_RE = /(.*\d)(am|pm)(.*)/i;
+module.exports.TIME_MERIDIAN_SPACE_RE = TIME_MERIDIAN_SPACE_RE;
+const TIME_MERIDIAN_DOTS_RE = /\.m\./i;
+module.exports.TIME_MERIDIAN_DOTS_RE = TIME_MERIDIAN_DOTS_RE;
+const TIME_NOW_STRING = /^\s*(just|right)?\s*now\s*/i;
+module.exports.TIME_NOW_STRING = TIME_NOW_STRING;
 const timeUnits = [
   'seconds?',
   'minutes?',
@@ -38,10 +48,11 @@ const timeUnits = [
   'years?',
 ];
 const allTimeUnits = timeUnits.join('|');
-export const TIME_AGO_STRING = new RegExp(
+const TIME_AGO_STRING = new RegExp(
   `(\\d+)\\s+(${allTimeUnits})\\s+ago`,
   'i'
 );
+module.exports.TIME_AGO_STRING = TIME_AGO_STRING;
 const months = [
   'jan',
   'feb',
@@ -60,18 +71,23 @@ const allMonths = months.join('|');
 const timestamp1 = '[0-9]{1,2}:[0-9]{2,2}( ?[ap].?m.?)?';
 const timestamp2 = '[0-9]{1,2}[/-][0-9]{1,2}[/-][0-9]{2,4}';
 const timestamp3 = '-[0-9]{3,4}$';
-export const SPLIT_DATE_STRING = new RegExp(
+const SPLIT_DATE_STRING = new RegExp(
   `(${timestamp1})|(${timestamp2})|(${timestamp3})|([0-9]{1,4})|(${allMonths})`,
   'ig'
 );
+module.exports.SPLIT_DATE_STRING = SPLIT_DATE_STRING;
 
 // 2016-11-22T08:57-500
 // Check if datetime string has an offset at the end
-export const TIME_WITH_OFFSET_RE = /-\d{3,4}$/;
+const TIME_WITH_OFFSET_RE = /-\d{3,4}$/;
+module.exports.TIME_WITH_OFFSET_RE = TIME_WITH_OFFSET_RE;
 
 // CLEAN TITLE CONSTANTS
 // A regular expression that will match separating characters on a
 // title, that usually denote breadcrumbs or something similar.
-export const TITLE_SPLITTERS_RE = /(: | - | \| )/g;
+const TITLE_SPLITTERS_RE = /(: | - | \| )/g;
+module.exports.TITLE_SPLITTERS_RE = TITLE_SPLITTERS_RE;
 
-export const DOMAIN_ENDINGS_RE = new RegExp('.com$|.net$|.org$|.co.uk$', 'g');
+const DOMAIN_ENDINGS_RE = new RegExp('.com$|.net$|.org$|.co.uk
+, 'g');
+module.exports.DOMAIN_ENDINGS_RE = DOMAIN_ENDINGS_RE;

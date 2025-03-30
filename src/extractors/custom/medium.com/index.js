@@ -1,4 +1,4 @@
-export const MediumExtractor = {
+const MediumExtractor = {
   domain: 'medium.com',
 
   title: {
@@ -18,6 +18,7 @@ export const MediumExtractor = {
       // Allow drop cap character.
       'section span:first-of-type': $node => {
         const $text = $node.html();
+module.exports.MediumExtractor = MediumExtractor;
         if ($text.length === 1 && /^[a-zA-Z()]+$/.test($text)) {
           $node.replaceWith($text);
         }

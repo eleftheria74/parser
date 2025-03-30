@@ -1,4 +1,4 @@
-export const NewsMynaviJpExtractor = {
+const NewsMynaviJpExtractor = {
   domain: 'news.mynavi.jp',
 
   title: {
@@ -32,6 +32,7 @@ export const NewsMynaviJpExtractor = {
     transforms: {
       img: $node => {
         const src = $node.attr('data-original');
+module.exports.NewsMynaviJpExtractor = NewsMynaviJpExtractor;
         if (src !== '') {
           $node.attr('src', src);
         }

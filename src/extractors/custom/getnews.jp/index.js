@@ -1,4 +1,4 @@
-export const GetnewsJpExtractor = {
+const GetnewsJpExtractor = {
   domain: 'getnews.jp',
 
   title: {
@@ -30,3 +30,4 @@ export const GetnewsJpExtractor = {
     clean: [],
   },
 };
+module.exports.GetnewsJpExtractor = GetnewsJpExtractor;

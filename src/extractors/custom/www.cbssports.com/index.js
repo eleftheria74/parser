@@ -1,4 +1,4 @@
-export const WwwCbssportsComExtractor = {
+const WwwCbssportsComExtractor = {
   domain: 'www.cbssports.com',
 
   title: {
@@ -35,3 +35,4 @@ export const WwwCbssportsComExtractor = {
     clean: [],
   },
 };
+module.exports.WwwCbssportsComExtractor = WwwCbssportsComExtractor;

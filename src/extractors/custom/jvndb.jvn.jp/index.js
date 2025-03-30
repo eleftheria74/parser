@@ -1,4 +1,4 @@
-export const JvndbJvnJpExtractor = {
+const JvndbJvnJpExtractor = {
   domain: 'jvndb.jvn.jp',
 
   title: {
@@ -27,3 +27,4 @@ export const JvndbJvnJpExtractor = {
     clean: [],
   },
 };
+module.exports.JvndbJvnJpExtractor = JvndbJvnJpExtractor;

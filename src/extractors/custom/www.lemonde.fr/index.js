@@ -1,4 +1,4 @@
-export const WwwLemondeFrExtractor = {
+const WwwLemondeFrExtractor = {
   domain: 'www.lemonde.fr',
 
   title: {
@@ -29,3 +29,4 @@ export const WwwLemondeFrExtractor = {
     clean: ['figcaption'],
   },
 };
+module.exports.WwwLemondeFrExtractor = WwwLemondeFrExtractor;

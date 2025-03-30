@@ -1,4 +1,4 @@
-export const TimesofindiaIndiatimesComExtractor = {
+const TimesofindiaIndiatimesComExtractor = {
   domain: 'timesofindia.indiatimes.com',
 
   title: {
@@ -36,3 +36,4 @@ export const TimesofindiaIndiatimesComExtractor = {
     ],
   },
 };
+module.exports.TimesofindiaIndiatimesComExtractor = TimesofindiaIndiatimesComExtractor;

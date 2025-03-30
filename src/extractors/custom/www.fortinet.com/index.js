@@ -1,4 +1,4 @@
-export const WwwFortinetComExtractor = {
+const WwwFortinetComExtractor = {
   domain: 'www.fortinet.com',
 
   title: {
@@ -25,6 +25,7 @@ export const WwwFortinetComExtractor = {
     transforms: {
       noscript: $node => {
         const $children = $node.children();
+module.exports.WwwFortinetComExtractor = WwwFortinetComExtractor;
         if ($children.length === 1 && $children.get(0).tagName === 'img') {
           return 'figure';
         }

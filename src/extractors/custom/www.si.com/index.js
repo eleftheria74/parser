@@ -1,4 +1,4 @@
-export const WwwSiComExtractor = {
+const WwwSiComExtractor = {
   domain: 'www.si.com',
 
   title: {
@@ -34,6 +34,7 @@ export const WwwSiComExtractor = {
     transforms: {
       noscript: $node => {
         const $children = $node.children();
+module.exports.WwwSiComExtractor = WwwSiComExtractor;
         if ($children.length === 1 && $children.get(0).tagName === 'img') {
           return 'figure';
         }

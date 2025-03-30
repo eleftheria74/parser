@@ -1,7 +1,7 @@
 // Rename CustomExtractor
 // to fit your publication
 // (e.g., NYTimesExtractor)
-export const ApartmentTherapyExtractor = {
+const ApartmentTherapyExtractor = {
   domain: 'www.apartmenttherapy.com',
   title: {
     selectors: ['h1.headline'],
@@ -19,6 +19,7 @@ export const ApartmentTherapyExtractor = {
     transforms: {
       'div[data-render-react-id="images/LazyPicture"]': ($node, $) => {
         const data = JSON.parse($node.attr('data-props'));
+module.exports.ApartmentTherapyExtractor = ApartmentTherapyExtractor;
         const { src } = data.sources[0];
         const $img = $('<img />').attr('src', src);
         $node.replaceWith($img);

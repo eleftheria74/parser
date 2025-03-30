@@ -1,7 +1,7 @@
 // Rename CustomExtractor
 // to fit your publication
 // (e.g., NYTimesExtractor)
-export const WiredExtractor = {
+const WiredExtractor = {
   domain: 'www.wired.com',
   title: {
     selectors: [
@@ -51,3 +51,4 @@ export const WiredExtractor = {
 
   excerpt: null,
 };
+module.exports.WiredExtractor = WiredExtractor;

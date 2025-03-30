@@ -1,4 +1,4 @@
-export const DeadlineComExtractor = {
+const DeadlineComExtractor = {
   domain: 'deadline.com',
 
   title: {
@@ -25,6 +25,7 @@ export const DeadlineComExtractor = {
     transforms: {
       '.embed-twitter': $node => {
         const innerHtml = $node.html();
+module.exports.DeadlineComExtractor = DeadlineComExtractor;
         $node.replaceWith(innerHtml);
       },
     },

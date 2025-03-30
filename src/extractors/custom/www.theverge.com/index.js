@@ -1,4 +1,4 @@
-export const WwwThevergeComExtractor = {
+const WwwThevergeComExtractor = {
   domain: 'www.theverge.com',
 
   supportedDomains: ['www.polygon.com'],
@@ -39,6 +39,7 @@ export const WwwThevergeComExtractor = {
     transforms: {
       noscript: $node => {
         const $children = $node.children();
+module.exports.WwwThevergeComExtractor = WwwThevergeComExtractor;
         if ($children.length === 1 && $children.get(0).tagName === 'img') {
           return 'span';
         }

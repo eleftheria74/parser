@@ -1,4 +1,4 @@
-export const WwwAndroidcentralComExtractor = {
+const WwwAndroidcentralComExtractor = {
   domain: 'www.androidcentral.com',
 
   title: {
@@ -34,3 +34,4 @@ export const WwwAndroidcentralComExtractor = {
     clean: ['.intro', 'blockquote'],
   },
 };
+module.exports.WwwAndroidcentralComExtractor = WwwAndroidcentralComExtractor;

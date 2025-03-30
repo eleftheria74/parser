@@ -1,4 +1,4 @@
-export const ObserverComExtractor = {
+const ObserverComExtractor = {
   domain: 'observer.com',
 
   title: {
@@ -34,3 +34,4 @@ export const ObserverComExtractor = {
     clean: [],
   },
 };
+module.exports.ObserverComExtractor = ObserverComExtractor;

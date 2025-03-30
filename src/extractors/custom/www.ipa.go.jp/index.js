@@ -1,4 +1,4 @@
-export const WwwIpaGoJpExtractor = {
+const WwwIpaGoJpExtractor = {
   domain: 'www.ipa.go.jp',
 
   title: {
@@ -27,3 +27,4 @@ export const WwwIpaGoJpExtractor = {
     clean: ['p.ipar_text_right'],
   },
 };
+module.exports.WwwIpaGoJpExtractor = WwwIpaGoJpExtractor;

@@ -1,4 +1,4 @@
-export const WwwBloombergComExtractor = {
+const WwwBloombergComExtractor = {
   domain: 'www.bloomberg.com',
 
   title: {
@@ -72,3 +72,4 @@ export const WwwBloombergComExtractor = {
     clean: ['.inline-newsletter', '.page-ad'],
   },
 };
+module.exports.WwwBloombergComExtractor = WwwBloombergComExtractor;

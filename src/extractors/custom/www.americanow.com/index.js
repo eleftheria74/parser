@@ -1,4 +1,4 @@
-export const WwwAmericanowComExtractor = {
+const WwwAmericanowComExtractor = {
   domain: 'www.americanow.com',
 
   title: {
@@ -36,3 +36,4 @@ export const WwwAmericanowComExtractor = {
     clean: ['.article-video-wrapper', '.show-for-small-only'],
   },
 };
+module.exports.WwwAmericanowComExtractor = WwwAmericanowComExtractor;

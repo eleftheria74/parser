@@ -1,4 +1,4 @@
-export const GithubComExtractor = {
+const GithubComExtractor = {
   domain: 'github.com',
 
   title: {
@@ -42,3 +42,4 @@ export const GithubComExtractor = {
     clean: [],
   },
 };
+module.exports.GithubComExtractor = GithubComExtractor;

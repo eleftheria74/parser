@@ -1,4 +1,4 @@
-export const WwwItmediaCoJpExtractor = {
+const WwwItmediaCoJpExtractor = {
   domain: 'www.itmedia.co.jp',
 
   supportedDomains: [
@@ -37,3 +37,4 @@ export const WwwItmediaCoJpExtractor = {
     clean: ['#snsSharebox'],
   },
 };
+module.exports.WwwItmediaCoJpExtractor = WwwItmediaCoJpExtractor;

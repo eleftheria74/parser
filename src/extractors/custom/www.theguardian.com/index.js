@@ -1,4 +1,4 @@
-export const WwwTheguardianComExtractor = {
+const WwwTheguardianComExtractor = {
   domain: 'www.theguardian.com',
 
   title: {
@@ -34,3 +34,4 @@ export const WwwTheguardianComExtractor = {
     clean: ['.hide-on-mobile', '.inline-icon'],
   },
 };
+module.exports.WwwTheguardianComExtractor = WwwTheguardianComExtractor;

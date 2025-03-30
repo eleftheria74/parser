@@ -1,4 +1,4 @@
-export const WwwOssnewsJpExtractor = {
+const WwwOssnewsJpExtractor = {
   domain: 'www.ossnews.jp',
 
   title: {
@@ -29,3 +29,4 @@ export const WwwOssnewsJpExtractor = {
     clean: [],
   },
 };
+module.exports.WwwOssnewsJpExtractor = WwwOssnewsJpExtractor;

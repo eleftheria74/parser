@@ -1,4 +1,4 @@
-export const SectIijAdJpExtractor = {
+const SectIijAdJpExtractor = {
   domain: 'sect.iij.ad.jp',
 
   title: {
@@ -29,3 +29,4 @@ export const SectIijAdJpExtractor = {
     clean: ['dl.entrydate'],
   },
 };
+module.exports.SectIijAdJpExtractor = SectIijAdJpExtractor;

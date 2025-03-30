@@ -1,4 +1,4 @@
-export const UproxxComExtractor = {
+const UproxxComExtractor = {
   domain: 'uproxx.com',
 
   title: {
@@ -33,3 +33,4 @@ export const UproxxComExtractor = {
     clean: [],
   },
 };
+module.exports.UproxxComExtractor = UproxxComExtractor;

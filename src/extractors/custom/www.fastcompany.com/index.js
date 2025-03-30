@@ -1,4 +1,4 @@
-export const WwwFastcompanyComExtractor = {
+const WwwFastcompanyComExtractor = {
   domain: 'www.fastcompany.com',
 
   title: {
@@ -25,3 +25,4 @@ export const WwwFastcompanyComExtractor = {
     selectors: ['.post__article'],
   },
 };
+module.exports.WwwFastcompanyComExtractor = WwwFastcompanyComExtractor;

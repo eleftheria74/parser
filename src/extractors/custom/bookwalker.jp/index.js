@@ -1,4 +1,4 @@
-export const BookwalkerJpExtractor = {
+const BookwalkerJpExtractor = {
   domain: 'bookwalker.jp',
 
   title: {
@@ -41,3 +41,4 @@ export const BookwalkerJpExtractor = {
     ],
   },
 };
+module.exports.BookwalkerJpExtractor = BookwalkerJpExtractor;

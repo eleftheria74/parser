@@ -1,4 +1,4 @@
-export const SpektrumExtractor = {
+const SpektrumExtractor = {
   domain: 'www.spektrum.de',
 
   title: {
@@ -45,3 +45,4 @@ export const SpektrumExtractor = {
     ],
   },
 };
+module.exports.SpektrumExtractor = SpektrumExtractor;

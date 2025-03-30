@@ -1,4 +1,4 @@
-export const TechlogIijAdJpExtractor = {
+const TechlogIijAdJpExtractor = {
   domain: 'techlog.iij.ad.jp',
 
   title: {
@@ -29,3 +29,4 @@ export const TechlogIijAdJpExtractor = {
     clean: ['.wp_social_bookmarking_light'],
   },
 };
+module.exports.TechlogIijAdJpExtractor = TechlogIijAdJpExtractor;

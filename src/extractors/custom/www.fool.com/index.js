@@ -1,4 +1,4 @@
-export const WwwFoolComExtractor = {
+const WwwFoolComExtractor = {
   domain: 'www.fool.com',
 
   title: {
@@ -32,6 +32,7 @@ export const WwwFoolComExtractor = {
     transforms: {
       '.caption img': $node => {
         const src = $node.attr('src');
+module.exports.WwwFoolComExtractor = WwwFoolComExtractor;
         $node.parent().replaceWith(`<figure><img src="${src}"/></figure>`);
       },
       '.caption': 'figcaption',

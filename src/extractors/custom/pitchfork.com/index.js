@@ -1,4 +1,4 @@
-export const PitchforkComExtractor = {
+const PitchforkComExtractor = {
   domain: 'pitchfork.com',
 
   title: {
@@ -40,3 +40,4 @@ export const PitchforkComExtractor = {
     },
   },
 };
+module.exports.PitchforkComExtractor = PitchforkComExtractor;

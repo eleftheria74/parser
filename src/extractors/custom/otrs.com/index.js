@@ -1,4 +1,4 @@
-export const OtrsComExtractor = {
+const OtrsComExtractor = {
   domain: 'otrs.com',
 
   title: {
@@ -36,3 +36,4 @@ export const OtrsComExtractor = {
     ],
   },
 };
+module.exports.OtrsComExtractor = OtrsComExtractor;

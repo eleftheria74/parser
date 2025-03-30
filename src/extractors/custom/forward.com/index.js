@@ -1,4 +1,4 @@
-export const ForwardComExtractor = {
+const ForwardComExtractor = {
   domain: 'forward.com',
 
   title: {
@@ -46,3 +46,4 @@ export const ForwardComExtractor = {
     clean: ['.post-author', '.donate-box', '.message', '.subtitle'],
   },
 };
+module.exports.ForwardComExtractor = ForwardComExtractor;

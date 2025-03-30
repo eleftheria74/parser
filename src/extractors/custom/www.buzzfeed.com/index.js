@@ -1,7 +1,7 @@
 // Rename CustomExtractor
 // to fit your publication
 // (e.g., NYTimesExtractor)
-export const BuzzfeedExtractor = {
+const BuzzfeedExtractor = {
   domain: 'www.buzzfeed.com',
 
   supportedDomains: ['www.buzzfeednews.com'],
@@ -38,6 +38,7 @@ export const BuzzfeedExtractor = {
       'div.longform_custom_header_media': $node => {
         if ($node.has('img') && $node.has('.longform_header_image_source')) {
           return 'figure';
+module.exports.BuzzfeedExtractor = BuzzfeedExtractor;
         }
 
         return null;

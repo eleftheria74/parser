@@ -1,4 +1,4 @@
-export const WwwNprOrgExtractor = {
+const WwwNprOrgExtractor = {
   domain: 'www.npr.org',
 
   title: {
@@ -39,3 +39,4 @@ export const WwwNprOrgExtractor = {
     clean: ['div.enlarge_measure'],
   },
 };
+module.exports.WwwNprOrgExtractor = WwwNprOrgExtractor;

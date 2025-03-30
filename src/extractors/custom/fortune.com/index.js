@@ -1,4 +1,4 @@
-export const FortuneComExtractor = {
+const FortuneComExtractor = {
   domain: 'fortune.com',
 
   title: {
@@ -32,3 +32,4 @@ export const FortuneComExtractor = {
     clean: [],
   },
 };
+module.exports.FortuneComExtractor = FortuneComExtractor;

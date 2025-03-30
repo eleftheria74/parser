@@ -1,4 +1,4 @@
-export const QzComExtractor = {
+const QzComExtractor = {
   domain: 'qz.com',
 
   title: {
@@ -37,3 +37,4 @@ export const QzComExtractor = {
     clean: [],
   },
 };
+module.exports.QzComExtractor = QzComExtractor;

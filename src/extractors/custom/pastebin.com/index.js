@@ -1,4 +1,4 @@
-export const PastebinComExtractor = {
+const PastebinComExtractor = {
   domain: 'pastebin.com',
 
   title: {
@@ -35,3 +35,4 @@ export const PastebinComExtractor = {
     clean: [],
   },
 };
+module.exports.PastebinComExtractor = PastebinComExtractor;

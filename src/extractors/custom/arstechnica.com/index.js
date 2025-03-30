@@ -1,4 +1,4 @@
-export const ArstechnicaComExtractor = {
+const ArstechnicaComExtractor = {
   domain: 'arstechnica.com',
 
   // Articles from this site are often paginated, but I was unable to write a CSS
@@ -38,6 +38,7 @@ export const ArstechnicaComExtractor = {
         // remove if not following a paragraph. Adding this empty paragraph fixes it, and
         // the empty paragraph will be removed anyway.
         $node.before('<p></p>');
+module.exports.ArstechnicaComExtractor = ArstechnicaComExtractor;
       },
     },
 

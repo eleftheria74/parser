@@ -1,4 +1,4 @@
-export const WwwOreillyCoJpExtractor = {
+const WwwOreillyCoJpExtractor = {
   domain: 'www.oreilly.co.jp',
 
   title: {
@@ -36,3 +36,4 @@ export const WwwOreillyCoJpExtractor = {
     clean: ['.social-tools'],
   },
 };
+module.exports.WwwOreillyCoJpExtractor = WwwOreillyCoJpExtractor;

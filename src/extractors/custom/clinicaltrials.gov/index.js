@@ -1,4 +1,4 @@
-export const ClinicaltrialsGovExtractor = {
+const ClinicaltrialsGovExtractor = {
   domain: 'clinicaltrials.gov',
 
   title: {
@@ -27,3 +27,4 @@ export const ClinicaltrialsGovExtractor = {
     clean: ['.usa-alert> img'],
   },
 };
+module.exports.ClinicaltrialsGovExtractor = ClinicaltrialsGovExtractor;

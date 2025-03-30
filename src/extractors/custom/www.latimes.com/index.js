@@ -1,4 +1,4 @@
-export const WwwLatimesComExtractor = {
+const WwwLatimesComExtractor = {
   domain: 'www.latimes.com',
 
   title: {
@@ -31,6 +31,7 @@ export const WwwLatimesComExtractor = {
     transforms: {
       '.trb_ar_la': $node => {
         const $figure = $node.find('figure');
+module.exports.WwwLatimesComExtractor = WwwLatimesComExtractor;
         $node.replaceWith($figure);
       },
     },

@@ -1,4 +1,4 @@
-export const WwwNdtvComExtractor = {
+const WwwNdtvComExtractor = {
   domain: 'www.ndtv.com',
 
   title: {
@@ -33,6 +33,7 @@ export const WwwNdtvComExtractor = {
       '.place_cont': $node => {
         if (!$node.parents('p').length) {
           const nextSibling = $node.next('p');
+module.exports.WwwNdtvComExtractor = WwwNdtvComExtractor;
           if (nextSibling) {
             $node.remove();
             nextSibling.prepend($node);

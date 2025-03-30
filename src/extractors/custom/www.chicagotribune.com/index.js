@@ -1,4 +1,4 @@
-export const WwwChicagotribuneComExtractor = {
+const WwwChicagotribuneComExtractor = {
   domain: 'www.chicagotribune.com',
 
   title: {
@@ -30,3 +30,4 @@ export const WwwChicagotribuneComExtractor = {
     clean: [],
   },
 };
+module.exports.WwwChicagotribuneComExtractor = WwwChicagotribuneComExtractor;

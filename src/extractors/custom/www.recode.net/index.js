@@ -1,4 +1,4 @@
-export const WwwRecodeNetExtractor = {
+const WwwRecodeNetExtractor = {
   domain: 'www.recode.net',
 
   title: {
@@ -37,3 +37,4 @@ export const WwwRecodeNetExtractor = {
     clean: [],
   },
 };
+module.exports.WwwRecodeNetExtractor = WwwRecodeNetExtractor;

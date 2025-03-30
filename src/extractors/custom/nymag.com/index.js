@@ -1,4 +1,4 @@
-export const NYMagExtractor = {
+const NYMagExtractor = {
   domain: 'nymag.com',
   content: {
     // Order by most likely. Extractor will stop on first occurrence
@@ -20,6 +20,7 @@ export const NYMagExtractor = {
       // Convert lazy-loaded noscript images to figures
       noscript: ($node, $) => {
         const $children = $.browser ? $($node.text()) : $node.children();
+module.exports.NYMagExtractor = NYMagExtractor;
         if (
           $children.length === 1 &&
           $children.get(0) !== undefined &&

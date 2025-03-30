@@ -1,4 +1,4 @@
-export const WwwSanwaCoJpExtractor = {
+const WwwSanwaCoJpExtractor = {
   domain: 'www.sanwa.co.jp',
 
   title: {
@@ -31,3 +31,4 @@ export const WwwSanwaCoJpExtractor = {
     clean: ['#smartphone', 'div.sns_box', 'div.contentFoot'],
   },
 };
+module.exports.WwwSanwaCoJpExtractor = WwwSanwaCoJpExtractor;

@@ -1,4 +1,4 @@
-export const WwwRedditComExtractor = {
+const WwwRedditComExtractor = {
   domain: 'www.reddit.com',
 
   title: {
@@ -41,6 +41,7 @@ export const WwwRedditComExtractor = {
       'div[role="img"]': $node => {
         // External link image preview
         const $img = $node.find('img');
+module.exports.WwwRedditComExtractor = WwwRedditComExtractor;
         const bgImg = $node.css('background-image');
         if ($img.length === 1 && bgImg) {
           $img.attr('src', bgImg.match(/\((.*?)\)/)[1].replace(/('|")/g, ''));

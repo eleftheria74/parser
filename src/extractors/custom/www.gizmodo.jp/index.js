@@ -1,4 +1,4 @@
-export const WwwGizmodoJpExtractor = {
+const WwwGizmodoJpExtractor = {
   domain: 'www.gizmodo.jp',
 
   title: {
@@ -25,6 +25,7 @@ export const WwwGizmodoJpExtractor = {
     transforms: {
       'img.p-post-thumbnailImage': $node => {
         const src = $node.attr('src');
+module.exports.WwwGizmodoJpExtractor = WwwGizmodoJpExtractor;
         $node.attr('src', src.replace(/^.*=%27/, '').replace(/%27;$/, ''));
       },
     },

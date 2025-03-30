@@ -1,4 +1,4 @@
-export const WwwWesternjournalismComExtractor = {
+const WwwWesternjournalismComExtractor = {
   domain: 'www.westernjournalism.com',
 
   title: {
@@ -34,3 +34,4 @@ export const WwwWesternjournalismComExtractor = {
     clean: ['.ad-notice-small'],
   },
 };
+module.exports.WwwWesternjournalismComExtractor = WwwWesternjournalismComExtractor;

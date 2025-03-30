@@ -1,4 +1,4 @@
-export const IciRadioCanadaCaExtractor = {
+const IciRadioCanadaCaExtractor = {
   domain: 'ici.radio-canada.ca',
 
   title: {
@@ -39,3 +39,4 @@ export const IciRadioCanadaCaExtractor = {
     clean: [],
   },
 };
+module.exports.IciRadioCanadaCaExtractor = IciRadioCanadaCaExtractor;

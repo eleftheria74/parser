@@ -1,4 +1,4 @@
-export const WwwTmzComExtractor = {
+const WwwTmzComExtractor = {
   domain: 'www.tmz.com',
 
   title: {
@@ -36,3 +36,4 @@ export const WwwTmzComExtractor = {
     clean: ['.lightbox-link'],
   },
 };
+module.exports.WwwTmzComExtractor = WwwTmzComExtractor;

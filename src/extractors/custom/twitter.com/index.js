@@ -1,4 +1,4 @@
-export const TwitterExtractor = {
+const TwitterExtractor = {
   domain: 'twitter.com',
 
   content: {
@@ -9,6 +9,7 @@ export const TwitterExtractor = {
       // it to fit our needs before we clean it up.
       '.permalink[role=main]': ($node, $) => {
         const tweets = $node.find('.tweet');
+module.exports.TwitterExtractor = TwitterExtractor;
         const $tweetContainer = $('<div id="TWEETS_GO_HERE"></div>');
         $tweetContainer.append(tweets);
         $node.replaceWith($tweetContainer);

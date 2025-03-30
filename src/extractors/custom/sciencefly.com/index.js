@@ -1,4 +1,4 @@
-export const ScienceflyComExtractor = {
+const ScienceflyComExtractor = {
   domain: 'sciencefly.com',
 
   title: {
@@ -36,3 +36,4 @@ export const ScienceflyComExtractor = {
     clean: [],
   },
 };
+module.exports.ScienceflyComExtractor = ScienceflyComExtractor;

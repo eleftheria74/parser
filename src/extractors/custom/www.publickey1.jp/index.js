@@ -1,4 +1,4 @@
-export const WwwPublickey1JpExtractor = {
+const WwwPublickey1JpExtractor = {
   domain: 'www.publickey1.jp',
 
   title: {
@@ -31,3 +31,4 @@ export const WwwPublickey1JpExtractor = {
     clean: ['#breadcrumbs', 'div.sbm', 'div.ad_footer'],
   },
 };
+module.exports.WwwPublickey1JpExtractor = WwwPublickey1JpExtractor;

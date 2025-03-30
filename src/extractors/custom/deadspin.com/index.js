@@ -1,4 +1,4 @@
-export const DeadspinExtractor = {
+const DeadspinExtractor = {
   domain: 'deadspin.com',
 
   supportedDomains: [
@@ -33,6 +33,7 @@ export const DeadspinExtractor = {
     transforms: {
       'iframe.lazyload[data-recommend-id^="youtube://"]': $node => {
         const youtubeId = $node.attr('id').split('youtube-')[1];
+module.exports.DeadspinExtractor = DeadspinExtractor;
         $node.attr('src', `https://www.youtube.com/embed/${youtubeId}`);
       },
     },

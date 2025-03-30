@@ -1,7 +1,7 @@
 // Rename CustomExtractor
 // to fit your publication
 // (e.g., NYTimesExtractor)
-export const NewYorkerExtractor = {
+const NewYorkerExtractor = {
   domain: 'www.newyorker.com',
   title: {
     selectors: [
@@ -66,3 +66,4 @@ export const NewYorkerExtractor = {
 
   excerpt: null,
 };
+module.exports.NewYorkerExtractor = NewYorkerExtractor;

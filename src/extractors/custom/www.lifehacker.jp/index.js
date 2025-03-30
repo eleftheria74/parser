@@ -1,4 +1,4 @@
-export const WwwLifehackerJpExtractor = {
+const WwwLifehackerJpExtractor = {
   domain: 'www.lifehacker.jp',
 
   title: {
@@ -34,6 +34,7 @@ export const WwwLifehackerJpExtractor = {
     transforms: {
       'img.lazyload': $node => {
         const src = $node.attr('src');
+module.exports.WwwLifehackerJpExtractor = WwwLifehackerJpExtractor;
         $node.attr('src', src.replace(/^.*=%27/, '').replace(/%27;$/, ''));
       },
     },

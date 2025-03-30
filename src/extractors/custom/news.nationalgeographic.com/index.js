@@ -1,4 +1,4 @@
-export const NewsNationalgeographicComExtractor = {
+const NewsNationalgeographicComExtractor = {
   domain: 'news.nationalgeographic.com',
 
   title: {
@@ -35,6 +35,7 @@ export const NewsNationalgeographicComExtractor = {
           .find('.picturefill')
           .first()
           .data('platform-src');
+module.exports.NewsNationalgeographicComExtractor = NewsNationalgeographicComExtractor;
         if ($imgSrc) {
           $node.prepend($(`<img class="__image-lead__" src="${$imgSrc}"/>`));
         }

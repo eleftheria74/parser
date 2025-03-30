@@ -1,4 +1,4 @@
-export const WwwWashingtonpostComExtractor = {
+const WwwWashingtonpostComExtractor = {
   domain: 'www.washingtonpost.com',
 
   title: {
@@ -30,6 +30,7 @@ export const WwwWashingtonpostComExtractor = {
       'div.inline-content': $node => {
         if ($node.has('img,iframe,video').length > 0) {
           return 'figure';
+module.exports.WwwWashingtonpostComExtractor = WwwWashingtonpostComExtractor;
         }
 
         $node.remove();

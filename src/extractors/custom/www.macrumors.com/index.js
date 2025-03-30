@@ -1,4 +1,4 @@
-export const WwwMacrumorsComExtractor = {
+const WwwMacrumorsComExtractor = {
   domain: 'www.macrumors.com',
 
   title: {
@@ -36,3 +36,4 @@ export const WwwMacrumorsComExtractor = {
     clean: [],
   },
 };
+module.exports.WwwMacrumorsComExtractor = WwwMacrumorsComExtractor;

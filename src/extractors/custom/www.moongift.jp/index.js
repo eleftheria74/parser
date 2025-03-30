@@ -1,4 +1,4 @@
-export const WwwMoongiftJpExtractor = {
+const WwwMoongiftJpExtractor = {
   domain: 'www.moongift.jp',
 
   title: {
@@ -28,3 +28,4 @@ export const WwwMoongiftJpExtractor = {
     clean: ['ul.mg_service.cf'],
   },
 };
+module.exports.WwwMoongiftJpExtractor = WwwMoongiftJpExtractor;

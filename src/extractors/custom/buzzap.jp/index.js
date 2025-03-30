@@ -1,4 +1,4 @@
-export const BuzzapJpExtractor = {
+const BuzzapJpExtractor = {
   domain: 'buzzap.jp',
 
   title: {
@@ -27,3 +27,4 @@ export const BuzzapJpExtractor = {
     clean: [],
   },
 };
+module.exports.BuzzapJpExtractor = BuzzapJpExtractor;

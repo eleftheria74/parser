@@ -1,6 +1,6 @@
 const URL = require('url');
 
-export const WiredJpExtractor = {
+const WiredJpExtractor = {
   domain: 'wired.jp',
 
   title: {
@@ -38,6 +38,7 @@ export const WiredJpExtractor = {
     transforms: {
       'img[data-original]': $node => {
         const dataOriginal = $node.attr('data-original');
+module.exports.WiredJpExtractor = WiredJpExtractor;
         const src = $node.attr('src');
         const url = URL.resolve(src, dataOriginal);
         $node.attr('src', url);

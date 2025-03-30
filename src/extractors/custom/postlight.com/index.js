@@ -1,4 +1,4 @@
-export const PostlightComExtractor = {
+const PostlightComExtractor = {
   domain: 'postlight.com',
 
   title: {
@@ -38,3 +38,4 @@ export const PostlightComExtractor = {
     ],
   },
 };
+module.exports.PostlightComExtractor = PostlightComExtractor;

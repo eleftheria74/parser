@@ -1,4 +1,4 @@
-export const PhpspotOrgExtractor = {
+const PhpspotOrgExtractor = {
   domain: 'phpspot.org',
 
   title: {
@@ -27,3 +27,4 @@ export const PhpspotOrgExtractor = {
     clean: [],
   },
 };
+module.exports.PhpspotOrgExtractor = PhpspotOrgExtractor;

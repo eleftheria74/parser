@@ -1,4 +1,4 @@
-export const WwwOpposingviewsComExtractor = {
+const WwwOpposingviewsComExtractor = {
   domain: 'www.opposingviews.com',
 
   title: {
@@ -39,3 +39,4 @@ export const WwwOpposingviewsComExtractor = {
     clean: ['.show-for-small-only'],
   },
 };
+module.exports.WwwOpposingviewsComExtractor = WwwOpposingviewsComExtractor;

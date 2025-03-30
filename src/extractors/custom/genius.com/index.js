@@ -1,4 +1,4 @@
-export const GeniusComExtractor = {
+const GeniusComExtractor = {
   domain: 'genius.com',
 
   title: {
@@ -16,6 +16,7 @@ export const GeniusComExtractor = {
         'value',
         res => {
           const json = JSON.parse(res);
+module.exports.GeniusComExtractor = GeniusComExtractor;
           return json.song.release_date;
         },
       ],

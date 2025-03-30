@@ -1,11 +1,13 @@
 // Spacer images to be removed
-export const SPACER_RE = new RegExp('transparent|spacer|blank', 'i');
+const SPACER_RE = new RegExp('transparent|spacer|blank', 'i');
+module.exports.SPACER_RE = SPACER_RE;
 
 // The class we will use to mark elements we want to keep
 // but would normally remove
-export const KEEP_CLASS = 'mercury-parser-keep';
+const KEEP_CLASS = 'mercury-parser-keep';
+module.exports.KEEP_CLASS = KEEP_CLASS;
 
-export const KEEP_SELECTORS = [
+const KEEP_SELECTORS = [
   'iframe[src^="https://www.youtube.com"]',
   'iframe[src^="https://www.youtube-nocookie.com"]',
   'iframe[src^="http://www.youtube.com"]',
@@ -13,9 +15,10 @@ export const KEEP_SELECTORS = [
   'iframe[src^="http://player.vimeo"]',
   'iframe[src^="https://www.redditmedia.com"]',
 ];
+module.exports.KEEP_SELECTORS = KEEP_SELECTORS;
 
 // A list of tags to strip from the output if we encounter them.
-export const STRIP_OUTPUT_TAGS = [
+const STRIP_OUTPUT_TAGS = [
   'title',
   'script',
   'noscript',
@@ -26,14 +29,18 @@ export const STRIP_OUTPUT_TAGS = [
   'iframe',
   'object',
 ];
+module.exports.STRIP_OUTPUT_TAGS = STRIP_OUTPUT_TAGS;
 
 // cleanAttributes
-export const REMOVE_ATTRS = ['style', 'align'];
-export const REMOVE_ATTR_SELECTORS = REMOVE_ATTRS.map(
+const REMOVE_ATTRS = ['style', 'align'];
+module.exports.REMOVE_ATTRS = REMOVE_ATTRS;
+const REMOVE_ATTR_SELECTORS = REMOVE_ATTRS.map(
   selector => `[${selector}]`
 );
-export const REMOVE_ATTR_LIST = REMOVE_ATTRS.join(',');
-export const WHITELIST_ATTRS = [
+module.exports.REMOVE_ATTR_SELECTORS = REMOVE_ATTR_SELECTORS;
+const REMOVE_ATTR_LIST = REMOVE_ATTRS.join(',');
+module.exports.REMOVE_ATTR_LIST = REMOVE_ATTR_LIST;
+const WHITELIST_ATTRS = [
   'src',
   'srcset',
   'sizes',
@@ -46,20 +53,81 @@ export const WHITELIST_ATTRS = [
   'width',
   'height',
 ];
+module.exports.WHITELIST_ATTRS = WHITELIST_ATTRS;
 
-export const WHITELIST_ATTRS_RE = new RegExp(
-  `^(${WHITELIST_ATTRS.join('|')})$`,
+const WHITELIST_ATTRS_RE = new RegExp(
+  `^(${WHITELIST_ATTRS.join('|')})// Spacer images to be removed
+const SPACER_RE = new RegExp('transparent|spacer|blank', 'i');
+module.exports.SPACER_RE = SPACER_RE;
+
+// The class we will use to mark elements we want to keep
+// but would normally remove
+const KEEP_CLASS = 'mercury-parser-keep';
+module.exports.KEEP_CLASS = KEEP_CLASS;
+
+const KEEP_SELECTORS = [
+  'iframe[src^="https://www.youtube.com"]',
+  'iframe[src^="https://www.youtube-nocookie.com"]',
+  'iframe[src^="http://www.youtube.com"]',
+  'iframe[src^="https://player.vimeo"]',
+  'iframe[src^="http://player.vimeo"]',
+  'iframe[src^="https://www.redditmedia.com"]',
+];
+module.exports.KEEP_SELECTORS = KEEP_SELECTORS;
+
+// A list of tags to strip from the output if we encounter them.
+const STRIP_OUTPUT_TAGS = [
+  'title',
+  'script',
+  'noscript',
+  'link',
+  'style',
+  'hr',
+  'embed',
+  'iframe',
+  'object',
+];
+module.exports.STRIP_OUTPUT_TAGS = STRIP_OUTPUT_TAGS;
+
+// cleanAttributes
+const REMOVE_ATTRS = ['style', 'align'];
+module.exports.REMOVE_ATTRS = REMOVE_ATTRS;
+const REMOVE_ATTR_SELECTORS = REMOVE_ATTRS.map(
+  selector => `[${selector}]`
+);
+module.exports.REMOVE_ATTR_SELECTORS = REMOVE_ATTR_SELECTORS;
+const REMOVE_ATTR_LIST = REMOVE_ATTRS.join(',');
+module.exports.REMOVE_ATTR_LIST = REMOVE_ATTR_LIST;
+const WHITELIST_ATTRS = [
+  'src',
+  'srcset',
+  'sizes',
+  'type',
+  'href',
+  'class',
+  'id',
+  'alt',
+  'xlink:href',
+  'width',
+  'height',
+];
+module.exports.WHITELIST_ATTRS = WHITELIST_ATTRS;
+
+,
   'i'
 );
+module.exports.WHITELIST_ATTRS_RE = WHITELIST_ATTRS_RE;
 
 // removeEmpty
-export const REMOVE_EMPTY_TAGS = ['p'];
-export const REMOVE_EMPTY_SELECTORS = REMOVE_EMPTY_TAGS.map(
+const REMOVE_EMPTY_TAGS = ['p'];
+module.exports.REMOVE_EMPTY_TAGS = REMOVE_EMPTY_TAGS;
+const REMOVE_EMPTY_SELECTORS = REMOVE_EMPTY_TAGS.map(
   tag => `${tag}:empty`
 ).join(',');
+module.exports.REMOVE_EMPTY_SELECTORS = REMOVE_EMPTY_SELECTORS;
 
 // cleanTags
-export const CLEAN_CONDITIONALLY_TAGS = [
+const CLEAN_CONDITIONALLY_TAGS = [
   'ul',
   'ol',
   'table',
@@ -67,10 +135,12 @@ export const CLEAN_CONDITIONALLY_TAGS = [
   'button',
   'form',
 ].join(',');
+module.exports.CLEAN_CONDITIONALLY_TAGS = CLEAN_CONDITIONALLY_TAGS;
 
 // cleanHeaders
 const HEADER_TAGS = ['h2', 'h3', 'h4', 'h5', 'h6'];
-export const HEADER_TAG_LIST = HEADER_TAGS.join(',');
+const HEADER_TAG_LIST = HEADER_TAGS.join(',');
+module.exports.HEADER_TAG_LIST = HEADER_TAG_LIST;
 
 // // CONTENT FETCHING CONSTANTS ////
 
@@ -78,7 +148,7 @@ export const HEADER_TAG_LIST = HEADER_TAGS.join(',');
 // extracting content from a resource. These strings are joined together
 // and then tested for existence using re:test, so may contain simple,
 // non-pipe style regular expression queries if necessary.
-export const UNLIKELY_CANDIDATES_BLACKLIST = [
+const UNLIKELY_CANDIDATES_BLACKLIST = [
   'ad-break',
   'adbox',
   'advert',
@@ -120,6 +190,7 @@ export const UNLIKELY_CANDIDATES_BLACKLIST = [
   'taboola',
   'tools',
 ];
+module.exports.UNLIKELY_CANDIDATES_BLACKLIST = UNLIKELY_CANDIDATES_BLACKLIST;
 
 // A list of strings that can be considered LIKELY candidates when
 // extracting content from a resource. Essentially, the inverse of the
@@ -132,7 +203,7 @@ export const UNLIKELY_CANDIDATES_BLACKLIST = [
 // These strings are joined together and then tested for existence using
 // re:test, so may contain simple, non-pipe style regular expression queries
 // if necessary.
-export const UNLIKELY_CANDIDATES_WHITELIST = [
+const UNLIKELY_CANDIDATES_WHITELIST = [
   'and',
   'article',
   'body',
@@ -149,11 +220,12 @@ export const UNLIKELY_CANDIDATES_WHITELIST = [
   'posts',
   'shadow',
 ];
+module.exports.UNLIKELY_CANDIDATES_WHITELIST = UNLIKELY_CANDIDATES_WHITELIST;
 
 // A list of tags which, if found inside, should cause a <div /> to NOT
 // be turned into a paragraph tag. Shallow div tags without these elements
 // should be turned into <p /> tags.
-export const DIV_TO_P_BLOCK_TAGS = [
+const DIV_TO_P_BLOCK_TAGS = [
   'a',
   'blockquote',
   'dl',
@@ -163,10 +235,11 @@ export const DIV_TO_P_BLOCK_TAGS = [
   'pre',
   'table',
 ].join(',');
+module.exports.DIV_TO_P_BLOCK_TAGS = DIV_TO_P_BLOCK_TAGS;
 
 // A list of tags that should be ignored when trying to find the top candidate
 // for a document.
-export const NON_TOP_CANDIDATE_TAGS = [
+const NON_TOP_CANDIDATE_TAGS = [
   'br',
   'b',
   'i',
@@ -180,16 +253,275 @@ export const NON_TOP_CANDIDATE_TAGS = [
   'link',
   'meta',
 ];
+module.exports.NON_TOP_CANDIDATE_TAGS = NON_TOP_CANDIDATE_TAGS;
 
-export const NON_TOP_CANDIDATE_TAGS_RE = new RegExp(
-  `^(${NON_TOP_CANDIDATE_TAGS.join('|')})$`,
+const NON_TOP_CANDIDATE_TAGS_RE = new RegExp(
+  `^(${NON_TOP_CANDIDATE_TAGS.join('|')})// Spacer images to be removed
+const SPACER_RE = new RegExp('transparent|spacer|blank', 'i');
+module.exports.SPACER_RE = SPACER_RE;
+
+// The class we will use to mark elements we want to keep
+// but would normally remove
+const KEEP_CLASS = 'mercury-parser-keep';
+module.exports.KEEP_CLASS = KEEP_CLASS;
+
+const KEEP_SELECTORS = [
+  'iframe[src^="https://www.youtube.com"]',
+  'iframe[src^="https://www.youtube-nocookie.com"]',
+  'iframe[src^="http://www.youtube.com"]',
+  'iframe[src^="https://player.vimeo"]',
+  'iframe[src^="http://player.vimeo"]',
+  'iframe[src^="https://www.redditmedia.com"]',
+];
+module.exports.KEEP_SELECTORS = KEEP_SELECTORS;
+
+// A list of tags to strip from the output if we encounter them.
+const STRIP_OUTPUT_TAGS = [
+  'title',
+  'script',
+  'noscript',
+  'link',
+  'style',
+  'hr',
+  'embed',
+  'iframe',
+  'object',
+];
+module.exports.STRIP_OUTPUT_TAGS = STRIP_OUTPUT_TAGS;
+
+// cleanAttributes
+const REMOVE_ATTRS = ['style', 'align'];
+module.exports.REMOVE_ATTRS = REMOVE_ATTRS;
+const REMOVE_ATTR_SELECTORS = REMOVE_ATTRS.map(
+  selector => `[${selector}]`
+);
+module.exports.REMOVE_ATTR_SELECTORS = REMOVE_ATTR_SELECTORS;
+const REMOVE_ATTR_LIST = REMOVE_ATTRS.join(',');
+module.exports.REMOVE_ATTR_LIST = REMOVE_ATTR_LIST;
+const WHITELIST_ATTRS = [
+  'src',
+  'srcset',
+  'sizes',
+  'type',
+  'href',
+  'class',
+  'id',
+  'alt',
+  'xlink:href',
+  'width',
+  'height',
+];
+module.exports.WHITELIST_ATTRS = WHITELIST_ATTRS;
+
+const WHITELIST_ATTRS_RE = new RegExp(
+  `^(${WHITELIST_ATTRS.join('|')})// Spacer images to be removed
+const SPACER_RE = new RegExp('transparent|spacer|blank', 'i');
+module.exports.SPACER_RE = SPACER_RE;
+
+// The class we will use to mark elements we want to keep
+// but would normally remove
+const KEEP_CLASS = 'mercury-parser-keep';
+module.exports.KEEP_CLASS = KEEP_CLASS;
+
+const KEEP_SELECTORS = [
+  'iframe[src^="https://www.youtube.com"]',
+  'iframe[src^="https://www.youtube-nocookie.com"]',
+  'iframe[src^="http://www.youtube.com"]',
+  'iframe[src^="https://player.vimeo"]',
+  'iframe[src^="http://player.vimeo"]',
+  'iframe[src^="https://www.redditmedia.com"]',
+];
+module.exports.KEEP_SELECTORS = KEEP_SELECTORS;
+
+// A list of tags to strip from the output if we encounter them.
+const STRIP_OUTPUT_TAGS = [
+  'title',
+  'script',
+  'noscript',
+  'link',
+  'style',
+  'hr',
+  'embed',
+  'iframe',
+  'object',
+];
+module.exports.STRIP_OUTPUT_TAGS = STRIP_OUTPUT_TAGS;
+
+// cleanAttributes
+const REMOVE_ATTRS = ['style', 'align'];
+module.exports.REMOVE_ATTRS = REMOVE_ATTRS;
+const REMOVE_ATTR_SELECTORS = REMOVE_ATTRS.map(
+  selector => `[${selector}]`
+);
+module.exports.REMOVE_ATTR_SELECTORS = REMOVE_ATTR_SELECTORS;
+const REMOVE_ATTR_LIST = REMOVE_ATTRS.join(',');
+module.exports.REMOVE_ATTR_LIST = REMOVE_ATTR_LIST;
+const WHITELIST_ATTRS = [
+  'src',
+  'srcset',
+  'sizes',
+  'type',
+  'href',
+  'class',
+  'id',
+  'alt',
+  'xlink:href',
+  'width',
+  'height',
+];
+module.exports.WHITELIST_ATTRS = WHITELIST_ATTRS;
+
+,
   'i'
 );
+module.exports.WHITELIST_ATTRS_RE = WHITELIST_ATTRS_RE;
+
+// removeEmpty
+const REMOVE_EMPTY_TAGS = ['p'];
+module.exports.REMOVE_EMPTY_TAGS = REMOVE_EMPTY_TAGS;
+const REMOVE_EMPTY_SELECTORS = REMOVE_EMPTY_TAGS.map(
+  tag => `${tag}:empty`
+).join(',');
+module.exports.REMOVE_EMPTY_SELECTORS = REMOVE_EMPTY_SELECTORS;
+
+// cleanTags
+const CLEAN_CONDITIONALLY_TAGS = [
+  'ul',
+  'ol',
+  'table',
+  'div',
+  'button',
+  'form',
+].join(',');
+module.exports.CLEAN_CONDITIONALLY_TAGS = CLEAN_CONDITIONALLY_TAGS;
+
+// cleanHeaders
+const HEADER_TAGS = ['h2', 'h3', 'h4', 'h5', 'h6'];
+const HEADER_TAG_LIST = HEADER_TAGS.join(',');
+module.exports.HEADER_TAG_LIST = HEADER_TAG_LIST;
+
+// // CONTENT FETCHING CONSTANTS ////
+
+// A list of strings that can be considered unlikely candidates when
+// extracting content from a resource. These strings are joined together
+// and then tested for existence using re:test, so may contain simple,
+// non-pipe style regular expression queries if necessary.
+const UNLIKELY_CANDIDATES_BLACKLIST = [
+  'ad-break',
+  'adbox',
+  'advert',
+  'addthis',
+  'agegate',
+  'aux',
+  'blogger-labels',
+  'combx',
+  'comment',
+  'conversation',
+  'disqus',
+  'entry-unrelated',
+  'extra',
+  'foot',
+  // 'form', // This is too generic, has too many false positives
+  'header',
+  'hidden',
+  'loader',
+  'login', // Note: This can hit 'blogindex'.
+  'menu',
+  'meta',
+  'nav',
+  'outbrain',
+  'pager',
+  'pagination',
+  'predicta', // readwriteweb inline ad box
+  'presence_control_external', // lifehacker.com container full of false positives
+  'popup',
+  'printfriendly',
+  'related',
+  'remove',
+  'remark',
+  'rss',
+  'share',
+  'shoutbox',
+  'sidebar',
+  'sociable',
+  'sponsor',
+  'taboola',
+  'tools',
+];
+module.exports.UNLIKELY_CANDIDATES_BLACKLIST = UNLIKELY_CANDIDATES_BLACKLIST;
+
+// A list of strings that can be considered LIKELY candidates when
+// extracting content from a resource. Essentially, the inverse of the
+// blacklist above - if something matches both blacklist and whitelist,
+// it is kept. This is useful, for example, if something has a className
+// of "rss-content entry-content". It matched 'rss', so it would normally
+// be removed, however, it's also the entry content, so it should be left
+// alone.
+//
+// These strings are joined together and then tested for existence using
+// re:test, so may contain simple, non-pipe style regular expression queries
+// if necessary.
+const UNLIKELY_CANDIDATES_WHITELIST = [
+  'and',
+  'article',
+  'body',
+  'blogindex',
+  'column',
+  'content',
+  'entry-content-asset',
+  'format', // misuse of form
+  'hfeed',
+  'hentry',
+  'hatom',
+  'main',
+  'page',
+  'posts',
+  'shadow',
+];
+module.exports.UNLIKELY_CANDIDATES_WHITELIST = UNLIKELY_CANDIDATES_WHITELIST;
+
+// A list of tags which, if found inside, should cause a <div /> to NOT
+// be turned into a paragraph tag. Shallow div tags without these elements
+// should be turned into <p /> tags.
+const DIV_TO_P_BLOCK_TAGS = [
+  'a',
+  'blockquote',
+  'dl',
+  'div',
+  'img',
+  'p',
+  'pre',
+  'table',
+].join(',');
+module.exports.DIV_TO_P_BLOCK_TAGS = DIV_TO_P_BLOCK_TAGS;
+
+// A list of tags that should be ignored when trying to find the top candidate
+// for a document.
+const NON_TOP_CANDIDATE_TAGS = [
+  'br',
+  'b',
+  'i',
+  'label',
+  'hr',
+  'area',
+  'base',
+  'basefont',
+  'input',
+  'img',
+  'link',
+  'meta',
+];
+module.exports.NON_TOP_CANDIDATE_TAGS = NON_TOP_CANDIDATE_TAGS;
+
+,
+  'i'
+);
+module.exports.NON_TOP_CANDIDATE_TAGS_RE = NON_TOP_CANDIDATE_TAGS_RE;
 
 // A list of selectors that specify, very clearly, either hNews or other
 // very content-specific style content, like Blogger templates.
 // More examples here: http://microformats.org/wiki/blog-post-formats
-export const HNEWS_CONTENT_SELECTORS = [
+const HNEWS_CONTENT_SELECTORS = [
   ['.hentry', '.entry-content'],
   ['entry', '.entry-content'],
   ['.entry', '.entry_content'],
@@ -197,15 +529,18 @@ export const HNEWS_CONTENT_SELECTORS = [
   ['.post', '.post_body'],
   ['.post', '.post-body'],
 ];
+module.exports.HNEWS_CONTENT_SELECTORS = HNEWS_CONTENT_SELECTORS;
 
-export const PHOTO_HINTS = ['figure', 'photo', 'image', 'caption'];
-export const PHOTO_HINTS_RE = new RegExp(PHOTO_HINTS.join('|'), 'i');
+const PHOTO_HINTS = ['figure', 'photo', 'image', 'caption'];
+module.exports.PHOTO_HINTS = PHOTO_HINTS;
+const PHOTO_HINTS_RE = new RegExp(PHOTO_HINTS.join('|'), 'i');
+module.exports.PHOTO_HINTS_RE = PHOTO_HINTS_RE;
 
 // A list of strings that denote a positive scoring for this content as being
 // an article container. Checked against className and id.
 //
 // TODO: Perhaps have these scale based on their odds of being quality?
-export const POSITIVE_SCORE_HINTS = [
+const POSITIVE_SCORE_HINTS = [
   'article',
   'articlecontent',
   'instapaper_body',
@@ -226,21 +561,24 @@ export const POSITIVE_SCORE_HINTS = [
   '[-_]copy', // usatoday
   '\\Bcopy',
 ];
+module.exports.POSITIVE_SCORE_HINTS = POSITIVE_SCORE_HINTS;
 
 // The above list, joined into a matching regular expression
-export const POSITIVE_SCORE_RE = new RegExp(
+const POSITIVE_SCORE_RE = new RegExp(
   POSITIVE_SCORE_HINTS.join('|'),
   'i'
 );
+module.exports.POSITIVE_SCORE_RE = POSITIVE_SCORE_RE;
 
 // Readability publisher-specific guidelines
-export const READABILITY_ASSET = new RegExp('entry-content-asset', 'i');
+const READABILITY_ASSET = new RegExp('entry-content-asset', 'i');
+module.exports.READABILITY_ASSET = READABILITY_ASSET;
 
 // A list of strings that denote a negative scoring for this content as being
 // an article container. Checked against className and id.
 //
 // TODO: Perhaps have these scale based on their odds of being quality?
-export const NEGATIVE_SCORE_HINTS = [
+const NEGATIVE_SCORE_HINTS = [
   'adbox',
   'advert',
   'author',
@@ -297,21 +635,25 @@ export const NEGATIVE_SCORE_HINTS = [
   'tools',
   'widget',
 ];
+module.exports.NEGATIVE_SCORE_HINTS = NEGATIVE_SCORE_HINTS;
 // The above list, joined into a matching regular expression
-export const NEGATIVE_SCORE_RE = new RegExp(
+const NEGATIVE_SCORE_RE = new RegExp(
   NEGATIVE_SCORE_HINTS.join('|'),
   'i'
 );
+module.exports.NEGATIVE_SCORE_RE = NEGATIVE_SCORE_RE;
 
 // XPath to try to determine if a page is wordpress. Not always successful.
-export const IS_WP_SELECTOR = 'meta[name=generator][value^=WordPress]';
+const IS_WP_SELECTOR = 'meta[name=generator][value^=WordPress]';
+module.exports.IS_WP_SELECTOR = IS_WP_SELECTOR;
 
 // Match a digit. Pretty clear.
-export const DIGIT_RE = new RegExp('[0-9]');
+const DIGIT_RE = new RegExp('[0-9]');
+module.exports.DIGIT_RE = DIGIT_RE;
 
 // A list of words that, if found in link text or URLs, likely mean that
 // this link is not a next page link.
-export const EXTRANEOUS_LINK_HINTS = [
+const EXTRANEOUS_LINK_HINTS = [
   'print',
   'archive',
   'comment',
@@ -327,37 +669,46 @@ export const EXTRANEOUS_LINK_HINTS = [
   'adx',
   'entry-unrelated',
 ];
-export const EXTRANEOUS_LINK_HINTS_RE = new RegExp(
+module.exports.EXTRANEOUS_LINK_HINTS = EXTRANEOUS_LINK_HINTS;
+const EXTRANEOUS_LINK_HINTS_RE = new RegExp(
   EXTRANEOUS_LINK_HINTS.join('|'),
   'i'
 );
+module.exports.EXTRANEOUS_LINK_HINTS_RE = EXTRANEOUS_LINK_HINTS_RE;
 
 // Match any phrase that looks like it could be page, or paging, or pagination
-export const PAGE_RE = new RegExp('pag(e|ing|inat)', 'i');
+const PAGE_RE = new RegExp('pag(e|ing|inat)', 'i');
+module.exports.PAGE_RE = PAGE_RE;
 
 // Match any link text/classname/id that looks like it could mean the next
 // page. Things like: next, continue, >, >>, » but not >|, »| as those can
 // mean last page.
-// export const NEXT_LINK_TEXT_RE = new RegExp('(next|weiter|continue|>([^\|]|$)|»([^\|]|$))', 'i');
-export const NEXT_LINK_TEXT_RE = /(next|weiter|continue|>([^|]|$)|»([^|]|$))/i;
+// const NEXT_LINK_TEXT_RE = new RegExp('(next|weiter|continue|>([^\|]|$)|»([^\|]|$))', 'i');
+module.exports.NEXT_LINK_TEXT_RE = NEXT_LINK_TEXT_RE;
+const NEXT_LINK_TEXT_RE = /(next|weiter|continue|>([^|]|$)|»([^|]|$))/i;
+module.exports.NEXT_LINK_TEXT_RE = NEXT_LINK_TEXT_RE;
 
 // Match any link text/classname/id that looks like it is an end link: things
 // like "first", "last", "end", etc.
-export const CAP_LINK_TEXT_RE = new RegExp('(first|last|end)', 'i');
+const CAP_LINK_TEXT_RE = new RegExp('(first|last|end)', 'i');
+module.exports.CAP_LINK_TEXT_RE = CAP_LINK_TEXT_RE;
 
 // Match any link text/classname/id that looks like it means the previous
 // page.
-export const PREV_LINK_TEXT_RE = new RegExp('(prev|earl|old|new|<|«)', 'i');
+const PREV_LINK_TEXT_RE = new RegExp('(prev|earl|old|new|<|«)', 'i');
+module.exports.PREV_LINK_TEXT_RE = PREV_LINK_TEXT_RE;
 
 // Match 2 or more consecutive <br> tags
-export const BR_TAGS_RE = new RegExp('(<br[^>]*>[ \n\r\t]*){2,}', 'i');
+const BR_TAGS_RE = new RegExp('(<br[^>]*>[ \n\r\t]*){2,}', 'i');
+module.exports.BR_TAGS_RE = BR_TAGS_RE;
 
 // Match 1 BR tag.
-export const BR_TAG_RE = new RegExp('<br[^>]*>', 'i');
+const BR_TAG_RE = new RegExp('<br[^>]*>', 'i');
+module.exports.BR_TAG_RE = BR_TAG_RE;
 
 // A list of all of the block level tags known in HTML5 and below. Taken from
 // http://bit.ly/qneNIT
-export const BLOCK_LEVEL_TAGS = [
+const BLOCK_LEVEL_TAGS = [
   'article',
   'aside',
   'blockquote',
@@ -406,27 +757,870 @@ export const BLOCK_LEVEL_TAGS = [
   'ul',
   'video',
 ];
-export const BLOCK_LEVEL_TAGS_RE = new RegExp(
-  `^(${BLOCK_LEVEL_TAGS.join('|')})$`,
+module.exports.BLOCK_LEVEL_TAGS = BLOCK_LEVEL_TAGS;
+const BLOCK_LEVEL_TAGS_RE = new RegExp(
+  `^(${BLOCK_LEVEL_TAGS.join('|')})// Spacer images to be removed
+const SPACER_RE = new RegExp('transparent|spacer|blank', 'i');
+module.exports.SPACER_RE = SPACER_RE;
+
+// The class we will use to mark elements we want to keep
+// but would normally remove
+const KEEP_CLASS = 'mercury-parser-keep';
+module.exports.KEEP_CLASS = KEEP_CLASS;
+
+const KEEP_SELECTORS = [
+  'iframe[src^="https://www.youtube.com"]',
+  'iframe[src^="https://www.youtube-nocookie.com"]',
+  'iframe[src^="http://www.youtube.com"]',
+  'iframe[src^="https://player.vimeo"]',
+  'iframe[src^="http://player.vimeo"]',
+  'iframe[src^="https://www.redditmedia.com"]',
+];
+module.exports.KEEP_SELECTORS = KEEP_SELECTORS;
+
+// A list of tags to strip from the output if we encounter them.
+const STRIP_OUTPUT_TAGS = [
+  'title',
+  'script',
+  'noscript',
+  'link',
+  'style',
+  'hr',
+  'embed',
+  'iframe',
+  'object',
+];
+module.exports.STRIP_OUTPUT_TAGS = STRIP_OUTPUT_TAGS;
+
+// cleanAttributes
+const REMOVE_ATTRS = ['style', 'align'];
+module.exports.REMOVE_ATTRS = REMOVE_ATTRS;
+const REMOVE_ATTR_SELECTORS = REMOVE_ATTRS.map(
+  selector => `[${selector}]`
+);
+module.exports.REMOVE_ATTR_SELECTORS = REMOVE_ATTR_SELECTORS;
+const REMOVE_ATTR_LIST = REMOVE_ATTRS.join(',');
+module.exports.REMOVE_ATTR_LIST = REMOVE_ATTR_LIST;
+const WHITELIST_ATTRS = [
+  'src',
+  'srcset',
+  'sizes',
+  'type',
+  'href',
+  'class',
+  'id',
+  'alt',
+  'xlink:href',
+  'width',
+  'height',
+];
+module.exports.WHITELIST_ATTRS = WHITELIST_ATTRS;
+
+const WHITELIST_ATTRS_RE = new RegExp(
+  `^(${WHITELIST_ATTRS.join('|')})// Spacer images to be removed
+const SPACER_RE = new RegExp('transparent|spacer|blank', 'i');
+module.exports.SPACER_RE = SPACER_RE;
+
+// The class we will use to mark elements we want to keep
+// but would normally remove
+const KEEP_CLASS = 'mercury-parser-keep';
+module.exports.KEEP_CLASS = KEEP_CLASS;
+
+const KEEP_SELECTORS = [
+  'iframe[src^="https://www.youtube.com"]',
+  'iframe[src^="https://www.youtube-nocookie.com"]',
+  'iframe[src^="http://www.youtube.com"]',
+  'iframe[src^="https://player.vimeo"]',
+  'iframe[src^="http://player.vimeo"]',
+  'iframe[src^="https://www.redditmedia.com"]',
+];
+module.exports.KEEP_SELECTORS = KEEP_SELECTORS;
+
+// A list of tags to strip from the output if we encounter them.
+const STRIP_OUTPUT_TAGS = [
+  'title',
+  'script',
+  'noscript',
+  'link',
+  'style',
+  'hr',
+  'embed',
+  'iframe',
+  'object',
+];
+module.exports.STRIP_OUTPUT_TAGS = STRIP_OUTPUT_TAGS;
+
+// cleanAttributes
+const REMOVE_ATTRS = ['style', 'align'];
+module.exports.REMOVE_ATTRS = REMOVE_ATTRS;
+const REMOVE_ATTR_SELECTORS = REMOVE_ATTRS.map(
+  selector => `[${selector}]`
+);
+module.exports.REMOVE_ATTR_SELECTORS = REMOVE_ATTR_SELECTORS;
+const REMOVE_ATTR_LIST = REMOVE_ATTRS.join(',');
+module.exports.REMOVE_ATTR_LIST = REMOVE_ATTR_LIST;
+const WHITELIST_ATTRS = [
+  'src',
+  'srcset',
+  'sizes',
+  'type',
+  'href',
+  'class',
+  'id',
+  'alt',
+  'xlink:href',
+  'width',
+  'height',
+];
+module.exports.WHITELIST_ATTRS = WHITELIST_ATTRS;
+
+,
   'i'
 );
+module.exports.WHITELIST_ATTRS_RE = WHITELIST_ATTRS_RE;
+
+// removeEmpty
+const REMOVE_EMPTY_TAGS = ['p'];
+module.exports.REMOVE_EMPTY_TAGS = REMOVE_EMPTY_TAGS;
+const REMOVE_EMPTY_SELECTORS = REMOVE_EMPTY_TAGS.map(
+  tag => `${tag}:empty`
+).join(',');
+module.exports.REMOVE_EMPTY_SELECTORS = REMOVE_EMPTY_SELECTORS;
+
+// cleanTags
+const CLEAN_CONDITIONALLY_TAGS = [
+  'ul',
+  'ol',
+  'table',
+  'div',
+  'button',
+  'form',
+].join(',');
+module.exports.CLEAN_CONDITIONALLY_TAGS = CLEAN_CONDITIONALLY_TAGS;
+
+// cleanHeaders
+const HEADER_TAGS = ['h2', 'h3', 'h4', 'h5', 'h6'];
+const HEADER_TAG_LIST = HEADER_TAGS.join(',');
+module.exports.HEADER_TAG_LIST = HEADER_TAG_LIST;
+
+// // CONTENT FETCHING CONSTANTS ////
+
+// A list of strings that can be considered unlikely candidates when
+// extracting content from a resource. These strings are joined together
+// and then tested for existence using re:test, so may contain simple,
+// non-pipe style regular expression queries if necessary.
+const UNLIKELY_CANDIDATES_BLACKLIST = [
+  'ad-break',
+  'adbox',
+  'advert',
+  'addthis',
+  'agegate',
+  'aux',
+  'blogger-labels',
+  'combx',
+  'comment',
+  'conversation',
+  'disqus',
+  'entry-unrelated',
+  'extra',
+  'foot',
+  // 'form', // This is too generic, has too many false positives
+  'header',
+  'hidden',
+  'loader',
+  'login', // Note: This can hit 'blogindex'.
+  'menu',
+  'meta',
+  'nav',
+  'outbrain',
+  'pager',
+  'pagination',
+  'predicta', // readwriteweb inline ad box
+  'presence_control_external', // lifehacker.com container full of false positives
+  'popup',
+  'printfriendly',
+  'related',
+  'remove',
+  'remark',
+  'rss',
+  'share',
+  'shoutbox',
+  'sidebar',
+  'sociable',
+  'sponsor',
+  'taboola',
+  'tools',
+];
+module.exports.UNLIKELY_CANDIDATES_BLACKLIST = UNLIKELY_CANDIDATES_BLACKLIST;
+
+// A list of strings that can be considered LIKELY candidates when
+// extracting content from a resource. Essentially, the inverse of the
+// blacklist above - if something matches both blacklist and whitelist,
+// it is kept. This is useful, for example, if something has a className
+// of "rss-content entry-content". It matched 'rss', so it would normally
+// be removed, however, it's also the entry content, so it should be left
+// alone.
+//
+// These strings are joined together and then tested for existence using
+// re:test, so may contain simple, non-pipe style regular expression queries
+// if necessary.
+const UNLIKELY_CANDIDATES_WHITELIST = [
+  'and',
+  'article',
+  'body',
+  'blogindex',
+  'column',
+  'content',
+  'entry-content-asset',
+  'format', // misuse of form
+  'hfeed',
+  'hentry',
+  'hatom',
+  'main',
+  'page',
+  'posts',
+  'shadow',
+];
+module.exports.UNLIKELY_CANDIDATES_WHITELIST = UNLIKELY_CANDIDATES_WHITELIST;
+
+// A list of tags which, if found inside, should cause a <div /> to NOT
+// be turned into a paragraph tag. Shallow div tags without these elements
+// should be turned into <p /> tags.
+const DIV_TO_P_BLOCK_TAGS = [
+  'a',
+  'blockquote',
+  'dl',
+  'div',
+  'img',
+  'p',
+  'pre',
+  'table',
+].join(',');
+module.exports.DIV_TO_P_BLOCK_TAGS = DIV_TO_P_BLOCK_TAGS;
+
+// A list of tags that should be ignored when trying to find the top candidate
+// for a document.
+const NON_TOP_CANDIDATE_TAGS = [
+  'br',
+  'b',
+  'i',
+  'label',
+  'hr',
+  'area',
+  'base',
+  'basefont',
+  'input',
+  'img',
+  'link',
+  'meta',
+];
+module.exports.NON_TOP_CANDIDATE_TAGS = NON_TOP_CANDIDATE_TAGS;
+
+const NON_TOP_CANDIDATE_TAGS_RE = new RegExp(
+  `^(${NON_TOP_CANDIDATE_TAGS.join('|')})// Spacer images to be removed
+const SPACER_RE = new RegExp('transparent|spacer|blank', 'i');
+module.exports.SPACER_RE = SPACER_RE;
+
+// The class we will use to mark elements we want to keep
+// but would normally remove
+const KEEP_CLASS = 'mercury-parser-keep';
+module.exports.KEEP_CLASS = KEEP_CLASS;
+
+const KEEP_SELECTORS = [
+  'iframe[src^="https://www.youtube.com"]',
+  'iframe[src^="https://www.youtube-nocookie.com"]',
+  'iframe[src^="http://www.youtube.com"]',
+  'iframe[src^="https://player.vimeo"]',
+  'iframe[src^="http://player.vimeo"]',
+  'iframe[src^="https://www.redditmedia.com"]',
+];
+module.exports.KEEP_SELECTORS = KEEP_SELECTORS;
+
+// A list of tags to strip from the output if we encounter them.
+const STRIP_OUTPUT_TAGS = [
+  'title',
+  'script',
+  'noscript',
+  'link',
+  'style',
+  'hr',
+  'embed',
+  'iframe',
+  'object',
+];
+module.exports.STRIP_OUTPUT_TAGS = STRIP_OUTPUT_TAGS;
+
+// cleanAttributes
+const REMOVE_ATTRS = ['style', 'align'];
+module.exports.REMOVE_ATTRS = REMOVE_ATTRS;
+const REMOVE_ATTR_SELECTORS = REMOVE_ATTRS.map(
+  selector => `[${selector}]`
+);
+module.exports.REMOVE_ATTR_SELECTORS = REMOVE_ATTR_SELECTORS;
+const REMOVE_ATTR_LIST = REMOVE_ATTRS.join(',');
+module.exports.REMOVE_ATTR_LIST = REMOVE_ATTR_LIST;
+const WHITELIST_ATTRS = [
+  'src',
+  'srcset',
+  'sizes',
+  'type',
+  'href',
+  'class',
+  'id',
+  'alt',
+  'xlink:href',
+  'width',
+  'height',
+];
+module.exports.WHITELIST_ATTRS = WHITELIST_ATTRS;
+
+const WHITELIST_ATTRS_RE = new RegExp(
+  `^(${WHITELIST_ATTRS.join('|')})// Spacer images to be removed
+const SPACER_RE = new RegExp('transparent|spacer|blank', 'i');
+module.exports.SPACER_RE = SPACER_RE;
+
+// The class we will use to mark elements we want to keep
+// but would normally remove
+const KEEP_CLASS = 'mercury-parser-keep';
+module.exports.KEEP_CLASS = KEEP_CLASS;
+
+const KEEP_SELECTORS = [
+  'iframe[src^="https://www.youtube.com"]',
+  'iframe[src^="https://www.youtube-nocookie.com"]',
+  'iframe[src^="http://www.youtube.com"]',
+  'iframe[src^="https://player.vimeo"]',
+  'iframe[src^="http://player.vimeo"]',
+  'iframe[src^="https://www.redditmedia.com"]',
+];
+module.exports.KEEP_SELECTORS = KEEP_SELECTORS;
+
+// A list of tags to strip from the output if we encounter them.
+const STRIP_OUTPUT_TAGS = [
+  'title',
+  'script',
+  'noscript',
+  'link',
+  'style',
+  'hr',
+  'embed',
+  'iframe',
+  'object',
+];
+module.exports.STRIP_OUTPUT_TAGS = STRIP_OUTPUT_TAGS;
+
+// cleanAttributes
+const REMOVE_ATTRS = ['style', 'align'];
+module.exports.REMOVE_ATTRS = REMOVE_ATTRS;
+const REMOVE_ATTR_SELECTORS = REMOVE_ATTRS.map(
+  selector => `[${selector}]`
+);
+module.exports.REMOVE_ATTR_SELECTORS = REMOVE_ATTR_SELECTORS;
+const REMOVE_ATTR_LIST = REMOVE_ATTRS.join(',');
+module.exports.REMOVE_ATTR_LIST = REMOVE_ATTR_LIST;
+const WHITELIST_ATTRS = [
+  'src',
+  'srcset',
+  'sizes',
+  'type',
+  'href',
+  'class',
+  'id',
+  'alt',
+  'xlink:href',
+  'width',
+  'height',
+];
+module.exports.WHITELIST_ATTRS = WHITELIST_ATTRS;
+
+,
+  'i'
+);
+module.exports.WHITELIST_ATTRS_RE = WHITELIST_ATTRS_RE;
+
+// removeEmpty
+const REMOVE_EMPTY_TAGS = ['p'];
+module.exports.REMOVE_EMPTY_TAGS = REMOVE_EMPTY_TAGS;
+const REMOVE_EMPTY_SELECTORS = REMOVE_EMPTY_TAGS.map(
+  tag => `${tag}:empty`
+).join(',');
+module.exports.REMOVE_EMPTY_SELECTORS = REMOVE_EMPTY_SELECTORS;
+
+// cleanTags
+const CLEAN_CONDITIONALLY_TAGS = [
+  'ul',
+  'ol',
+  'table',
+  'div',
+  'button',
+  'form',
+].join(',');
+module.exports.CLEAN_CONDITIONALLY_TAGS = CLEAN_CONDITIONALLY_TAGS;
+
+// cleanHeaders
+const HEADER_TAGS = ['h2', 'h3', 'h4', 'h5', 'h6'];
+const HEADER_TAG_LIST = HEADER_TAGS.join(',');
+module.exports.HEADER_TAG_LIST = HEADER_TAG_LIST;
+
+// // CONTENT FETCHING CONSTANTS ////
+
+// A list of strings that can be considered unlikely candidates when
+// extracting content from a resource. These strings are joined together
+// and then tested for existence using re:test, so may contain simple,
+// non-pipe style regular expression queries if necessary.
+const UNLIKELY_CANDIDATES_BLACKLIST = [
+  'ad-break',
+  'adbox',
+  'advert',
+  'addthis',
+  'agegate',
+  'aux',
+  'blogger-labels',
+  'combx',
+  'comment',
+  'conversation',
+  'disqus',
+  'entry-unrelated',
+  'extra',
+  'foot',
+  // 'form', // This is too generic, has too many false positives
+  'header',
+  'hidden',
+  'loader',
+  'login', // Note: This can hit 'blogindex'.
+  'menu',
+  'meta',
+  'nav',
+  'outbrain',
+  'pager',
+  'pagination',
+  'predicta', // readwriteweb inline ad box
+  'presence_control_external', // lifehacker.com container full of false positives
+  'popup',
+  'printfriendly',
+  'related',
+  'remove',
+  'remark',
+  'rss',
+  'share',
+  'shoutbox',
+  'sidebar',
+  'sociable',
+  'sponsor',
+  'taboola',
+  'tools',
+];
+module.exports.UNLIKELY_CANDIDATES_BLACKLIST = UNLIKELY_CANDIDATES_BLACKLIST;
+
+// A list of strings that can be considered LIKELY candidates when
+// extracting content from a resource. Essentially, the inverse of the
+// blacklist above - if something matches both blacklist and whitelist,
+// it is kept. This is useful, for example, if something has a className
+// of "rss-content entry-content". It matched 'rss', so it would normally
+// be removed, however, it's also the entry content, so it should be left
+// alone.
+//
+// These strings are joined together and then tested for existence using
+// re:test, so may contain simple, non-pipe style regular expression queries
+// if necessary.
+const UNLIKELY_CANDIDATES_WHITELIST = [
+  'and',
+  'article',
+  'body',
+  'blogindex',
+  'column',
+  'content',
+  'entry-content-asset',
+  'format', // misuse of form
+  'hfeed',
+  'hentry',
+  'hatom',
+  'main',
+  'page',
+  'posts',
+  'shadow',
+];
+module.exports.UNLIKELY_CANDIDATES_WHITELIST = UNLIKELY_CANDIDATES_WHITELIST;
+
+// A list of tags which, if found inside, should cause a <div /> to NOT
+// be turned into a paragraph tag. Shallow div tags without these elements
+// should be turned into <p /> tags.
+const DIV_TO_P_BLOCK_TAGS = [
+  'a',
+  'blockquote',
+  'dl',
+  'div',
+  'img',
+  'p',
+  'pre',
+  'table',
+].join(',');
+module.exports.DIV_TO_P_BLOCK_TAGS = DIV_TO_P_BLOCK_TAGS;
+
+// A list of tags that should be ignored when trying to find the top candidate
+// for a document.
+const NON_TOP_CANDIDATE_TAGS = [
+  'br',
+  'b',
+  'i',
+  'label',
+  'hr',
+  'area',
+  'base',
+  'basefont',
+  'input',
+  'img',
+  'link',
+  'meta',
+];
+module.exports.NON_TOP_CANDIDATE_TAGS = NON_TOP_CANDIDATE_TAGS;
+
+,
+  'i'
+);
+module.exports.NON_TOP_CANDIDATE_TAGS_RE = NON_TOP_CANDIDATE_TAGS_RE;
+
+// A list of selectors that specify, very clearly, either hNews or other
+// very content-specific style content, like Blogger templates.
+// More examples here: http://microformats.org/wiki/blog-post-formats
+const HNEWS_CONTENT_SELECTORS = [
+  ['.hentry', '.entry-content'],
+  ['entry', '.entry-content'],
+  ['.entry', '.entry_content'],
+  ['.post', '.postbody'],
+  ['.post', '.post_body'],
+  ['.post', '.post-body'],
+];
+module.exports.HNEWS_CONTENT_SELECTORS = HNEWS_CONTENT_SELECTORS;
+
+const PHOTO_HINTS = ['figure', 'photo', 'image', 'caption'];
+module.exports.PHOTO_HINTS = PHOTO_HINTS;
+const PHOTO_HINTS_RE = new RegExp(PHOTO_HINTS.join('|'), 'i');
+module.exports.PHOTO_HINTS_RE = PHOTO_HINTS_RE;
+
+// A list of strings that denote a positive scoring for this content as being
+// an article container. Checked against className and id.
+//
+// TODO: Perhaps have these scale based on their odds of being quality?
+const POSITIVE_SCORE_HINTS = [
+  'article',
+  'articlecontent',
+  'instapaper_body',
+  'blog',
+  'body',
+  'content',
+  'entry-content-asset',
+  'entry',
+  'hentry',
+  'main',
+  'Normal',
+  'page',
+  'pagination',
+  'permalink',
+  'post',
+  'story',
+  'text',
+  '[-_]copy', // usatoday
+  '\\Bcopy',
+];
+module.exports.POSITIVE_SCORE_HINTS = POSITIVE_SCORE_HINTS;
+
+// The above list, joined into a matching regular expression
+const POSITIVE_SCORE_RE = new RegExp(
+  POSITIVE_SCORE_HINTS.join('|'),
+  'i'
+);
+module.exports.POSITIVE_SCORE_RE = POSITIVE_SCORE_RE;
+
+// Readability publisher-specific guidelines
+const READABILITY_ASSET = new RegExp('entry-content-asset', 'i');
+module.exports.READABILITY_ASSET = READABILITY_ASSET;
+
+// A list of strings that denote a negative scoring for this content as being
+// an article container. Checked against className and id.
+//
+// TODO: Perhaps have these scale based on their odds of being quality?
+const NEGATIVE_SCORE_HINTS = [
+  'adbox',
+  'advert',
+  'author',
+  'bio',
+  'bookmark',
+  'bottom',
+  'byline',
+  'clear',
+  'com-',
+  'combx',
+  'comment',
+  'comment\\B',
+  'contact',
+  'copy',
+  'credit',
+  'crumb',
+  'date',
+  'deck',
+  'excerpt',
+  'featured', // tnr.com has a featured_content which throws us off
+  'foot',
+  'footer',
+  'footnote',
+  'graf',
+  'head',
+  'info',
+  'infotext', // newscientist.com copyright
+  'instapaper_ignore',
+  'jump',
+  'linebreak',
+  'link',
+  'masthead',
+  'media',
+  'meta',
+  'modal',
+  'outbrain', // slate.com junk
+  'promo',
+  'pr_', // autoblog - press release
+  'related',
+  'respond',
+  'roundcontent', // lifehacker restricted content warning
+  'scroll',
+  'secondary',
+  'share',
+  'shopping',
+  'shoutbox',
+  'side',
+  'sidebar',
+  'sponsor',
+  'stamp',
+  'sub',
+  'summary',
+  'tags',
+  'tools',
+  'widget',
+];
+module.exports.NEGATIVE_SCORE_HINTS = NEGATIVE_SCORE_HINTS;
+// The above list, joined into a matching regular expression
+const NEGATIVE_SCORE_RE = new RegExp(
+  NEGATIVE_SCORE_HINTS.join('|'),
+  'i'
+);
+module.exports.NEGATIVE_SCORE_RE = NEGATIVE_SCORE_RE;
+
+// XPath to try to determine if a page is wordpress. Not always successful.
+const IS_WP_SELECTOR = 'meta[name=generator][value^=WordPress]';
+module.exports.IS_WP_SELECTOR = IS_WP_SELECTOR;
+
+// Match a digit. Pretty clear.
+const DIGIT_RE = new RegExp('[0-9]');
+module.exports.DIGIT_RE = DIGIT_RE;
+
+// A list of words that, if found in link text or URLs, likely mean that
+// this link is not a next page link.
+const EXTRANEOUS_LINK_HINTS = [
+  'print',
+  'archive',
+  'comment',
+  'discuss',
+  'e-mail',
+  'email',
+  'share',
+  'reply',
+  'all',
+  'login',
+  'sign',
+  'single',
+  'adx',
+  'entry-unrelated',
+];
+module.exports.EXTRANEOUS_LINK_HINTS = EXTRANEOUS_LINK_HINTS;
+const EXTRANEOUS_LINK_HINTS_RE = new RegExp(
+  EXTRANEOUS_LINK_HINTS.join('|'),
+  'i'
+);
+module.exports.EXTRANEOUS_LINK_HINTS_RE = EXTRANEOUS_LINK_HINTS_RE;
+
+// Match any phrase that looks like it could be page, or paging, or pagination
+const PAGE_RE = new RegExp('pag(e|ing|inat)', 'i');
+module.exports.PAGE_RE = PAGE_RE;
+
+// Match any link text/classname/id that looks like it could mean the next
+// page. Things like: next, continue, >, >>, » but not >|, »| as those can
+// mean last page.
+// const NEXT_LINK_TEXT_RE = new RegExp('(next|weiter|continue|>([^\|]|$)|»([^\|]|$))', 'i');
+module.exports.NEXT_LINK_TEXT_RE = NEXT_LINK_TEXT_RE;
+const NEXT_LINK_TEXT_RE = /(next|weiter|continue|>([^|]|$)|»([^|]|$))/i;
+module.exports.NEXT_LINK_TEXT_RE = NEXT_LINK_TEXT_RE;
+
+// Match any link text/classname/id that looks like it is an end link: things
+// like "first", "last", "end", etc.
+const CAP_LINK_TEXT_RE = new RegExp('(first|last|end)', 'i');
+module.exports.CAP_LINK_TEXT_RE = CAP_LINK_TEXT_RE;
+
+// Match any link text/classname/id that looks like it means the previous
+// page.
+const PREV_LINK_TEXT_RE = new RegExp('(prev|earl|old|new|<|«)', 'i');
+module.exports.PREV_LINK_TEXT_RE = PREV_LINK_TEXT_RE;
+
+// Match 2 or more consecutive <br> tags
+const BR_TAGS_RE = new RegExp('(<br[^>]*>[ \n\r\t]*){2,}', 'i');
+module.exports.BR_TAGS_RE = BR_TAGS_RE;
+
+// Match 1 BR tag.
+const BR_TAG_RE = new RegExp('<br[^>]*>', 'i');
+module.exports.BR_TAG_RE = BR_TAG_RE;
+
+// A list of all of the block level tags known in HTML5 and below. Taken from
+// http://bit.ly/qneNIT
+const BLOCK_LEVEL_TAGS = [
+  'article',
+  'aside',
+  'blockquote',
+  'body',
+  'br',
+  'button',
+  'canvas',
+  'caption',
+  'col',
+  'colgroup',
+  'dd',
+  'div',
+  'dl',
+  'dt',
+  'embed',
+  'fieldset',
+  'figcaption',
+  'figure',
+  'footer',
+  'form',
+  'h1',
+  'h2',
+  'h3',
+  'h4',
+  'h5',
+  'h6',
+  'header',
+  'hgroup',
+  'hr',
+  'li',
+  'map',
+  'object',
+  'ol',
+  'output',
+  'p',
+  'pre',
+  'progress',
+  'section',
+  'table',
+  'tbody',
+  'textarea',
+  'tfoot',
+  'th',
+  'thead',
+  'tr',
+  'ul',
+  'video',
+];
+module.exports.BLOCK_LEVEL_TAGS = BLOCK_LEVEL_TAGS;
+,
+  'i'
+);
+module.exports.BLOCK_LEVEL_TAGS_RE = BLOCK_LEVEL_TAGS_RE;
 
 // The removal is implemented as a blacklist and whitelist, this test finds
 // blacklisted elements that aren't whitelisted. We do this all in one
 // expression-both because it's only one pass, and because this skips the
 // serialization for whitelisted nodes.
 const candidatesBlacklist = UNLIKELY_CANDIDATES_BLACKLIST.join('|');
-export const CANDIDATES_BLACKLIST = new RegExp(candidatesBlacklist, 'i');
+const CANDIDATES_BLACKLIST = new RegExp(candidatesBlacklist, 'i');
+module.exports.CANDIDATES_BLACKLIST = CANDIDATES_BLACKLIST;
 
 const candidatesWhitelist = UNLIKELY_CANDIDATES_WHITELIST.join('|');
-export const CANDIDATES_WHITELIST = new RegExp(candidatesWhitelist, 'i');
+const CANDIDATES_WHITELIST = new RegExp(candidatesWhitelist, 'i');
+module.exports.CANDIDATES_WHITELIST = CANDIDATES_WHITELIST;
 
-export const UNLIKELY_RE = new RegExp(
+const UNLIKELY_RE = new RegExp(
   `!(${candidatesWhitelist})|(${candidatesBlacklist})`,
   'i'
 );
+module.exports.UNLIKELY_RE = UNLIKELY_RE;
 
-export const PARAGRAPH_SCORE_TAGS = new RegExp('^(p|li|span|pre)$', 'i');
+const PARAGRAPH_SCORE_TAGS = new RegExp('^(p|li|span|pre)
+const CHILD_CONTENT_TAGS = new RegExp('^(td|blockquote|ol|ul|dl)
+const BAD_TAGS = new RegExp('^(address|form)
+
+const HTML_OR_BODY_RE = new RegExp('^(html|body)
+, 'i');
+module.exports.PARAGRAPH_SCORE_TAGS = PARAGRAPH_SCORE_TAGS;
+export const CHILD_CONTENT_TAGS = new RegExp('^(td|blockquote|ol|ul|dl)$', 'i');
+export const BAD_TAGS = new RegExp('^(address|form)$', 'i');
+
+export const HTML_OR_BODY_RE = new RegExp('^(html|body)$', 'i');
+, 'i');
+module.exports.CHILD_CONTENT_TAGS = CHILD_CONTENT_TAGS;
+export const BAD_TAGS = new RegExp('^(address|form)$', 'i');
+
+export const HTML_OR_BODY_RE = new RegExp('^(html|body)$', 'i');
+, 'i');
+module.exports.PARAGRAPH_SCORE_TAGS = PARAGRAPH_SCORE_TAGS;
+export const CHILD_CONTENT_TAGS = new RegExp('^(td|blockquote|ol|ul|dl)$', 'i');
+export const BAD_TAGS = new RegExp('^(address|form)$', 'i');
+
+export const HTML_OR_BODY_RE = new RegExp('^(html|body)$', 'i');
+, 'i');
+module.exports.BAD_TAGS = BAD_TAGS;
+
+export const HTML_OR_BODY_RE = new RegExp('^(html|body)$', 'i');
+, 'i');
+module.exports.PARAGRAPH_SCORE_TAGS = PARAGRAPH_SCORE_TAGS;
+export const CHILD_CONTENT_TAGS = new RegExp('^(td|blockquote|ol|ul|dl)$', 'i');
+export const BAD_TAGS = new RegExp('^(address|form)$', 'i');
+
+export const HTML_OR_BODY_RE = new RegExp('^(html|body)$', 'i');
+, 'i');
+module.exports.CHILD_CONTENT_TAGS = CHILD_CONTENT_TAGS;
+export const BAD_TAGS = new RegExp('^(address|form)$', 'i');
+
+export const HTML_OR_BODY_RE = new RegExp('^(html|body)$', 'i');
+, 'i');
+module.exports.PARAGRAPH_SCORE_TAGS = PARAGRAPH_SCORE_TAGS;
+export const CHILD_CONTENT_TAGS = new RegExp('^(td|blockquote|ol|ul|dl)$', 'i');
+export const BAD_TAGS = new RegExp('^(address|form)$', 'i');
+
+export const HTML_OR_BODY_RE = new RegExp('^(html|body)$', 'i');
+, 'i');
+module.exports.HTML_OR_BODY_RE = HTML_OR_BODY_RE;
+, 'i');
+module.exports.PARAGRAPH_SCORE_TAGS = PARAGRAPH_SCORE_TAGS;
+export const CHILD_CONTENT_TAGS = new RegExp('^(td|blockquote|ol|ul|dl)$', 'i');
+export const BAD_TAGS = new RegExp('^(address|form)$', 'i');
+
+export const HTML_OR_BODY_RE = new RegExp('^(html|body)$', 'i');
+, 'i');
+module.exports.CHILD_CONTENT_TAGS = CHILD_CONTENT_TAGS;
+export const BAD_TAGS = new RegExp('^(address|form)$', 'i');
+
+export const HTML_OR_BODY_RE = new RegExp('^(html|body)$', 'i');
+, 'i');
+module.exports.PARAGRAPH_SCORE_TAGS = PARAGRAPH_SCORE_TAGS;
+export const CHILD_CONTENT_TAGS = new RegExp('^(td|blockquote|ol|ul|dl)$', 'i');
+export const BAD_TAGS = new RegExp('^(address|form)$', 'i');
+
+export const HTML_OR_BODY_RE = new RegExp('^(html|body)$', 'i');
+, 'i');
+module.exports.BAD_TAGS = BAD_TAGS;
+
+export const HTML_OR_BODY_RE = new RegExp('^(html|body)$', 'i');
+, 'i');
+module.exports.PARAGRAPH_SCORE_TAGS = PARAGRAPH_SCORE_TAGS;
+export const CHILD_CONTENT_TAGS = new RegExp('^(td|blockquote|ol|ul|dl)$', 'i');
+export const BAD_TAGS = new RegExp('^(address|form)$', 'i');
+
+export const HTML_OR_BODY_RE = new RegExp('^(html|body)$', 'i');
+, 'i');
+module.exports.CHILD_CONTENT_TAGS = CHILD_CONTENT_TAGS;
+export const BAD_TAGS = new RegExp('^(address|form)$', 'i');
+
+export const HTML_OR_BODY_RE = new RegExp('^(html|body)$', 'i');
+, 'i');
+module.exports.PARAGRAPH_SCORE_TAGS = PARAGRAPH_SCORE_TAGS;
 export const CHILD_CONTENT_TAGS = new RegExp('^(td|blockquote|ol|ul|dl)$', 'i');
 export const BAD_TAGS = new RegExp('^(address|form)$', 'i');
 

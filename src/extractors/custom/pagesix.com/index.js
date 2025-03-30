@@ -1,4 +1,4 @@
-export const PagesixComExtractor = {
+const PagesixComExtractor = {
   domain: 'pagesix.com',
 
   supportedDomains: ['nypost.com'],
@@ -42,3 +42,4 @@ export const PagesixComExtractor = {
     clean: ['.modal-trigger'],
   },
 };
+module.exports.PagesixComExtractor = PagesixComExtractor;

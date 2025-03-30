@@ -1,7 +1,7 @@
 // Rename CustomExtractor
 // to fit your publication
 // (e.g., NYTimesExtractor)
-export const YahooExtractor = {
+const YahooExtractor = {
   domain: 'www.yahoo.com',
   title: {
     selectors: [
@@ -51,3 +51,4 @@ export const YahooExtractor = {
 
   excerpt: null,
 };
+module.exports.YahooExtractor = YahooExtractor;

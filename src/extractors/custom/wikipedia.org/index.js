@@ -1,4 +1,4 @@
-export const WikipediaExtractor = {
+const WikipediaExtractor = {
   domain: 'wikipedia.org',
   content: {
     selectors: ['#mw-content-text'],
@@ -9,6 +9,7 @@ export const WikipediaExtractor = {
     transforms: {
       '.infobox img': $node => {
         const $parent = $node.parents('.infobox');
+module.exports.WikipediaExtractor = WikipediaExtractor;
         // Only prepend the first image in .infobox
         if ($parent.children('img').length === 0) {
           $parent.prepend($node);

@@ -1,4 +1,4 @@
-export const PoliticoExtractor = {
+const PoliticoExtractor = {
   domain: 'www.politico.com',
   title: {
     selectors: [['meta[name="og:title"]', 'value']],
@@ -37,3 +37,4 @@ export const PoliticoExtractor = {
     selectors: [['meta[name="og:description"]', 'value']],
   },
 };
+module.exports.PoliticoExtractor = PoliticoExtractor;

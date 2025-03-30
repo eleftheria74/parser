@@ -1,4 +1,4 @@
-export const ThoughtcatalogComExtractor = {
+const ThoughtcatalogComExtractor = {
   domain: 'thoughtcatalog.com',
 
   title: {
@@ -34,3 +34,4 @@ export const ThoughtcatalogComExtractor = {
     clean: ['.tc_mark', 'figcaption'],
   },
 };
+module.exports.ThoughtcatalogComExtractor = ThoughtcatalogComExtractor;

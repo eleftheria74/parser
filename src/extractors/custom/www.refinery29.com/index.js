@@ -1,4 +1,4 @@
-export const WwwRefinery29ComExtractor = {
+const WwwRefinery29ComExtractor = {
   domain: 'www.refinery29.com',
 
   title: {
@@ -31,6 +31,7 @@ export const WwwRefinery29ComExtractor = {
     transforms: {
       'div.loading noscript': $node => {
         const imgHtml = $node.html();
+module.exports.WwwRefinery29ComExtractor = WwwRefinery29ComExtractor;
         $node.parents('.loading').replaceWith(imgHtml);
       },
 

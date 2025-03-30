@@ -1,4 +1,4 @@
-export const WwwYomiuriCoJpExtractor = {
+const WwwYomiuriCoJpExtractor = {
   domain: 'www.yomiuri.co.jp',
 
   title: {
@@ -25,3 +25,4 @@ export const WwwYomiuriCoJpExtractor = {
     clean: [],
   },
 };
+module.exports.WwwYomiuriCoJpExtractor = WwwYomiuriCoJpExtractor;

@@ -1,1 +1,2 @@
-export const CANONICAL_META_SELECTORS = ['og:url'];
+const CANONICAL_META_SELECTORS = ['og:url'];
+module.exports.CANONICAL_META_SELECTORS = CANONICAL_META_SELECTORS;

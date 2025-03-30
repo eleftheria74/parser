@@ -1,6 +1,6 @@
 // Rename CustomExtractor
 // to fit your publication
-export const TheAtlanticExtractor = {
+const TheAtlanticExtractor = {
   domain: 'www.theatlantic.com',
   title: {
     selectors: ['h1', '.c-article-header__hed'],
@@ -48,3 +48,4 @@ export const TheAtlanticExtractor = {
 
   excerpt: null,
 };
+module.exports.TheAtlanticExtractor = TheAtlanticExtractor;

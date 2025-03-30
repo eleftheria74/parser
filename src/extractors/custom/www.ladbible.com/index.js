@@ -1,4 +1,4 @@
-export const WwwLadbibleComExtractor = {
+const WwwLadbibleComExtractor = {
   domain: 'www.ladbible.com',
 
   title: {
@@ -29,3 +29,4 @@ export const WwwLadbibleComExtractor = {
     ],
   },
 };
+module.exports.WwwLadbibleComExtractor = WwwLadbibleComExtractor;

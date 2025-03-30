@@ -1,4 +1,4 @@
-export const WwwTodayComExtractor = {
+const WwwTodayComExtractor = {
   domain: 'www.today.com',
 
   title: {
@@ -30,3 +30,4 @@ export const WwwTodayComExtractor = {
     clean: ['.label-comment'],
   },
 };
+module.exports.WwwTodayComExtractor = WwwTodayComExtractor;

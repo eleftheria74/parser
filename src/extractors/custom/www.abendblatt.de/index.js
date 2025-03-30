@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable no-unused-expressions */
-export const WwwAbendblattDeExtractor = {
+const WwwAbendblattDeExtractor = {
   domain: 'www.abendblatt.de',
 
   title: {
@@ -34,6 +34,7 @@ export const WwwAbendblattDeExtractor = {
     transforms: {
       p: $node => {
         if (!$node.hasClass('obfuscated')) return null;
+module.exports.WwwAbendblattDeExtractor = WwwAbendblattDeExtractor;
         let o = '';
         let n = 0;
         for (let i = $node.text(); n < i.length; n += 1) {

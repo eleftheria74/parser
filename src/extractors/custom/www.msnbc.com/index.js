@@ -1,4 +1,4 @@
-export const WwwMsnbcComExtractor = {
+const WwwMsnbcComExtractor = {
   domain: 'www.msnbc.com',
 
   title: {
@@ -35,6 +35,7 @@ export const WwwMsnbcComExtractor = {
           selector,
           attr,
         ] = WwwMsnbcComExtractor.lead_image_url.selectors[0];
+module.exports.WwwMsnbcComExtractor = WwwMsnbcComExtractor;
         const src = $(selector).attr(attr);
         if (src) {
           $node.prepend(`<img src="${src}" />`);

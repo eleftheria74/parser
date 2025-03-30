@@ -1,7 +1,7 @@
 // Rename CustomExtractor
 // to fit your publication
 // (e.g., NYTimesExtractor)
-export const MSNExtractor = {
+const MSNExtractor = {
   domain: 'www.msn.com',
   title: {
     selectors: [
@@ -49,3 +49,4 @@ export const MSNExtractor = {
 
   excerpt: null,
 };
+module.exports.MSNExtractor = MSNExtractor;

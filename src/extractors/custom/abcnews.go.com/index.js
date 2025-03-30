@@ -1,4 +1,4 @@
-export const AbcnewsGoComExtractor = {
+const AbcnewsGoComExtractor = {
   domain: 'abcnews.go.com',
 
   title: {
@@ -33,3 +33,4 @@ export const AbcnewsGoComExtractor = {
     clean: [],
   },
 };
+module.exports.AbcnewsGoComExtractor = AbcnewsGoComExtractor;

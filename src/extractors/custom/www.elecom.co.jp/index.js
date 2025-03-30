@@ -1,4 +1,4 @@
-export const WwwElecomCoJpExtractor = {
+const WwwElecomCoJpExtractor = {
   domain: 'www.elecom.co.jp',
 
   title: {
@@ -25,6 +25,7 @@ export const WwwElecomCoJpExtractor = {
     transforms: {
       table: $node => {
         $node.attr('width', 'auto');
+module.exports.WwwElecomCoJpExtractor = WwwElecomCoJpExtractor;
       },
     },
 

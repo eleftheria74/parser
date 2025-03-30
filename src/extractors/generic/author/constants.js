@@ -4,7 +4,7 @@
 //
 // Note: "author" is too often the -developer- of the page, so it is not
 // added here.
-export const AUTHOR_META_TAGS = [
+const AUTHOR_META_TAGS = [
   'byl',
   'clmst',
   'dc.author',
@@ -13,8 +13,10 @@ export const AUTHOR_META_TAGS = [
   'rbauthors',
   'authors',
 ];
+module.exports.AUTHOR_META_TAGS = AUTHOR_META_TAGS;
 
-export const AUTHOR_MAX_LENGTH = 300;
+const AUTHOR_MAX_LENGTH = 300;
+module.exports.AUTHOR_MAX_LENGTH = AUTHOR_MAX_LENGTH;
 
 // An ordered list of XPath Selectors to find likely article authors. From
 // most explicit to least explicit.
@@ -23,7 +25,7 @@ export const AUTHOR_MAX_LENGTH = 300;
 // exists in the className, which is not as accurate as .className (which
 // splits on spaces/endlines), but for our purposes it's close enough. The
 // speed tradeoff is worth the accuracy hit.
-export const AUTHOR_SELECTORS = [
+const AUTHOR_SELECTORS = [
   '.entry .entry-author',
   '.author.vcard .fn',
   '.author .vcard .fn',
@@ -48,11 +50,13 @@ export const AUTHOR_SELECTORS = [
   '.ArticleAuthor',
   '.byline',
 ];
+module.exports.AUTHOR_SELECTORS = AUTHOR_SELECTORS;
 
 // An ordered list of Selectors to find likely article authors, with
 // regular expression for content.
 const bylineRe = /^[\n\s]*By/i;
-export const BYLINE_SELECTORS_RE = [
+const BYLINE_SELECTORS_RE = [
   ['#byline', bylineRe],
   ['.byline', bylineRe],
 ];
+module.exports.BYLINE_SELECTORS_RE = BYLINE_SELECTORS_RE;
