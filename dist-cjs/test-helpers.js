@@ -17,10 +17,7 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 var test_helpers_exports = {};
 __export(test_helpers_exports, {
-  MockDomNode: () => MockDomNode,
-  assertClean: () => assertClean,
-  clean: () => clean,
-  record: () => record
+  MockDomNode: () => MockDomNode
 });
 module.exports = __toCommonJS(test_helpers_exports);
 const assert = require("assert");
@@ -89,10 +86,11 @@ class MockDomNode {
     this.attributes.pop();
   }
 }
+module.exports = {
+  textLength,
+  linkDensity
+};
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  MockDomNode,
-  assertClean,
-  clean,
-  record
+  MockDomNode
 });
