@@ -1,4 +1,4 @@
-const { normalizeSpaces } = require('../resource/utils/text');
+const { normalizeSpaces } = require('../utils/text');
 const { CLEAN_AUTHOR_RE } = require('./constants');
 
 // Take an author string (like 'By David Smith ') and clean it to
