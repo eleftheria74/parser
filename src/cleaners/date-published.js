@@ -68,6 +68,5 @@ module.exports = function cleanDatePublished(
   return date.isValid() ? date.toISOString() : null;
 }
 module.exports = {
-  textLength,
-  linkDensity,
+   linkDensity,
 };
