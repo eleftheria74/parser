@@ -1,5 +1,5 @@
-export { default as normalizeMetaTags } from './normalize-meta-tags';
-export {
-  default as convertLazyLoadedImages,
-} from './convert-lazy-loaded-images';
-export { default as clean } from './clean';
+module.exports = {
+  normalizeMetaTags: require('./normalize-meta-tags'),
+  convertLazyLoadedImages: require('./convert-lazy-loaded-images'),
+  clean: require('./clean'),
+};
