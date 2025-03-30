@@ -52,6 +52,8 @@
   "generate-parser": "node ./dist/generate-custom-parser.js",
   "start": "node ./src/mercury.js",
   "fix:require-names": "node scripts/fix-invalid-require-names.js"
+  "build:cjs": "node scripts/build-to-cjs.js"
+
 },
   "engines": {
     "node": ">=10"
