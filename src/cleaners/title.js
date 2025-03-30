@@ -1,5 +1,5 @@
-const { stripTags } = require('utils/dom');
-const { normalizeSpaces } = require('utils/text');
+const { stripTags } = require('../resource/utils/dom');
+const { normalizeSpaces } = require('../resource/utils/text');
 
 const { TITLE_SPLITTERS_RE } = require('./constants');
 const { resolveSplitTitle } = require('./index');

@@ -1,4 +1,4 @@
-const { convertNodeTo } = require('utils/dom');
+const { convertNodeTo } = require('../../resource/utils/dom');
 
 // Rewrite the tag name to div if it's a top level node like body or
 // html to avoid later complications with multiple body tags.

@@ -1,4 +1,4 @@
-const { extractFromMeta } = require('utils/dom');
+const { extractFromMeta } = require('../../../resource/utils/dom');
 const { cleanImage } = require('cleaners');
 
 import {

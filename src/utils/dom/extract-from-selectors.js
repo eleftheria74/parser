@@ -1,4 +1,4 @@
-const { withinComment } = require('utils/dom');
+const { withinComment } = require('../../resource/utils/dom');
 
 function isGoodNode($node, maxChildren) {
   // If it has a number of children, it's more likely a container

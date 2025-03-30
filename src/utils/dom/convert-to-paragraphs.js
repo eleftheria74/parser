@@ -1,4 +1,4 @@
-const { brsToPs, convertNodeTo } = require('utils/dom');
+const { brsToPs, convertNodeTo } = require('../../resource/utils/dom');
 
 const { DIV_TO_P_BLOCK_TAGS } = require('./constants');
 

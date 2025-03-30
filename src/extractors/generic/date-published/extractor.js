@@ -1,6 +1,6 @@
 const { cleanDatePublished } = require('cleaners');
-const { extractFromMeta, extractFromSelectors } = require('utils/dom');
-const { extractFromUrl } = require('utils/text');
+const { extractFromMeta, extractFromSelectors } = require('../../../resource/utils/dom');
+const { extractFromUrl } = require('../../../resource/utils/text');
 
 import {
   DATE_PUBLISHED_META_TAGS,

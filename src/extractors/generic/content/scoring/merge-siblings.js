@@ -1,5 +1,5 @@
-const { textLength, linkDensity } = require('utils/dom');
-const { hasSentenceEnd } = require('utils/text');
+const { textLength, linkDensity } = require('../../../../resource/utils/dom');
+const { hasSentenceEnd } = require('../../../../resource/utils/text');
 
 const { NON_TOP_CANDIDATE_TAGS_RE } = require('./constants');
 const { getScore } = require('./index');

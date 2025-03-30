@@ -1,4 +1,4 @@
-const { convertNodeTo } = require('utils/dom');
+const { convertNodeTo } = require('../../../../resource/utils/dom');
 
 const { HNEWS_CONTENT_SELECTORS } = require('./constants');
 const { scoreNode, setScore, getOrInitScore, addScore } = require('./index');

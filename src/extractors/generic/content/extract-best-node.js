@@ -1,4 +1,4 @@
-const { stripUnlikelyCandidates, convertToParagraphs } = require('utils/dom');
+const { stripUnlikelyCandidates, convertToParagraphs } = require('../../../resource/utils/dom');
 
 const { scoreContent, findTopCandidate } = require('./scoring');
 

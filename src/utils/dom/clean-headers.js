@@ -1,4 +1,4 @@
-const { getWeight } = require('extractors/generic/content/scoring');
+const { getWeight } = require('../../extractors/generic/content/scoring');
 
 const { HEADER_TAG_LIST } = require('./constants');
 const { normalizeSpaces } = require('../text');

@@ -1,4 +1,4 @@
-const { getAttrs } = require('utils/dom');
+const { getAttrs } = require('../../resource/utils/dom');
 
 module.exports = function withinComment($node) {
   const parents = $node.parents().toArray();

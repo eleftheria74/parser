@@ -1,5 +1,5 @@
-const { stripTags } = require('utils/dom');
-const { excerptContent, normalizeSpaces } = require('utils/text');
+const { stripTags } = require('../resource/utils/dom');
+const { excerptContent, normalizeSpaces } = require('../resource/utils/text');
 
 const { TEXT_LINK_RE } = require('./constants');
 

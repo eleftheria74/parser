@@ -1,4 +1,4 @@
-const { getAttrs } = require('utils/dom');
+const { getAttrs } = require('./');
 
 const { IS_LINK, IS_IMAGE, IS_SRCSET } = require('./constants');
 

@@ -1,5 +1,5 @@
 const { cleanAuthor } = require('cleaners');
-const { extractFromMeta, extractFromSelectors } = require('utils/dom');
+const { extractFromMeta, extractFromSelectors } = require('../../../resource/utils/dom');
 
 import {
   AUTHOR_META_TAGS,

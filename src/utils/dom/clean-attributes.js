@@ -1,4 +1,4 @@
-const { getAttrs, setAttrs } = require('utils/dom');
+const { getAttrs, setAttrs } = require('../../resource/utils/dom');
 
 const { WHITELIST_ATTRS_RE, KEEP_CLASS } = require('./constants');
 

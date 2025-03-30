@@ -1,4 +1,4 @@
-const { getAttrs } = require('utils/dom');
+const { getAttrs } = require('../../resource/utils/dom');
 
 module.exports = function convertNodeTo($node, $, tag = 'p') {
   const node = $node.get(0);

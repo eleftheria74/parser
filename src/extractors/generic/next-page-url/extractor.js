@@ -1,6 +1,6 @@
 const URL = require('url');
 
-const { articleBaseUrl, removeAnchor } = require('utils/text');
+const { articleBaseUrl, removeAnchor } = require('../../../resource/utils/text');
 const scoreLinks = require('./scoring/score-links');
 
 // Looks for and returns next page url

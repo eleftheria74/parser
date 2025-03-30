@@ -1,6 +1,6 @@
 const ellipsize = require('ellipsize');
 
-const { extractFromMeta, stripTags } = require('utils/dom');
+const { extractFromMeta, stripTags } = require('../../../resource/utils/dom');
 
 const { EXCERPT_META_SELECTORS } = require('./constants');
 

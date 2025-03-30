@@ -1,5 +1,5 @@
 const URL = require('url');
-const { extractFromMeta } = require('utils/dom');
+const { extractFromMeta } = require('../../../resource/utils/dom');
 
 const { CANONICAL_META_SELECTORS } = require('./constants');
 
