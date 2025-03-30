@@ -2,7 +2,7 @@ const cheerio = require('cheerio');
 
 const { nodeIsSufficient } = require('../../../resource/utils/dom');
 const { cleanContent } = require('../../../cleaners');
-const { normalizeSpaces } = require('../../../resource/utils/text');
+const { normalizeSpaces } = require('../../../utils/text');
 
 const extractBestNode = require('./extract-best-node');
 

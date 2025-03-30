@@ -1,5 +1,5 @@
 const URL = require("url");
-const { articleBaseUrl, removeAnchor } = require("../../../resource/utils/text");
+const { articleBaseUrl, removeAnchor } = require("../../../utils/text");
 const scoreLinks = require("./scoring/score-links");
 const GenericNextPageUrlExtractor = {
   extract({ $, url, parsedUrl, previousUrls = [] }) {

@@ -1,7 +1,7 @@
 const URL = require('url');
 
 const { getAttrs, isWordpress } = require('../../../../resource/utils/dom');
-const { removeAnchor, pageNumFromUrl } = require('../../../../resource/utils/text');
+const { removeAnchor, pageNumFromUrl } = require('../../../../utils/text');
 
 import {
   scoreSimilarity,

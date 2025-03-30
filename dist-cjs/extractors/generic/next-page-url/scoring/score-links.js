@@ -23,7 +23,7 @@ module.exports = __toCommonJS(score_links_exports);
 var import_utils = require("./utils");
 const URL = require("url");
 const { getAttrs, isWordpress } = require("../../../../resource/utils/dom");
-const { removeAnchor, pageNumFromUrl } = require("../../../../resource/utils/text");
+const { removeAnchor, pageNumFromUrl } = require("../../../../utils/text");
 function makeBaseRegex(baseUrl) {
   return new RegExp(`^${baseUrl}`, "i");
 }

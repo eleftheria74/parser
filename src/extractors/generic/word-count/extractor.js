@@ -1,6 +1,6 @@
 const cheerio = require('cheerio');
 
-const { normalizeSpaces } = require('../../../resource/utils/text');
+const { normalizeSpaces } = require('../../../utils/text');
 
 const getWordCount = content => {
   const $ = cheerio.load(content);

@@ -1,5 +1,5 @@
 const { stripTags } = require("../resource/utils/dom");
-const { excerptContent, normalizeSpaces } = require("../resource/utils/text");
+const { excerptContent, normalizeSpaces } = require("../utils/text");
 const { TEXT_LINK_RE } = require("./constants");
 module.exports = function cleanDek(dek, { $, excerpt }) {
   if (dek.length > 1e3 || dek.length < 5)

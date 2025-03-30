@@ -1,4 +1,4 @@
-const { IS_DIGIT_RE } = require("../../../../../resource/utils/text/constants");
+const { IS_DIGIT_RE } = require("../../../../../utils/text/constants");
 module.exports = function scoreLinkText(linkText, pageNum) {
   let score = 0;
   if (IS_DIGIT_RE.test(linkText.trim())) {
