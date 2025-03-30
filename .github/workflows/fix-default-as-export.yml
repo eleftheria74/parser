@@ -1,0 +1,31 @@
+name: Fix 'default as' exports
+
+on:
+  workflow_dispatch:
+
+jobs:
+  fix-default-as-export:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Run fix-default-as-export script
+        run: node scripts/fix-default-as-export.js
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "actions-user"
+          git config user.email "actions@github.com"
+          git add .
+          git commit -m "fix: correct invalid 'default as' exports" || echo "No changes to commit"
+          git push
