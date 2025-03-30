@@ -1,0 +1,38 @@
+name: Build & Force Push to Main
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-and-force-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Χρειαζόμαστε ολόκληρο το ιστορικό για force push
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Run build to CJS
+        run: yarn build:cjs
+
+      - name: Configure Git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit compiled changes
+        run: |
+          git add dist-cjs
+          git commit -m "🔁 Rebuild CJS output [CI]" || echo "No changes to commit"
+
+      - name: Force push to main
+        run: git push origin main --force
