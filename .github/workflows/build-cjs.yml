@@ -1,0 +1,35 @@
+name: Build CJS
+
+on:
+  workflow_dispatch: # χειροκίνητο trigger
+  push:
+    branches: [main] # ή ό,τι branch θέλεις
+
+jobs:
+  build-cjs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install deps
+        run: yarn install
+
+      - name: Build CJS files
+        run: yarn build:cjs
+
+      - name: Commit & Push changes
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add .
+          git commit -m "build: convert to CJS via esbuild"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
