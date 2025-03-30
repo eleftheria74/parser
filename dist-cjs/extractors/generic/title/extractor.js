@@ -1,4 +1,4 @@
-const { cleanTitle } = require("cleaners");
+const { cleanTitle } = require("../../../cleaners");
 const { extractFromMeta, extractFromSelectors } = require("../../../resource/utils/dom");
 const {
   STRONG_TITLE_META_TAGS,
