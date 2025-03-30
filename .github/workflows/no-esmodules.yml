@@ -1,1 +1,33 @@
+name: Detect ES Module usage
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check-esm:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Search for 'import' statements
+        run: |
+          if grep -rn --include="*.js" '^\s*import ' .; then
+            echo "❌ 'import' statements found. Please use CommonJS (require)."
+            exit 1
+          else
+            echo "✅ No 'import' statements found."
+          fi
+
+      - name: Search for 'export' statements
+        run: |
+          if grep -rn --include="*.js" '^\s*export ' .; then
+            echo "❌ 'export' statements found. Please use CommonJS (module.exports)."
+            exit 1
+          else
+            echo "✅ No 'export' statements found."
+          fi
 
