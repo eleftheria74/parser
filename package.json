@@ -52,6 +52,7 @@
     "generate-parser": "node ./dist/generate-custom-parser.js",
     "start": "node ./src/mercury.js",
     "build": "yarn lint && echo '✅ Lint passed'"
+    "fix:require-names": "node scripts/fix-invalid-require-names.js"
 
   },
   "engines": {
