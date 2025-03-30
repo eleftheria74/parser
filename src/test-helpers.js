@@ -84,6 +84,6 @@ export class MockDomNode {
   }
 }
 module.exports = {
-  textLength,
-  linkDensity,
+  MockDomNode,
 };
+

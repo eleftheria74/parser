@@ -124,7 +124,4 @@ function scoreByDimensions($img) {
 function scoreByPosition($imgs, index) {
   return $imgs.length / 2 - index;
 }
-module.exports = {
-  textLength,
-  linkDensity,
-};
+
