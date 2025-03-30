@@ -1,6 +1,6 @@
-import { brsToPs, convertNodeTo } from 'utils/dom';
+const { brsToPs, convertNodeTo } = require('utils/dom');
 
-import { DIV_TO_P_BLOCK_TAGS } from './constants';
+const { DIV_TO_P_BLOCK_TAGS } = require('./constants');
 
 function convertDivs($) {
   $('div').each((index, div) => {
@@ -39,7 +39,7 @@ function convertSpans($) {
 //   :return cheerio object with new p elements
 //   (By-reference mutation, though. Returned just for convenience.)
 
-export default function convertToParagraphs($) {
+module.exports = function convertToParagraphs($) {
   $ = brsToPs($);
   $ = convertDivs($);
   $ = convertSpans($);

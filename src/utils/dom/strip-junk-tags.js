@@ -1,6 +1,6 @@
-import { STRIP_OUTPUT_TAGS, KEEP_CLASS } from './constants';
+const { STRIP_OUTPUT_TAGS, KEEP_CLASS } = require('./constants');
 
-export default function stripJunkTags(article, $, tags = []) {
+module.exports = function stripJunkTags(article, $, tags = []) {
   if (tags.length === 0) {
     tags = STRIP_OUTPUT_TAGS;
   }

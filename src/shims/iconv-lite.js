@@ -6,4 +6,4 @@ const iconv = {
   decode: s => s,
 };
 
-export default iconv;
+module.exports = iconv;

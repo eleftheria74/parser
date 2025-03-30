@@ -1,4 +1,4 @@
-import { scoreParagraph } from './index';
+const { scoreParagraph } = require('./index');
 import {
   PARAGRAPH_SCORE_TAGS,
   CHILD_CONTENT_TAGS,
@@ -7,7 +7,7 @@ import {
 
 // Score an individual node. Has some smarts for paragraphs, otherwise
 // just scores based on tag.
-export default function scoreNode($node) {
+module.exports = function scoreNode($node) {
   const { tagName } = $node.get(0);
 
   // TODO: Consider ordering by most likely.

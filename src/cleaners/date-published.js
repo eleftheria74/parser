@@ -1,5 +1,5 @@
-import moment from 'moment-timezone';
-import parseFormat from 'moment-parseformat';
+const moment = require('moment-timezone');
+const parseFormat = require('moment-parseformat');
 // Is there a compelling reason to use moment here?
 // Mostly only being used for the isValid() method,
 // but could just check for 'Invalid Date' string.
@@ -46,7 +46,7 @@ export function createDate(dateString, timezone, format) {
 
 // Take a date published string, and hopefully return a date out of
 // it. Return none if we fail.
-export default function cleanDatePublished(
+module.exports = function cleanDatePublished(
   dateString,
   { timezone, format } = {}
 ) {

@@ -1,7 +1,7 @@
-import URL from 'url';
+const URL = require('url');
 
-import { getAttrs, isWordpress } from 'utils/dom';
-import { removeAnchor, pageNumFromUrl } from 'utils/text';
+const { getAttrs, isWordpress } = require('utils/dom');
+const { removeAnchor, pageNumFromUrl } = require('utils/text');
 
 import {
   scoreSimilarity,
@@ -26,7 +26,7 @@ function makeSig($link, linkText) {
   ) || ''}`;
 }
 
-export default function scoreLinks({
+module.exports = function scoreLinks({
   links,
   articleUrl,
   baseUrl,

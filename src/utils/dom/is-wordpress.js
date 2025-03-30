@@ -1,5 +1,5 @@
-import { IS_WP_SELECTOR } from './constants';
+const { IS_WP_SELECTOR } = require('./constants');
 
-export default function isWordpress($) {
+module.exports = function isWordpress($) {
   return $(IS_WP_SELECTOR).length > 0;
 }

@@ -1,8 +1,8 @@
-import URL from 'url';
+const URL = require('url');
 
-import { DIGIT_RE, EXTRANEOUS_LINK_HINTS_RE } from '../constants';
+const { DIGIT_RE, EXTRANEOUS_LINK_HINTS_RE } = require('../constants');
 
-export default function shouldScore(
+module.exports = function shouldScore(
   href,
   articleUrl,
   baseUrl,

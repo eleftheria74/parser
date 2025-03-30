@@ -1,8 +1,8 @@
-import { scoreCommas, scoreLength } from './index';
+const { scoreCommas, scoreLength } = require('./index');
 
 // Score a paragraph using various methods. Things like number of
 // commas, etc. Higher is better.
-export default function scoreParagraph(node) {
+module.exports = function scoreParagraph(node) {
   let score = 1;
   const text = node.text().trim();
   const textLength = text.length;

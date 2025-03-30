@@ -1,5 +1,5 @@
-import { extractFromMeta } from 'utils/dom';
-import { cleanImage } from 'cleaners';
+const { extractFromMeta } = require('utils/dom');
+const { cleanImage } = require('cleaners');
 
 import {
   LEAD_IMAGE_URL_META_TAGS,
@@ -111,4 +111,4 @@ const GenericLeadImageUrlExtractor = {
   },
 };
 
-export default GenericLeadImageUrlExtractor;
+module.exports = GenericLeadImageUrlExtractor;

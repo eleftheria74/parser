@@ -1,8 +1,8 @@
-import { stripTags } from 'utils/dom';
+const { stripTags } = require('utils/dom');
 
 // Given a node type to search for, and a list of meta tag names to
 // search for, find a meta tag associated.
-export default function extractFromMeta(
+module.exports = function extractFromMeta(
   $,
   metaNames,
   cachedNames,

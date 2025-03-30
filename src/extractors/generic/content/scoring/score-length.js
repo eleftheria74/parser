@@ -1,6 +1,6 @@
 const idkRe = new RegExp('^(p|pre)$', 'i');
 
-export default function scoreLength(textLength, tagName = 'p') {
+module.exports = function scoreLength(textLength, tagName = 'p') {
   const chunks = textLength / 50;
 
   if (chunks > 0) {

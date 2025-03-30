@@ -1,10 +1,10 @@
-import cheerio from 'cheerio';
+const cheerio = require('cheerio');
 
-import { nodeIsSufficient } from 'utils/dom';
-import { cleanContent } from 'cleaners';
-import { normalizeSpaces } from 'utils/text';
+const { nodeIsSufficient } = require('utils/dom');
+const { cleanContent } = require('cleaners');
+const { normalizeSpaces } = require('utils/text');
 
-import extractBestNode from './extract-best-node';
+const extractBestNode = require('./extract-best-node');
 
 const GenericContentExtractor = {
   defaultOpts: {
@@ -84,4 +84,4 @@ const GenericContentExtractor = {
   },
 };
 
-export default GenericContentExtractor;
+module.exports = GenericContentExtractor;

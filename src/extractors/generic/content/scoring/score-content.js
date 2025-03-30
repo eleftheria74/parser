@@ -1,7 +1,7 @@
-import { convertNodeTo } from 'utils/dom';
+const { convertNodeTo } = require('utils/dom');
 
-import { HNEWS_CONTENT_SELECTORS } from './constants';
-import { scoreNode, setScore, getOrInitScore, addScore } from './index';
+const { HNEWS_CONTENT_SELECTORS } = require('./constants');
+const { scoreNode, setScore, getOrInitScore, addScore } = require('./index');
 
 function convertSpans($node, $) {
   if ($node.get(0)) {
@@ -46,7 +46,7 @@ function scorePs($, weightNodes) {
 
 // score content. Parents get the full value of their children's
 // content score, grandparents half
-export default function scoreContent($, weightNodes = true) {
+module.exports = function scoreContent($, weightNodes = true) {
   // First, look for special hNews based selectors and give them a big
   // boost, if they exist
   HNEWS_CONTENT_SELECTORS.forEach(([parentSelector, childSelector]) => {

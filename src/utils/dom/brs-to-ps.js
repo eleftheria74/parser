@@ -1,4 +1,4 @@
-import { paragraphize } from './index';
+const { paragraphize } = require('./index');
 
 // ## NOTES:
 // Another good candidate for refactoring/optimizing.
@@ -9,7 +9,7 @@ import { paragraphize } from './index';
 //
 //  :param $: A cheerio object
 
-export default function brsToPs($) {
+module.exports = function brsToPs($) {
   let collapsing = false;
   $('br').each((index, element) => {
     const $element = $(element);

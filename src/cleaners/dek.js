@@ -1,11 +1,11 @@
-import { stripTags } from 'utils/dom';
-import { excerptContent, normalizeSpaces } from 'utils/text';
+const { stripTags } = require('utils/dom');
+const { excerptContent, normalizeSpaces } = require('utils/text');
 
-import { TEXT_LINK_RE } from './constants';
+const { TEXT_LINK_RE } = require('./constants');
 
 // Take a dek HTML fragment, and return the cleaned version of it.
 // Return None if the dek wasn't good enough.
-export default function cleanDek(dek, { $, excerpt }) {
+module.exports = function cleanDek(dek, { $, excerpt }) {
   // Sanity check that we didn't get too short or long of a dek.
   if (dek.length > 1000 || dek.length < 5) return null;
 

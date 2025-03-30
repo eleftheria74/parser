@@ -1,6 +1,6 @@
-import difflib from 'difflib';
+const difflib = require('difflib');
 
-export default function scoreSimilarity(score, articleUrl, href) {
+module.exports = function scoreSimilarity(score, articleUrl, href) {
   // Do this last and only if we have a real candidate, because it's
   // potentially expensive computationally. Compare the link to this
   // URL using difflib to get the % similarity of these URLs. On a

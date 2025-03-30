@@ -1,6 +1,6 @@
-import { getAttrs } from 'utils/dom';
+const { getAttrs } = require('utils/dom');
 
-export default function convertNodeTo($node, $, tag = 'p') {
+module.exports = function convertNodeTo($node, $, tag = 'p') {
   const node = $node.get(0);
   if (!node) {
     return $;

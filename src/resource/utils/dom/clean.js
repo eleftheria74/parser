@@ -1,4 +1,4 @@
-import { TAGS_TO_REMOVE } from './constants';
+const { TAGS_TO_REMOVE } = require('./constants');
 
 function isComment(index, node) {
   return node.type === 'comment';
@@ -14,7 +14,7 @@ function cleanComments($) {
   return $;
 }
 
-export default function clean($) {
+module.exports = function clean($) {
   $(TAGS_TO_REMOVE).remove();
 
   $ = cleanComments($);

@@ -1,8 +1,8 @@
-import URL from 'url';
+const URL = require('url');
 
-import { KEEP_SELECTORS, KEEP_CLASS } from './constants';
+const { KEEP_SELECTORS, KEEP_CLASS } = require('./constants');
 
-export default function markToKeep(article, $, url, tags = []) {
+module.exports = function markToKeep(article, $, url, tags = []) {
   if (tags.length === 0) {
     tags = KEEP_SELECTORS;
   }

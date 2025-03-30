@@ -1,16 +1,16 @@
-import cheerio from 'cheerio';
-import stringDirection from 'string-direction';
+const cheerio = require('cheerio');
+const stringDirection = require('string-direction');
 
-import GenericContentExtractor from './content/extractor';
-import GenericTitleExtractor from './title/extractor';
-import GenericAuthorExtractor from './author/extractor';
-import GenericDatePublishedExtractor from './date-published/extractor';
-import GenericDekExtractor from './dek/extractor';
-import GenericLeadImageUrlExtractor from './lead-image-url/extractor';
-import GenericNextPageUrlExtractor from './next-page-url/extractor';
-import GenericUrlExtractor from './url/extractor';
-import GenericExcerptExtractor from './excerpt/extractor';
-import GenericWordCountExtractor from './word-count/extractor';
+const GenericContentExtractor = require('./content/extractor');
+const GenericTitleExtractor = require('./title/extractor');
+const GenericAuthorExtractor = require('./author/extractor');
+const GenericDatePublishedExtractor = require('./date-published/extractor');
+const GenericDekExtractor = require('./dek/extractor');
+const GenericLeadImageUrlExtractor = require('./lead-image-url/extractor');
+const GenericNextPageUrlExtractor = require('./next-page-url/extractor');
+const GenericUrlExtractor = require('./url/extractor');
+const GenericExcerptExtractor = require('./excerpt/extractor');
+const GenericWordCountExtractor = require('./word-count/extractor');
 
 const GenericExtractor = {
   // This extractor is the default for all domains
@@ -64,4 +64,4 @@ const GenericExtractor = {
   },
 };
 
-export default GenericExtractor;
+module.exports = GenericExtractor;

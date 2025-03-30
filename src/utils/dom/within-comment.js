@@ -1,6 +1,6 @@
-import { getAttrs } from 'utils/dom';
+const { getAttrs } = require('utils/dom');
 
-export default function withinComment($node) {
+module.exports = function withinComment($node) {
   const parents = $node.parents().toArray();
   const commentParent = parents.find(parent => {
     const attrs = getAttrs(parent);

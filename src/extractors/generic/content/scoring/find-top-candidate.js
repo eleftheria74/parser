@@ -1,10 +1,10 @@
-import { NON_TOP_CANDIDATE_TAGS_RE } from './constants';
-import { getScore } from './index';
-import mergeSiblings from './merge-siblings';
+const { NON_TOP_CANDIDATE_TAGS_RE } = require('./constants');
+const { getScore } = require('./index');
+const mergeSiblings = require('./merge-siblings');
 
 // After we've calculated scores, loop through all of the possible
 // candidate nodes we found and find the one with the highest score.
-export default function findTopCandidate($) {
+module.exports = function findTopCandidate($) {
   let $candidate;
   let topScore = 0;
 

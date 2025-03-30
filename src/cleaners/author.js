@@ -1,8 +1,8 @@
-import { normalizeSpaces } from 'utils/text';
-import { CLEAN_AUTHOR_RE } from './constants';
+const { normalizeSpaces } = require('utils/text');
+const { CLEAN_AUTHOR_RE } = require('./constants');
 
 // Take an author string (like 'By David Smith ') and clean it to
 // just the name(s): 'David Smith'.
-export default function cleanAuthor(author) {
+module.exports = function cleanAuthor(author) {
   return normalizeSpaces(author.replace(CLEAN_AUTHOR_RE, '$2').trim());
 }

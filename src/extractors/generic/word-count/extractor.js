@@ -1,6 +1,6 @@
-import cheerio from 'cheerio';
+const cheerio = require('cheerio');
 
-import { normalizeSpaces } from 'utils/text';
+const { normalizeSpaces } = require('utils/text');
 
 const getWordCount = content => {
   const $ = cheerio.load(content);
@@ -24,4 +24,4 @@ const GenericWordCountExtractor = {
   },
 };
 
-export default GenericWordCountExtractor;
+module.exports = GenericWordCountExtractor;

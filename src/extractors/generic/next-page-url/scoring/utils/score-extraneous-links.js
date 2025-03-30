@@ -1,6 +1,6 @@
-import { EXTRANEOUS_LINK_HINTS_RE } from '../constants';
+const { EXTRANEOUS_LINK_HINTS_RE } = require('../constants');
 
-export default function scoreExtraneousLinks(href) {
+module.exports = function scoreExtraneousLinks(href) {
   // If the URL itself contains extraneous values, give a penalty.
   if (EXTRANEOUS_LINK_HINTS_RE.test(href)) {
     return -25;

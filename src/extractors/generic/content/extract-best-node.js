@@ -1,6 +1,6 @@
-import { stripUnlikelyCandidates, convertToParagraphs } from 'utils/dom';
+const { stripUnlikelyCandidates, convertToParagraphs } = require('utils/dom');
 
-import { scoreContent, findTopCandidate } from './scoring';
+const { scoreContent, findTopCandidate } = require('./scoring');
 
 // Using a variety of scoring techniques, extract the content most
 // likely to be article text.
@@ -13,7 +13,7 @@ import { scoreContent, findTopCandidate } from './scoring';
 // worthiness of nodes.
 //
 // Returns a cheerio object $
-export default function extractBestNode($, opts) {
+module.exports = function extractBestNode($, opts) {
   if (opts.stripUnlikelyCandidates) {
     $ = stripUnlikelyCandidates($);
   }

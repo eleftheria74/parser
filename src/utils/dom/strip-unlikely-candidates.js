@@ -1,6 +1,6 @@
-import { CANDIDATES_WHITELIST, CANDIDATES_BLACKLIST } from './constants';
+const { CANDIDATES_WHITELIST, CANDIDATES_BLACKLIST } = require('./constants');
 
-export default function stripUnlikelyCandidates($) {
+module.exports = function stripUnlikelyCandidates($) {
   //  Loop through the provided document and remove any non-link nodes
   //  that are unlikely candidates for article content.
   //

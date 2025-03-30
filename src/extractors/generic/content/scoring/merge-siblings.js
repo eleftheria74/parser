@@ -1,15 +1,15 @@
-import { textLength, linkDensity } from 'utils/dom';
-import { hasSentenceEnd } from 'utils/text';
+const { textLength, linkDensity } = require('utils/dom');
+const { hasSentenceEnd } = require('utils/text');
 
-import { NON_TOP_CANDIDATE_TAGS_RE } from './constants';
-import { getScore } from './index';
+const { NON_TOP_CANDIDATE_TAGS_RE } = require('./constants');
+const { getScore } = require('./index');
 
 // Now that we have a top_candidate, look through the siblings of
 // it to see if any of them are decently scored. If they are, they
 // may be split parts of the content (Like two divs, a preamble and
 // a body.) Example:
 // http://articles.latimes.com/2009/oct/14/business/fi-bigtvs14
-export default function mergeSiblings($candidate, topScore, $) {
+module.exports = function mergeSiblings($candidate, topScore, $) {
   if (!$candidate.parent().length) {
     return $candidate;
   }

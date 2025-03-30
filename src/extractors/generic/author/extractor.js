@@ -1,5 +1,5 @@
-import { cleanAuthor } from 'cleaners';
-import { extractFromMeta, extractFromSelectors } from 'utils/dom';
+const { cleanAuthor } = require('cleaners');
+const { extractFromMeta, extractFromSelectors } = require('utils/dom');
 
 import {
   AUTHOR_META_TAGS,
@@ -42,4 +42,4 @@ const GenericAuthorExtractor = {
   },
 };
 
-export default GenericAuthorExtractor;
+module.exports = GenericAuthorExtractor;

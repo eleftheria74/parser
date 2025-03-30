@@ -5,9 +5,9 @@ import {
   scoreCommas,
 } from 'extractors/generic/content/scoring';
 
-import { CLEAN_CONDITIONALLY_TAGS, KEEP_CLASS } from './constants';
-import { normalizeSpaces } from '../text';
-import { linkDensity } from './index';
+const { CLEAN_CONDITIONALLY_TAGS, KEEP_CLASS } = require('./constants');
+const { normalizeSpaces } = require('../text');
+const { linkDensity } = require('./index');
 
 function removeUnlessContent($node, $, weight) {
   // Explicitly save entry-content-asset tags, which are
@@ -88,7 +88,7 @@ function removeUnlessContent($node, $, weight) {
 // etc)
 //
 // Return this same doc.
-export default function cleanTags($article, $) {
+module.exports = function cleanTags($article, $) {
   $(CLEAN_CONDITIONALLY_TAGS, $article).each((index, node) => {
     const $node = $(node);
     // If marked to keep, skip it

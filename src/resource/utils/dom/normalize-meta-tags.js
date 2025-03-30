@@ -17,7 +17,7 @@ function convertMetaProp($, from, to) {
 // In addition, normalize 'property' attributes to 'name' for ease of
 // querying later. See, e.g., og or twitter meta tags.
 
-export default function normalizeMetaTags($) {
+module.exports = function normalizeMetaTags($) {
   $ = convertMetaProp($, 'content', 'value');
   $ = convertMetaProp($, 'property', 'name');
   return $;

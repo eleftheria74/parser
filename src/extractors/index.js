@@ -1,3 +1,3 @@
 const Extractor = {};
 
-export default Extractor;
+module.exports = Extractor;

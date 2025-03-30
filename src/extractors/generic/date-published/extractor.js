@@ -1,6 +1,6 @@
-import { cleanDatePublished } from 'cleaners';
-import { extractFromMeta, extractFromSelectors } from 'utils/dom';
-import { extractFromUrl } from 'utils/text';
+const { cleanDatePublished } = require('cleaners');
+const { extractFromMeta, extractFromSelectors } = require('utils/dom');
+const { extractFromUrl } = require('utils/text');
 
 import {
   DATE_PUBLISHED_META_TAGS,
@@ -35,4 +35,4 @@ const GenericDatePublishedExtractor = {
   },
 };
 
-export default GenericDatePublishedExtractor;
+module.exports = GenericDatePublishedExtractor;

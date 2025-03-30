@@ -1,6 +1,6 @@
-import { getOrInitScore, setScore } from './index';
+const { getOrInitScore, setScore } = require('./index');
 
-export default function addScore($node, $, amount) {
+module.exports = function addScore($node, $, amount) {
   try {
     const score = getOrInitScore($node, $) + amount;
     setScore($node, $, score);

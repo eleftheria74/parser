@@ -1,7 +1,7 @@
-import URL from 'url';
-import wuzzy from 'wuzzy';
+const URL = require('url');
+const wuzzy = require('wuzzy');
 
-import { TITLE_SPLITTERS_RE, DOMAIN_ENDINGS_RE } from './constants';
+const { TITLE_SPLITTERS_RE, DOMAIN_ENDINGS_RE } = require('./constants');
 
 function extractBreadcrumbTitle(splitTitle, text) {
   // This must be a very breadcrumbed title, like:
@@ -83,7 +83,7 @@ function cleanDomainFromTitle(splitTitle, url) {
 
 // Given a title with separators in it (colons, dashes, etc),
 // resolve whether any of the segments should be removed.
-export default function resolveSplitTitle(title, url = '') {
+module.exports = function resolveSplitTitle(title, url = '') {
   // Splits while preserving splitters, like:
   // ['The New New York', ' - ', 'The Washington Post']
   const splitTitle = title.split(TITLE_SPLITTERS_RE);

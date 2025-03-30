@@ -1,4 +1,4 @@
-export default function setAttrs(node, attrs) {
+module.exports = function setAttrs(node, attrs) {
   if (node.attribs) {
     node.attribs = attrs;
   } else if (node.attributes) {

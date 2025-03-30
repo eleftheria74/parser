@@ -5,7 +5,7 @@
 // constructor so it sandboxes most of its operations
 // and doesn't mutate existing dom elements in the page.
 
-import jQuery from 'jquery';
+const jQuery = require('jquery');
 
 const PARSER_CLASS = 'mercury-parsing-container';
 let PARSING_NODE;
@@ -116,4 +116,4 @@ $.load = (html, opts = {}, returnHtml = false) => {
   return $;
 };
 
-export default $;
+module.exports = $;

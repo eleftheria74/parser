@@ -1,9 +1,9 @@
-import { getWeight } from 'extractors/generic/content/scoring';
+const { getWeight } = require('extractors/generic/content/scoring');
 
-import { HEADER_TAG_LIST } from './constants';
-import { normalizeSpaces } from '../text';
+const { HEADER_TAG_LIST } = require('./constants');
+const { normalizeSpaces } = require('../text');
 
-export default function cleanHeaders($article, $, title = '') {
+module.exports = function cleanHeaders($article, $, title = '') {
   $(HEADER_TAG_LIST, $article).each((index, header) => {
     const $header = $(header);
     // Remove any headers that appear before all other p tags in the

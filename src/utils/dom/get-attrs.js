@@ -1,4 +1,4 @@
-export default function getAttrs(node) {
+module.exports = function getAttrs(node) {
   const { attribs, attributes } = node;
 
   if (!attribs && attributes) {

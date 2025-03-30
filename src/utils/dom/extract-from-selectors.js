@@ -1,4 +1,4 @@
-import { withinComment } from 'utils/dom';
+const { withinComment } = require('utils/dom');
 
 function isGoodNode($node, maxChildren) {
   // If it has a number of children, it's more likely a container
@@ -17,7 +17,7 @@ function isGoodNode($node, maxChildren) {
 // Given a a list of selectors find content that may
 // be extractable from the document. This is for flat
 // meta-information, like author, title, date published, etc.
-export default function extractFromSelectors(
+module.exports = function extractFromSelectors(
   $,
   selectors,
   maxChildren = 1,

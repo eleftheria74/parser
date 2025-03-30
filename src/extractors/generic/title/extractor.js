@@ -1,5 +1,5 @@
-import { cleanTitle } from 'cleaners';
-import { extractFromMeta, extractFromSelectors } from 'utils/dom';
+const { cleanTitle } = require('cleaners');
+const { extractFromMeta, extractFromSelectors } = require('utils/dom');
 
 import {
   STRONG_TITLE_META_TAGS,
@@ -35,4 +35,4 @@ const GenericTitleExtractor = {
   },
 };
 
-export default GenericTitleExtractor;
+module.exports = GenericTitleExtractor;

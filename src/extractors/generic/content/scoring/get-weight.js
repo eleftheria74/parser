@@ -6,7 +6,7 @@ import {
 } from './constants';
 
 // Get the score of a node based on its className and id.
-export default function getWeight(node) {
+module.exports = function getWeight(node) {
   const classes = node.attr('class');
   const id = node.attr('id');
   let score = 0;

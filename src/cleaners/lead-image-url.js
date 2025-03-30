@@ -1,6 +1,6 @@
-import validUrl from 'valid-url';
+const validUrl = require('valid-url');
 
-export default function clean(leadImageUrl) {
+module.exports = function clean(leadImageUrl) {
   leadImageUrl = leadImageUrl.trim();
   if (validUrl.isWebUri(leadImageUrl)) {
     return leadImageUrl;

@@ -1,6 +1,6 @@
-import { PREV_LINK_TEXT_RE } from '../constants';
+const { PREV_LINK_TEXT_RE } = require('../constants');
 
-export default function scorePrevLink(linkData) {
+module.exports = function scorePrevLink(linkData) {
   // If the link has something like "previous", its definitely
   // an old link, skip it.
   if (PREV_LINK_TEXT_RE.test(linkData)) {

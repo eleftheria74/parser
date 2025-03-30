@@ -1,6 +1,6 @@
-import { NEXT_LINK_TEXT_RE } from '../constants';
+const { NEXT_LINK_TEXT_RE } = require('../constants');
 
-export default function scoreNextLinkText(linkData) {
+module.exports = function scoreNextLinkText(linkData) {
   // Things like "next", ">>", etc.
   if (NEXT_LINK_TEXT_RE.test(linkData)) {
     return 50;

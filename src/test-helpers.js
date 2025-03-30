@@ -1,7 +1,7 @@
-import assert from 'assert';
-import nock from 'nock'; // eslint-disable-line import/no-extraneous-dependencies
-import path from 'path';
-import cheerio from 'cheerio';
+const assert = require('assert');
+const nock = require('nock'); // eslint-disable-line import/no-extraneous-dependencies
+const path = require('path');
+const cheerio = require('cheerio');
 
 // const fs = require('fs');
 

@@ -1,9 +1,9 @@
-import { convertNodeTo } from 'utils/dom';
+const { convertNodeTo } = require('utils/dom');
 
 // H1 tags are typically the article title, which should be extracted
 // by the title extractor instead. If there's less than 3 of them (<3),
 // strip them. Otherwise, turn 'em into H2s.
-export default function cleanHOnes(article, $) {
+module.exports = function cleanHOnes(article, $) {
   const $hOnes = $('h1', article);
 
   if ($hOnes.length < 3) {

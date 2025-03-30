@@ -1,13 +1,13 @@
-import { getAttrs } from 'utils/dom';
+const { getAttrs } = require('utils/dom');
 
-import { IS_LINK, IS_IMAGE, IS_SRCSET } from './constants';
+const { IS_LINK, IS_IMAGE, IS_SRCSET } = require('./constants');
 
 // Convert all instances of images with potentially
 // lazy loaded images into normal images.
 // Many sites will have img tags with no source, or an image tag with a src
 // attribute that a is a placeholer. We need to be able to properly fill in
 // the src attribute so the images are no longer lazy loaded.
-export default function convertLazyLoadedImages($) {
+module.exports = function convertLazyLoadedImages($) {
   const extractSrcFromJSON = str => {
     try {
       const { src } = JSON.parse(str);

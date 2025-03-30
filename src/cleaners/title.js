@@ -1,10 +1,10 @@
-import { stripTags } from 'utils/dom';
-import { normalizeSpaces } from 'utils/text';
+const { stripTags } = require('utils/dom');
+const { normalizeSpaces } = require('utils/text');
 
-import { TITLE_SPLITTERS_RE } from './constants';
-import { resolveSplitTitle } from './index';
+const { TITLE_SPLITTERS_RE } = require('./constants');
+const { resolveSplitTitle } = require('./index');
 
-export default function cleanTitle(title, { url, $ }) {
+module.exports = function cleanTitle(title, { url, $ }) {
   // If title has |, :, or - in it, see if
   // we can clean it up.
   if (TITLE_SPLITTERS_RE.test(title)) {

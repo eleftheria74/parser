@@ -1,6 +1,6 @@
-import { getAttrs, setAttrs } from 'utils/dom';
+const { getAttrs, setAttrs } = require('utils/dom');
 
-import { WHITELIST_ATTRS_RE, KEEP_CLASS } from './constants';
+const { WHITELIST_ATTRS_RE, KEEP_CLASS } = require('./constants');
 
 function removeAllButWhitelist($article, $) {
   $article.find('*').each((index, node) => {
@@ -25,7 +25,7 @@ function removeAllButWhitelist($article, $) {
 }
 
 // Remove attributes like style or align
-export default function cleanAttributes($article, $) {
+module.exports = function cleanAttributes($article, $) {
   // Grabbing the parent because at this point
   // $article will be wrapped in a div which will
   // have a score set on it.

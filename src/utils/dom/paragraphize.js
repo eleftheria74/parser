@@ -1,4 +1,4 @@
-import { BLOCK_LEVEL_TAGS_RE } from './constants';
+const { BLOCK_LEVEL_TAGS_RE } = require('./constants');
 
 // Given a node, turn it into a P if it is not already a P, and
 // make sure it conforms to the constraints of a P tag (I.E. does
@@ -11,7 +11,7 @@ import { BLOCK_LEVEL_TAGS_RE } from './constants';
 // :param $: The cheerio object to handle dom manipulation
 // :param br: Whether or not the passed node is a br
 
-export default function paragraphize(node, $, br = false) {
+module.exports = function paragraphize(node, $, br = false) {
   const $node = $(node);
 
   if (br) {

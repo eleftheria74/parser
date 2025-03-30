@@ -1,7 +1,7 @@
-import URL from 'url';
+const URL = require('url');
 
-import { articleBaseUrl, removeAnchor } from 'utils/text';
-import scoreLinks from './scoring/score-links';
+const { articleBaseUrl, removeAnchor } = require('utils/text');
+const scoreLinks = require('./scoring/score-links');
 
 // Looks for and returns next page url
 // for multi-page articles
@@ -46,4 +46,4 @@ const GenericNextPageUrlExtractor = {
   },
 };
 
-export default GenericNextPageUrlExtractor;
+module.exports = GenericNextPageUrlExtractor;

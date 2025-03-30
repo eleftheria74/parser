@@ -1,8 +1,8 @@
-import ellipsize from 'ellipsize';
+const ellipsize = require('ellipsize');
 
-import { extractFromMeta, stripTags } from 'utils/dom';
+const { extractFromMeta, stripTags } = require('utils/dom');
 
-import { EXCERPT_META_SELECTORS } from './constants';
+const { EXCERPT_META_SELECTORS } = require('./constants');
 
 export function clean(content, $, maxLength = 200) {
   content = content.replace(/[\s\n]+/g, ' ').trim();
@@ -22,4 +22,4 @@ const GenericExcerptExtractor = {
   },
 };
 
-export default GenericExcerptExtractor;
+module.exports = GenericExcerptExtractor;

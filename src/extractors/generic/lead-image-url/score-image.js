@@ -5,7 +5,7 @@ import {
   JPG_RE,
 } from './constants';
 
-import { PHOTO_HINTS_RE } from '../content/scoring/constants';
+const { PHOTO_HINTS_RE } = require('../content/scoring/constants');
 
 function getSig($node) {
   return `${$node.attr('class') || ''} ${$node.attr('id') || ''}`;

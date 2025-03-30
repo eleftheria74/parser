@@ -12,7 +12,7 @@ import {
 } from 'utils/dom';
 
 // Clean our article content, returning a new, cleaned node.
-export default function extractCleanNode(
+module.exports = function extractCleanNode(
   article,
   { $, cleanConditionally = true, title = '', url = '', defaultCleaner = true }
 ) {

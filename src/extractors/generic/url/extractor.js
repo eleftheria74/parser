@@ -1,7 +1,7 @@
-import URL from 'url';
-import { extractFromMeta } from 'utils/dom';
+const URL = require('url');
+const { extractFromMeta } = require('utils/dom');
 
-import { CANONICAL_META_SELECTORS } from './constants';
+const { CANONICAL_META_SELECTORS } = require('./constants');
 
 function parseDomain(url) {
   const parsedUrl = URL.parse(url);
@@ -35,4 +35,4 @@ const GenericUrlExtractor = {
   },
 };
 
-export default GenericUrlExtractor;
+module.exports = GenericUrlExtractor;
