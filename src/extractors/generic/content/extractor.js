@@ -1,8 +1,8 @@
 const cheerio = require('cheerio');
 
-const { nodeIsSufficient } = require('../../../../resource/utils/dom/index.js');
-const { cleanContent } = require('../../../../cleaners');
-const { normalizeSpaces } = require('../../../../resource/utils/text');
+const { nodeIsSufficient } = require('../../../resource/utils/dom');
+const { cleanContent } = require('../../../cleaners');
+const { normalizeSpaces } = require('../../../resource/utils/text');
 
 const extractBestNode = require('./extract-best-node');
 
