@@ -16,7 +16,7 @@ const {
   TIME_WITH_OFFSET_RE,
 } = require('./constants');
 
-export function cleanDateString(dateString) {
+function cleanDateString(dateString) {
   return (dateString.match(SPLIT_DATE_STRING) || [])
     .join(' ')
     .replace(TIME_MERIDIAN_DOTS_RE, 'm')
@@ -25,7 +25,7 @@ export function cleanDateString(dateString) {
     .trim();
 }
 
-export function createDate(dateString, timezone, format) {
+function createDate(dateString, timezone, format) {
   if (TIME_WITH_OFFSET_RE.test(dateString)) {
     return moment(new Date(dateString));
   }
@@ -67,3 +67,7 @@ module.exports = function cleanDatePublished(
 
   return date.isValid() ? date.toISOString() : null;
 }
+module.exports = {
+  textLength,
+  linkDensity,
+};

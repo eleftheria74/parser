@@ -12,7 +12,7 @@ function getSig($node) {
 }
 
 // Scores image urls based on a variety of heuristics.
-export function scoreImageUrl(url) {
+function scoreImageUrl(url) {
   url = url.trim();
   let score = 0;
 
@@ -40,7 +40,7 @@ export function scoreImageUrl(url) {
 }
 
 // Alt attribute usually means non-presentational image.
-export function scoreAttr($img) {
+function scoreAttr($img) {
   if ($img.attr('alt')) {
     return 5;
   }
@@ -50,7 +50,7 @@ export function scoreAttr($img) {
 
 // Look through our parent and grandparent for figure-like
 // container elements, give a bonus if we find them
-export function scoreByParents($img) {
+function scoreByParents($img) {
   let score = 0;
   const $figParent = $img.parents('figure').first();
 
@@ -75,7 +75,7 @@ export function scoreByParents($img) {
 
 // Look at our immediate sibling and see if it looks like it's a
 // caption. Bonus if so.
-export function scoreBySibling($img) {
+function scoreBySibling($img) {
   let score = 0;
   const $sibling = $img.next();
   const sibling = $sibling.get(0);
@@ -91,7 +91,7 @@ export function scoreBySibling($img) {
   return score;
 }
 
-export function scoreByDimensions($img) {
+function scoreByDimensions($img) {
   let score = 0;
 
   const width = parseFloat($img.attr('width'));
@@ -121,6 +121,10 @@ export function scoreByDimensions($img) {
   return score;
 }
 
-export function scoreByPosition($imgs, index) {
+function scoreByPosition($imgs, index) {
   return $imgs.length / 2 - index;
 }
+module.exports = {
+  textLength,
+  linkDensity,
+};

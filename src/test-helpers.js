@@ -5,19 +5,19 @@ const cheerio = require('cheerio');
 
 // const fs = require('fs');
 
-export function clean(string) {
+function clean(string) {
   return string
     .trim()
     .replace(/\r?\n|\r/g, '')
     .replace(/\s+/g, ' ');
 }
 
-export function assertClean(a, b) {
+function assertClean(a, b) {
   assert.equal(clean(a), clean(b));
 }
 
 // using this from https://www.ctl.io/developers/blog/post/http-apis-test-code
-export function record(name, options = {}) {
+function record(name, options = {}) {
   const test_folder = options.test_folder || '.';
   const fixtures_folder = options.fixtures_folder || 'fixtures/nock';
   const fp = path.join(test_folder, fixtures_folder, `${name}.js`);
@@ -83,3 +83,7 @@ export class MockDomNode {
     this.attributes.pop();
   }
 }
+module.exports = {
+  textLength,
+  linkDensity,
+};

@@ -16,7 +16,7 @@ const {
   scoreNextLinkText,
 } = require('./utils');
 
-export function makeBaseRegex(baseUrl) {
+function makeBaseRegex(baseUrl) {
   return new RegExp(`^${baseUrl}`, 'i');
 }
 
@@ -98,3 +98,7 @@ module.exports = function scoreLinks({
 
   return Reflect.ownKeys(scoredPages).length === 0 ? null : scoredPages;
 }
+module.exports = {
+  textLength,
+  linkDensity,
+};
