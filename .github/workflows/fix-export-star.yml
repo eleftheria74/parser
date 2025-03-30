@@ -1,0 +1,38 @@
+name: Fix export star syntax
+
+on:
+  workflow_dispatch:  # Το τρέχεις χειροκίνητα από το GitHub UI
+
+jobs:
+  fix-export-star:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Run script to fix `export * from`
+        run: node scripts/fix-export-star.js
+
+      - name: Check for changes
+        id: git-check
+        run: |
+          if [[ -n "$(git status --porcelain)" ]]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push changes
+        if: steps.git-check.outputs.changed == 'true'
+        run: |
+          git config --global user.name "actions-user"
+          git config --global user.email "actions@github.com"
+          git add .
+          git commit -m "fix: convert 'export * from' to CommonJS"
+          git push
