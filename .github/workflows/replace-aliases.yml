@@ -1,0 +1,30 @@
+name: Replace Aliases with Relative Paths
+
+on:
+  workflow_dispatch:
+
+jobs:
+  replace-aliases:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Run replace script
+        run: |
+          node replace-aliases.js
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "🔄 Replace alias requires with relative paths" || echo "No changes"
+          git push origin main --force
