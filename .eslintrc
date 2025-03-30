@@ -34,6 +34,21 @@
           "rollup.config*js"
         ]
       }
+    ],
+    "no-restricted-syntax": [
+      "error",
+      {
+        "selector": "ImportDeclaration",
+        "message": "Do not use 'import'. Use 'require()' instead in CommonJS modules."
+      },
+      {
+        "selector": "ExportNamedDeclaration",
+        "message": "Do not use 'export'. Use 'module.exports' instead in CommonJS modules."
+      },
+      {
+        "selector": "ExportDefaultDeclaration",
+        "message": "Do not use 'export default'. Use 'module.exports' instead in CommonJS modules."
+      }
     ]
   },
   "settings": {
@@ -42,3 +57,4 @@
     }
   }
 }
+
