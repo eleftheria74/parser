@@ -18,7 +18,8 @@ function fixExports(filePath) {
   let content = fs.readFileSync(filePath, 'utf-8');
   let modified = false;
 
-  // Pattern 1: module.exports = { default as something } from './file';
+  // Pattern 1: const something = require('./file').default;
+module.exports = { something };
   const pattern1 = /module\.exports\s*=\s*{\s*default\s+as\s+(\w+)\s*}\s*from\s*['"](.*?)['"];?/g;
   content = content.replace(pattern1, (_, name, file) => {
     modified = true;
