@@ -29,10 +29,13 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Commit compiled changes
+      - name: Commit and force push if changes exist
         run: |
           git add dist-cjs
-          git commit -m "🔁 Rebuild CJS output [CI]" || echo "No changes to commit"
+          if git diff --cached --quiet; then
+            echo "✅ No changes to commit. Skipping push."
+          else
+            git commit -m "🔁 Rebuild CJS output [CI]"
+            git push origin main --force
+          fi
 
-      - name: Force push to main
-        run: git push origin main --force
