@@ -51,7 +51,8 @@
     "watch:test": "jest --watch",
     "generate-parser": "node ./dist/generate-custom-parser.js",
     "start": "node ./src/mercury.js",
-    "build": "echo ready"
+    "build": "yarn lint && echo '✅ Lint passed'"
+
   },
   "engines": {
     "node": ">=10"
