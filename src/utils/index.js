@@ -1,2 +1,4 @@
-module.exports = { default as range }; from './range';
-module.exports = { default as validateUrl }; from './validate-url';
+const range = require('./range').default;
+module.exports = { range };
+const validateUrl = require('./validate-url').default;
+module.exports = { validateUrl };
