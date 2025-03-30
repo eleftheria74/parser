@@ -9,7 +9,7 @@ const {
   markToKeep,
   stripJunkTags,
   makeLinksAbsolute,
-} = require('utils/dom');
+} = require('../resource/utils/dom');
 
 // Clean our article content, returning a new, cleaned node.
 module.exports = function extractCleanNode(
