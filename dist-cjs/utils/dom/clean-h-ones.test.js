@@ -21,8 +21,8 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 var import_cheerio = __toESM(require("cheerio"));
-var import_test_helpers = require("test-helpers");
-var import_index = require("./index");
+const { assertClean } = require("test-helpers");
+const { cleanHOnes } = require("./index");
 describe("cleanHOnes($)", () => {
   it("removes H1s if there are less than 3 of them", () => {
     const $ = import_cheerio.default.load(`
@@ -32,8 +32,8 @@ describe("cleanHOnes($)", () => {
         <h1>Can you believe it?!</h1>
       </div>
     `);
-    const result = (0, import_index.cleanHOnes)($("*").first(), $);
-    (0, import_test_helpers.assertClean)(
+    const result = cleanHOnes($("*").first(), $);
+    assertClean(
       result.html(),
       `
       <div>
@@ -52,8 +52,8 @@ describe("cleanHOnes($)", () => {
         <h1>Can you believe it?!</h1>
       </div>
     `);
-    const result = (0, import_index.cleanHOnes)($("*").first(), $);
-    (0, import_test_helpers.assertClean)(
+    const result = cleanHOnes($("*").first(), $);
+    assertClean(
       result.html(),
       `
       <div>

@@ -21,11 +21,11 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 var import_assert = __toESM(require("assert"));
-var import_test_helpers = require("test-helpers");
 var import_set_attr = __toESM(require("./set-attr"));
+const { MockDomNode } = require("test-helpers");
 describe("setAttr(node, attr, val)", () => {
   it("sets attrs for a raw jquery node", () => {
-    const domNode = new import_test_helpers.MockDomNode();
+    const domNode = new MockDomNode();
     const node = (0, import_set_attr.default)(domNode, "class", "foo");
     import_assert.default.equal(node.attributes[0].value, "foo");
   });

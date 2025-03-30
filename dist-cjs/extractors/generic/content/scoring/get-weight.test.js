@@ -22,7 +22,7 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var import_assert = __toESM(require("assert"));
 var import_cheerio = __toESM(require("cheerio"));
-var import_index = require("./index");
+const { getWeight } = require("./index");
 describe("Generic Extractor Utils", () => {
   describe("getWeight(node)", () => {
     it("returns a score of 25 if node has positive id", () => {
@@ -31,7 +31,7 @@ describe("Generic Extractor Utils", () => {
           <p>Ooo good one</p>
         </div>
       `);
-      import_assert.default.equal((0, import_index.getWeight)($("div")), 25);
+      import_assert.default.equal(getWeight($("div")), 25);
     });
     it("returns a score of -25 if node has negative id", () => {
       const $ = import_cheerio.default.load(`
@@ -39,7 +39,7 @@ describe("Generic Extractor Utils", () => {
           <p>Ooo good one</p>
         </div>
       `);
-      import_assert.default.equal((0, import_index.getWeight)($("div")), -25);
+      import_assert.default.equal(getWeight($("div")), -25);
     });
     it("returns a score of 25 if node has positive class", () => {
       const $ = import_cheerio.default.load(`
@@ -47,7 +47,7 @@ describe("Generic Extractor Utils", () => {
           <p>Ooo good one</p>
         </div>
       `);
-      import_assert.default.equal((0, import_index.getWeight)($("div")), 25);
+      import_assert.default.equal(getWeight($("div")), 25);
     });
     it("returns a score of -25 if node has negative class", () => {
       const $ = import_cheerio.default.load(`
@@ -55,7 +55,7 @@ describe("Generic Extractor Utils", () => {
           <p>Ooo good one</p>
         </div>
       `);
-      import_assert.default.equal((0, import_index.getWeight)($("div")), -25);
+      import_assert.default.equal(getWeight($("div")), -25);
     });
     it("returns a score of 25 if node has both positive id and class", () => {
       const $ = import_cheerio.default.load(`
@@ -63,7 +63,7 @@ describe("Generic Extractor Utils", () => {
           <p>Ooo good one</p>
         </div>
       `);
-      import_assert.default.equal((0, import_index.getWeight)($("div")), 25);
+      import_assert.default.equal(getWeight($("div")), 25);
     });
     it("returns a score of 25 if node has pos id and neg class", () => {
       const $ = import_cheerio.default.load(`
@@ -71,7 +71,7 @@ describe("Generic Extractor Utils", () => {
           <p>Ooo good one</p>
         </div>
       `);
-      import_assert.default.equal((0, import_index.getWeight)($("div")), 25);
+      import_assert.default.equal(getWeight($("div")), 25);
     });
     it("returns a score of 10 if node has pos img class", () => {
       const $ = import_cheerio.default.load(`
@@ -79,7 +79,7 @@ describe("Generic Extractor Utils", () => {
           <p>Ooo good one</p>
         </div>
       `);
-      import_assert.default.equal((0, import_index.getWeight)($("div")), 10);
+      import_assert.default.equal(getWeight($("div")), 10);
     });
     it("returns a score of 35 if node has pos id pos img class", () => {
       const $ = import_cheerio.default.load(`
@@ -87,7 +87,7 @@ describe("Generic Extractor Utils", () => {
           <p>Ooo good one</p>
         </div>
       `);
-      import_assert.default.equal((0, import_index.getWeight)($("div")), 35);
+      import_assert.default.equal(getWeight($("div")), 35);
     });
     it("adds an add'l 25 (total 50) if node uses entry-content-asset class", () => {
       const $ = import_cheerio.default.load(`
@@ -95,7 +95,7 @@ describe("Generic Extractor Utils", () => {
           <p>Ooo good one</p>
         </div>
       `);
-      import_assert.default.equal((0, import_index.getWeight)($("div")), 50);
+      import_assert.default.equal(getWeight($("div")), 50);
     });
   });
 });

@@ -21,19 +21,19 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 var import_assert = __toESM(require("assert"));
-var import_index = require("./index");
+const { scoreLength } = require("./index");
 describe("Scoring utils", () => {
   describe("scoreLength(textLength, tagName)", () => {
     it("returns 0 if length < 50 chars", () => {
-      import_assert.default.equal((0, import_index.scoreLength)(30), 0);
+      import_assert.default.equal(scoreLength(30), 0);
     });
     it("returns varying scores but maxes out at 3", () => {
-      import_assert.default.equal((0, import_index.scoreLength)(150), 1);
-      import_assert.default.equal((0, import_index.scoreLength)(199), 1.98);
-      import_assert.default.equal((0, import_index.scoreLength)(200), 2);
-      import_assert.default.equal((0, import_index.scoreLength)(250), 3);
-      import_assert.default.equal((0, import_index.scoreLength)(500), 3);
-      import_assert.default.equal((0, import_index.scoreLength)(1500), 3);
+      import_assert.default.equal(scoreLength(150), 1);
+      import_assert.default.equal(scoreLength(199), 1.98);
+      import_assert.default.equal(scoreLength(200), 2);
+      import_assert.default.equal(scoreLength(250), 3);
+      import_assert.default.equal(scoreLength(500), 3);
+      import_assert.default.equal(scoreLength(1500), 3);
     });
   });
 });

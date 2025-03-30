@@ -22,11 +22,11 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var import_assert = __toESM(require("assert"));
 var import_cheerio = __toESM(require("cheerio"));
-var import_text = require("utils/text");
-var import_test_helpers = require("test-helpers");
 var import_index = __toESM(require("./index"));
+const { getEncoding } = require("utils/text");
+const { record } = require("test-helpers");
 describe("Resource", () => {
-  const recorder = (0, import_test_helpers.record)("resource-test");
+  const recorder = record("resource-test");
   beforeAll(recorder.before);
   afterAll(recorder.after);
   describe("create(url)", () => {
@@ -44,7 +44,7 @@ describe("Resource", () => {
       const url = "http://www.playnation.de/spiele-news/kojima-productions/hideo-kojima-reflektiert-ueber-seinen-werdegang-bei-konami-id68950.html";
       const $ = await import_index.default.create(url);
       const metaContentType = $("meta[http-equiv=content-type]").attr("value");
-      import_assert.default.equal((0, import_text.getEncoding)(metaContentType), "iso-8859-1");
+      import_assert.default.equal(getEncoding(metaContentType), "iso-8859-1");
       const encodedU = /&#xFC;/g;
       import_assert.default.equal(encodedU.test($.html()), true);
       import_assert.default.equal(typeof $, "function");
@@ -55,7 +55,7 @@ describe("Resource", () => {
       const metaContentType = $("meta[http-equiv=content-type i]").attr(
         "value"
       );
-      import_assert.default.equal((0, import_text.getEncoding)(metaContentType), "windows-1251");
+      import_assert.default.equal(getEncoding(metaContentType), "windows-1251");
       const badEncodingRe = /&#xFFFD;/g;
       import_assert.default.equal(badEncodingRe.test($.html()), false);
       import_assert.default.equal(typeof $, "function");
@@ -64,7 +64,7 @@ describe("Resource", () => {
       const url = "https://www.idnes.cz/fotbal/prvni-liga/fotbalova-liga-8-kolo-slovan-liberec-slovacko.A170925_173123_fotbal_min";
       const $ = await import_index.default.create(url);
       const metaContentType = $("meta[charset]").attr("charset");
-      import_assert.default.equal((0, import_text.getEncoding)(metaContentType), "windows-1250");
+      import_assert.default.equal(getEncoding(metaContentType), "windows-1250");
       const badEncodingRe = /&#xFFFD;/g;
       import_assert.default.equal(badEncodingRe.test($.html()), false);
       import_assert.default.equal(typeof $, "function");

@@ -22,16 +22,16 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var import_assert = __toESM(require("assert"));
 var import_cheerio = __toESM(require("cheerio"));
-var import_index = require("./index");
+const { getScore } = require("./index");
 describe("Scoring utils", () => {
   describe("getScore($node)", () => {
     it("returns null if the node has no score set", () => {
       const $ = import_cheerio.default.load("<p>Foo</p>");
-      import_assert.default.equal((0, import_index.getScore)($("p").first()), null);
+      import_assert.default.equal(getScore($("p").first()), null);
     });
     it("returns 25 if the node has a score attr of 25", () => {
       const $ = import_cheerio.default.load('<p score="25">Foo</p>');
-      const score = (0, import_index.getScore)($("p").first());
+      const score = getScore($("p").first());
       import_assert.default.equal(typeof score, "number");
       import_assert.default.equal(score, 25);
     });

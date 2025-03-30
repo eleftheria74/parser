@@ -21,14 +21,14 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 var import_assert = __toESM(require("assert"));
-var import_test_helpers = require("test-helpers");
 var import_extractor = __toESM(require("./extractor"));
+const { clean } = require("test-helpers");
 const fs = require("fs");
 describe("GenericContentExtractor", () => {
   describe("extract($, html, opts)", () => {
     it("extracts html and returns the article", () => {
       const html = fs.readFileSync("./fixtures/www.vulture.com.html", "utf-8");
-      const result = (0, import_test_helpers.clean)(
+      const result = clean(
         import_extractor.default.extract({
           $: null,
           html,

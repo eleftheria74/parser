@@ -21,8 +21,8 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 var import_cheerio = __toESM(require("cheerio"));
-var import_test_helpers = require("test-helpers");
-var import_index = require("./index");
+const { assertClean } = require("test-helpers");
+const { cleanHeaders } = require("./index");
 describe("cleanHeaders(article, $)", () => {
   it("parses html and returns the article", () => {
     const $ = import_cheerio.default.load(`
@@ -33,8 +33,8 @@ describe("cleanHeaders(article, $)", () => {
         <p>What do you think?</p>
       </div>
     `);
-    const result = (0, import_index.cleanHeaders)($("*").first(), $);
-    (0, import_test_helpers.assertClean)(
+    const result = cleanHeaders($("*").first(), $);
+    assertClean(
       result.html(),
       `
       <div>
@@ -53,8 +53,8 @@ describe("cleanHeaders(article, $)", () => {
         <p>What do you think?</p>
       </div>
     `);
-    const result = (0, import_index.cleanHeaders)($("*").first(), $, "Title Match");
-    (0, import_test_helpers.assertClean)(
+    const result = cleanHeaders($("*").first(), $, "Title Match");
+    assertClean(
       result.html(),
       `
       <div>
@@ -72,8 +72,8 @@ describe("cleanHeaders(article, $)", () => {
         <p>What do you think?</p>
       </div>
     `);
-    const result = (0, import_index.cleanHeaders)($("*").first(), $);
-    (0, import_test_helpers.assertClean)(
+    const result = cleanHeaders($("*").first(), $);
+    assertClean(
       result.html(),
       `
       <div>

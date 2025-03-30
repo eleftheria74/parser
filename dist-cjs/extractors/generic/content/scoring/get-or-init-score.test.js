@@ -22,33 +22,33 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var import_assert = __toESM(require("assert"));
 var import_cheerio = __toESM(require("cheerio"));
-var import_index = require("./index");
+const { getOrInitScore, getScore } = require("./index");
 describe("getOrInitScore(node, $)", () => {
   describe("when score set", () => {
     it("returns score if node's score already set", () => {
       const $ = import_cheerio.default.load('<p score="40">Foo</p>');
-      const score = (0, import_index.getOrInitScore)($("p").first(), $);
+      const score = getOrInitScore($("p").first(), $);
       import_assert.default.equal(score, 40);
     });
   });
   describe("when no score set", () => {
     it("returns 0 if no class/id and text < 25 chars", () => {
       const $ = import_cheerio.default.load("<p>Foo</p>");
-      const score = (0, import_index.getOrInitScore)($("p").first(), $);
+      const score = getOrInitScore($("p").first(), $);
       import_assert.default.equal(score, 0);
     });
     it("returns score if no class/id and has commas/length", () => {
       const $ = import_cheerio.default.load(
         `<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu.</p>`
       );
-      const score = (0, import_index.getOrInitScore)($("p").first(), $);
+      const score = getOrInitScore($("p").first(), $);
       import_assert.default.equal(score, 19);
     });
     it("returns greater score if weighted class/id is set", () => {
       const $ = import_cheerio.default.load(
         `<p class="entry">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu.</p>`
       );
-      const score = (0, import_index.getOrInitScore)($("p").first(), $);
+      const score = getOrInitScore($("p").first(), $);
       import_assert.default.equal(score, 44);
     });
     it("gives 1/4 of its score to its parent", () => {
@@ -58,8 +58,8 @@ describe("getOrInitScore(node, $)", () => {
         </div>
       `);
       const $node = $("p").first();
-      (0, import_index.getOrInitScore)($node, $);
-      import_assert.default.equal((0, import_index.getScore)($node.parent()), 16);
+      getOrInitScore($node, $);
+      import_assert.default.equal(getScore($node.parent()), 16);
     });
   });
 });

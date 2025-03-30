@@ -1,7 +1,17 @@
-var import_constants = require("./constants");
-var import_score_image = require("./score-image");
 const { extractFromMeta } = require("../../../resource/utils/dom");
 const { cleanImage } = require("cleaners");
+const {
+  LEAD_IMAGE_URL_META_TAGS,
+  LEAD_IMAGE_URL_SELECTORS
+} = require("./constants");
+const {
+  scoreImageUrl,
+  scoreAttr,
+  scoreByParents,
+  scoreBySibling,
+  scoreByDimensions,
+  scoreByPosition
+} = require("./score-image");
 const GenericLeadImageUrlExtractor = {
   extract({ $, content, metaCache, html }) {
     let cleanUrl;
@@ -10,7 +20,7 @@ const GenericLeadImageUrlExtractor = {
     }
     const imageUrl = extractFromMeta(
       $,
-      import_constants.LEAD_IMAGE_URL_META_TAGS,
+      LEAD_IMAGE_URL_META_TAGS,
       metaCache,
       false
     );
@@ -27,12 +37,12 @@ const GenericLeadImageUrlExtractor = {
       const src = $img.attr("src");
       if (!src)
         return;
-      let score = (0, import_score_image.scoreImageUrl)(src);
-      score += (0, import_score_image.scoreAttr)($img);
-      score += (0, import_score_image.scoreByParents)($img);
-      score += (0, import_score_image.scoreBySibling)($img);
-      score += (0, import_score_image.scoreByDimensions)($img);
-      score += (0, import_score_image.scoreByPosition)(imgs, index);
+      let score = scoreImageUrl(src);
+      score += scoreAttr($img);
+      score += scoreByParents($img);
+      score += scoreBySibling($img);
+      score += scoreByDimensions($img);
+      score += scoreByPosition(imgs, index);
       imgScores[src] = score;
     });
     const [topUrl, topScore] = Reflect.ownKeys(imgScores).reduce(
@@ -44,7 +54,7 @@ const GenericLeadImageUrlExtractor = {
       if (cleanUrl)
         return cleanUrl;
     }
-    for (const selector of import_constants.LEAD_IMAGE_URL_SELECTORS) {
+    for (const selector of LEAD_IMAGE_URL_SELECTORS) {
       const $node = $(selector).first();
       const src = $node.attr("src");
       if (src) {

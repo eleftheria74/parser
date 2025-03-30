@@ -22,7 +22,7 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var import_assert = __toESM(require("assert"));
 var import_cheerio = __toESM(require("cheerio"));
-var import_index = require("./index");
+const { extractFromMeta } = require("./index");
 describe("extractFromMeta($, metaNames, cachedNames, cleanTags)", () => {
   it("extracts an arbitrary meta tag by name", () => {
     const $ = import_cheerio.default.load(`
@@ -30,7 +30,7 @@ describe("extractFromMeta($, metaNames, cachedNames, cleanTags)", () => {
         <meta name="foo" value="bar" />
       </html>
     `);
-    const result = (0, import_index.extractFromMeta)($, ["foo", "baz"], ["foo", "bat"]);
+    const result = extractFromMeta($, ["foo", "baz"], ["foo", "bat"]);
     import_assert.default.equal(result, "bar");
   });
   it("returns nothing if a meta name is duplicated", () => {
@@ -40,7 +40,7 @@ describe("extractFromMeta($, metaNames, cachedNames, cleanTags)", () => {
         <meta name="foo" value="baz" />
       </html>
     `);
-    const result = (0, import_index.extractFromMeta)($, ["foo", "baz"], ["foo", "bat"]);
+    const result = extractFromMeta($, ["foo", "baz"], ["foo", "bat"]);
     import_assert.default.equal(result, null);
   });
   it("ignores duplicate meta names with empty values", () => {
@@ -50,7 +50,7 @@ describe("extractFromMeta($, metaNames, cachedNames, cleanTags)", () => {
         <meta name="foo" value="" />
       </html>
     `);
-    const result = (0, import_index.extractFromMeta)($, ["foo", "baz"], ["foo", "bat"]);
+    const result = extractFromMeta($, ["foo", "baz"], ["foo", "bat"]);
     import_assert.default.equal(result, "bar");
   });
 });

@@ -22,8 +22,8 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var import_assert = __toESM(require("assert"));
 var import_cheerio = __toESM(require("cheerio"));
-var import_test_helpers = require("test-helpers");
 var import_brs_to_ps = __toESM(require("./brs-to-ps"));
+const { assertClean } = require("test-helpers");
 describe("Generic Extractor Utils", () => {
   describe("brsToPs(node)", () => {
     it("does nothing when no BRs present", () => {
@@ -51,7 +51,7 @@ describe("Generic Extractor Utils", () => {
       `;
       let $ = import_cheerio.default.load(before);
       $ = (0, import_brs_to_ps.default)($);
-      (0, import_test_helpers.assertClean)($.html(), after);
+      assertClean($.html(), after);
     });
     it("converts double BR tags to an empty P tag", () => {
       const before = `
@@ -68,7 +68,7 @@ describe("Generic Extractor Utils", () => {
       `;
       let $ = import_cheerio.default.load(before);
       $ = (0, import_brs_to_ps.default)($);
-      (0, import_test_helpers.assertClean)($.html(), after);
+      assertClean($.html(), after);
     });
     it("converts several BR tags to an empty P tag", () => {
       const before = `
@@ -88,7 +88,7 @@ describe("Generic Extractor Utils", () => {
       `;
       let $ = import_cheerio.default.load(before);
       $ = (0, import_brs_to_ps.default)($);
-      (0, import_test_helpers.assertClean)($.html(), after);
+      assertClean($.html(), after);
     });
     it("converts BR tags in a P tag into a P containing inline children", () => {
       const before = `
@@ -108,7 +108,7 @@ describe("Generic Extractor Utils", () => {
       `;
       let $ = import_cheerio.default.load(before);
       $ = (0, import_brs_to_ps.default)($);
-      (0, import_test_helpers.assertClean)($.html(), after);
+      assertClean($.html(), after);
     });
   });
 });

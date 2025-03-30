@@ -21,16 +21,16 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 var import_assert = __toESM(require("assert"));
-var import_index = require("./index");
+const { scoreCommas } = require("./index");
 describe("Scoring utils", () => {
   describe("scoreCommas(text)", () => {
     it("returns 0 if text has no commas", () => {
-      import_assert.default.equal((0, import_index.scoreCommas)("Foo bar"), 0);
+      import_assert.default.equal(scoreCommas("Foo bar"), 0);
     });
     it("returns a point for every comma in the text", () => {
-      import_assert.default.equal((0, import_index.scoreCommas)("Foo, bar"), 1);
-      import_assert.default.equal((0, import_index.scoreCommas)("Foo, bar, baz"), 2);
-      import_assert.default.equal((0, import_index.scoreCommas)("Foo, bar, baz, bat"), 3);
+      import_assert.default.equal(scoreCommas("Foo, bar"), 1);
+      import_assert.default.equal(scoreCommas("Foo, bar, baz"), 2);
+      import_assert.default.equal(scoreCommas("Foo, bar, baz, bat"), 3);
     });
   });
 });

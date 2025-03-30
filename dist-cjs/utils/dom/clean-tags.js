@@ -1,4 +1,9 @@
-var import_scoring = require("extractors/generic/content/scoring");
+const {
+  getScore,
+  setScore,
+  getOrInitScore,
+  scoreCommas
+} = require("extractors/generic/content/scoring");
 const { CLEAN_CONDITIONALLY_TAGS, KEEP_CLASS } = require("./constants");
 const { normalizeSpaces } = require("../text");
 const { linkDensity } = require("./index");
@@ -7,7 +12,7 @@ function removeUnlessContent($node, $, weight) {
     return;
   }
   const content = normalizeSpaces($node.text());
-  if ((0, import_scoring.scoreCommas)(content) < 10) {
+  if (scoreCommas(content) < 10) {
     const pCount = $("p", $node).length;
     const inputCount = $("input", $node).length;
     if (inputCount > pCount / 3) {
@@ -48,10 +53,10 @@ module.exports = function cleanTags($article, $) {
     const $node = $(node);
     if ($node.hasClass(KEEP_CLASS) || $node.find(`.${KEEP_CLASS}`).length > 0)
       return;
-    let weight = (0, import_scoring.getScore)($node);
+    let weight = getScore($node);
     if (!weight) {
-      weight = (0, import_scoring.getOrInitScore)($node, $);
-      (0, import_scoring.setScore)($node, $, weight);
+      weight = getOrInitScore($node, $);
+      setScore($node, $, weight);
     }
     if (weight < 0) {
       $node.remove();

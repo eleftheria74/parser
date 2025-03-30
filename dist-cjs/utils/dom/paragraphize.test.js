@@ -22,8 +22,8 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var import_assert = __toESM(require("assert"));
 var import_cheerio = __toESM(require("cheerio"));
-var import_test_helpers = require("test-helpers");
-var import_index = require("./index");
+const { clean } = require("test-helpers");
+const { paragraphize } = require("./index");
 describe("Generic Extractor Utils", () => {
   describe("paragraphize(node)", () => {
     it("conversts a BR into P and moves inline contents to P tag after current parent", () => {
@@ -36,10 +36,10 @@ describe("Generic Extractor Utils", () => {
         </p>
       `);
       const node = $("br").get(0);
-      const result = (0, import_index.paragraphize)(node, $, true).html();
+      const result = paragraphize(node, $, true).html();
       import_assert.default.equal(
-        (0, import_test_helpers.clean)(result),
-        (0, import_test_helpers.clean)(`
+        clean(result),
+        clean(`
           <p>
             Here is some text
           <p>
@@ -59,14 +59,14 @@ describe("Generic Extractor Utils", () => {
         </p>
       `);
       const node = $("br").get(0);
-      const result = (0, import_index.paragraphize)(node, $, true).html();
+      const result = paragraphize(node, $, true).html();
       if ($.browser) {
         const html = "<p> Here is some text <p> Here is more text </p></p><div>And also this</div> <p></p>";
-        import_assert.default.equal((0, import_test_helpers.clean)(result), html);
+        import_assert.default.equal(clean(result), html);
       } else {
         import_assert.default.equal(
-          (0, import_test_helpers.clean)(result),
-          (0, import_test_helpers.clean)(`
+          clean(result),
+          clean(`
             <p>
               Here is some text
             <p>

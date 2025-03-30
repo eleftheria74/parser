@@ -24,8 +24,8 @@ var import_assert = __toESM(require("assert"));
 var import_cheerio = __toESM(require("cheerio"));
 var import_url = __toESM(require("url"));
 var import_get_extractor = __toESM(require("extractors/get-extractor"));
-var import_text = require("utils/text");
 var import_mercury = __toESM(require("mercury"));
+const { excerptContent } = require("utils/text");
 const fs = require("fs");
 describe("NYTimesExtractor", () => {
   describe("initial test case", () => {
@@ -68,7 +68,7 @@ describe("NYTimesExtractor", () => {
     it("returns the content", async () => {
       const { content } = await result;
       const $ = import_cheerio.default.load(content || "");
-      const first13 = (0, import_text.excerptContent)(
+      const first13 = excerptContent(
         $("*").first().text(),
         13
       );
@@ -83,7 +83,7 @@ describe("NYTimesExtractor", () => {
     const uri = "http://www.nytimes.com/interactive/2016/09/15/arts/design/national-museum-of-african-american-history-and-culture.html";
     const { content, title, author } = await import_mercury.default.parse(uri, { html });
     const $ = import_cheerio.default.load(content);
-    const text = (0, import_text.excerptContent)(
+    const text = excerptContent(
       $("*").first().text(),
       13
     );

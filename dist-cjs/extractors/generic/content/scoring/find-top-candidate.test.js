@@ -22,7 +22,7 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var import_assert = __toESM(require("assert"));
 var import_cheerio = __toESM(require("cheerio"));
-var import_index = require("./index");
+const { getScore, findTopCandidate, scoreContent } = require("./index");
 const fs = require("fs");
 describe("findTopCandidate($)", () => {
   it("finds the top candidate from simple case", () => {
@@ -31,8 +31,8 @@ describe("findTopCandidate($)", () => {
         <p score="1">Lorem ipsum etc</p>
       </div>
     `);
-    const $$topCandidate = (0, import_index.findTopCandidate)($);
-    import_assert.default.equal((0, import_index.getScore)($$topCandidate), 100);
+    const $$topCandidate = findTopCandidate($);
+    import_assert.default.equal(getScore($$topCandidate), 100);
   });
   it("finds the top candidate from a nested case", () => {
     const $ = import_cheerio.default.load(`
@@ -42,8 +42,8 @@ describe("findTopCandidate($)", () => {
         </article>
       </div>
     `);
-    const $$topCandidate = (0, import_index.findTopCandidate)($);
-    import_assert.default.equal((0, import_index.getScore)($$topCandidate.first()), 50);
+    const $$topCandidate = findTopCandidate($);
+    import_assert.default.equal(getScore($$topCandidate.first()), 50);
   });
   it("ignores tags like BR", () => {
     const $ = import_cheerio.default.load(`
@@ -52,8 +52,8 @@ describe("findTopCandidate($)", () => {
         <br score="1000" />
       </article>
     `);
-    const $topCandidate = (0, import_index.findTopCandidate)($);
-    import_assert.default.equal((0, import_index.getScore)($topCandidate), 50);
+    const $topCandidate = findTopCandidate($);
+    import_assert.default.equal(getScore($topCandidate), 50);
   });
   it("returns BODY if no candidates found", () => {
     const $ = import_cheerio.default.load(`
@@ -64,7 +64,7 @@ describe("findTopCandidate($)", () => {
         </article>
       <body>
     `);
-    const $topCandidate = (0, import_index.findTopCandidate)($);
+    const $topCandidate = findTopCandidate($);
     if (!$.browser) {
       import_assert.default.equal($topCandidate.get(0).tagName, "body");
     }
@@ -75,8 +75,8 @@ describe("findTopCandidate($)", () => {
       "utf-8"
     );
     let $ = import_cheerio.default.load(html);
-    $ = (0, import_index.scoreContent)($);
-    const $topCandidate = (0, import_index.findTopCandidate)($);
+    $ = scoreContent($);
+    const $topCandidate = findTopCandidate($);
     import_assert.default.equal($($topCandidate).text().length, 3652);
   });
 });

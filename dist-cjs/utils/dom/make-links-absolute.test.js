@@ -21,14 +21,14 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 var import_cheerio = __toESM(require("cheerio"));
-var import_test_helpers = require("test-helpers");
 var import_make_links_absolute = __toESM(require("./make-links-absolute"));
+const { assertClean } = require("test-helpers");
 describe("makeLinksAbsolute($)", () => {
   it("makes relative #hrefs absolute", () => {
     const $ = import_cheerio.default.load('<div><a href="#foo">bar</a></div>');
     const $content = $("*").first();
     const result = $.html((0, import_make_links_absolute.default)($content, $, "http://example.com"));
-    (0, import_test_helpers.assertClean)(result, '<div><a href="http://example.com/#foo">bar</a></div>');
+    assertClean(result, '<div><a href="http://example.com/#foo">bar</a></div>');
   });
   it("makes relative ./relative paths absolute", () => {
     const $ = import_cheerio.default.load('<div><a href="foo/bar">bar</a></div>');
@@ -36,7 +36,7 @@ describe("makeLinksAbsolute($)", () => {
     const result = $.html(
       (0, import_make_links_absolute.default)($content, $, "http://example.com/baz/bat")
     );
-    (0, import_test_helpers.assertClean)(
+    assertClean(
       result,
       '<div><a href="http://example.com/baz/foo/bar">bar</a></div>'
     );
@@ -47,7 +47,7 @@ describe("makeLinksAbsolute($)", () => {
     const result = $.html(
       (0, import_make_links_absolute.default)($content, $, "http://example.com/baz/bat")
     );
-    (0, import_test_helpers.assertClean)(
+    assertClean(
       result,
       '<div><a href="http://example.com/foo/bar">bar</a></div>'
     );
@@ -56,7 +56,7 @@ describe("makeLinksAbsolute($)", () => {
     const $ = import_cheerio.default.load('<div><img src="#foo"></div>');
     const $content = $("*").first();
     const result = $.html((0, import_make_links_absolute.default)($content, $, "http://example.com"));
-    (0, import_test_helpers.assertClean)(result, '<div><img src="http://example.com/#foo"></div>');
+    assertClean(result, '<div><img src="http://example.com/#foo"></div>');
   });
   describe("makes relative srcsets absolute", () => {
     it("handles invalid srcsets as per their invalid implementation", () => {
@@ -74,7 +74,7 @@ describe("makeLinksAbsolute($)", () => {
       const result = $.html(
         (0, import_make_links_absolute.default)($content, $, "http://example.com")
       );
-      (0, import_test_helpers.assertClean)(
+      assertClean(
         result,
         `
           <div>
@@ -102,7 +102,7 @@ describe("makeLinksAbsolute($)", () => {
       const result = $.html(
         (0, import_make_links_absolute.default)($content, $, "http://example.com")
       );
-      (0, import_test_helpers.assertClean)(
+      assertClean(
         result,
         `<div>
         <picture>
@@ -127,7 +127,7 @@ describe("makeLinksAbsolute($)", () => {
       const result = $.html(
         (0, import_make_links_absolute.default)($content, $, "http://example.com")
       );
-      (0, import_test_helpers.assertClean)(
+      assertClean(
         result,
         `<div>
         <picture>
@@ -152,7 +152,7 @@ describe("makeLinksAbsolute($)", () => {
       const result = $.html(
         (0, import_make_links_absolute.default)($content, $, "http://example.com")
       );
-      (0, import_test_helpers.assertClean)(
+      assertClean(
         result,
         `
           <div>
@@ -175,7 +175,7 @@ describe("makeLinksAbsolute($)", () => {
       const result = $.html(
         (0, import_make_links_absolute.default)($content, $, "http://example.com")
       );
-      (0, import_test_helpers.assertClean)(
+      assertClean(
         result,
         `
           <div>
@@ -196,7 +196,7 @@ describe("makeLinksAbsolute($)", () => {
       const result = $.html(
         (0, import_make_links_absolute.default)($content, $, "http://example.com")
       );
-      (0, import_test_helpers.assertClean)(
+      assertClean(
         result,
         `
           <div>
@@ -215,7 +215,7 @@ describe("makeLinksAbsolute($)", () => {
       const result = $.html(
         (0, import_make_links_absolute.default)($content, $, "https://media.newyorker.com/")
       );
-      (0, import_test_helpers.assertClean)(
+      assertClean(
         result,
         `
           <div>

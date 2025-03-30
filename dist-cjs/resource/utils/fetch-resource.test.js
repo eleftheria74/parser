@@ -22,11 +22,11 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var import_assert = __toESM(require("assert"));
 var import_url = __toESM(require("url"));
-var import_test_helpers = require("test-helpers");
 var import_fetch_resource = __toESM(require("./fetch-resource"));
-var import_constants = require("./constants");
+const { record } = require("test-helpers");
+const { MAX_CONTENT_LENGTH } = require("./constants");
 describe("fetchResource(url)", () => {
-  const recorder = (0, import_test_helpers.record)("fetch-resource-test");
+  const recorder = record("fetch-resource-test");
   beforeAll(recorder.before);
   afterAll(recorder.after);
   it("returns appropriate json for bad url", async () => {
@@ -118,7 +118,7 @@ describe("validateResponse(response)", () => {
       statusCode: 200,
       headers: {
         "content-type": "text/html",
-        "content-length": import_constants.MAX_CONTENT_LENGTH + 1
+        "content-length": MAX_CONTENT_LENGTH + 1
       }
     };
     import_assert.default.throws(() => {

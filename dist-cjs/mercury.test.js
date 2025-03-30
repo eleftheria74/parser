@@ -21,11 +21,11 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 var import_assert = __toESM(require("assert"));
-var import_test_helpers = require("test-helpers");
 var import_mercury = __toESM(require("./mercury"));
+const { record } = require("test-helpers");
 const fs = require("fs");
 describe("Parser", () => {
-  const recorder = (0, import_test_helpers.record)("mercury-test");
+  const recorder = record("mercury-test");
   beforeAll(recorder.before);
   afterAll(recorder.after);
   describe("parse(url)", () => {

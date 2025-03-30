@@ -22,7 +22,7 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var import_assert = __toESM(require("assert"));
 var import_cheerio = __toESM(require("cheerio"));
-var import_index = require("./index");
+const { cleanTitle } = require("./index");
 describe("cleanTitle(title, { url, $ })", () => {
   it("only uses h1 if there is only one on the page", () => {
     const title = "Too Short";
@@ -32,20 +32,20 @@ describe("cleanTitle(title, { url, $ })", () => {
         <h1>This Is the Real Title</h1>
       </div>
     `);
-    import_assert.default.equal((0, import_index.cleanTitle)(title, { url: "", $ }), title);
+    import_assert.default.equal(cleanTitle(title, { url: "", $ }), title);
   });
   it("removes HTML tags from titles", () => {
     const $ = import_cheerio.default.load(
       "<div><h1>This Is the <em>Real</em> Title</h1></div>"
     );
     const title = $("h1").html();
-    import_assert.default.equal((0, import_index.cleanTitle)(title, { url: "", $ }), "This Is the Real Title");
+    import_assert.default.equal(cleanTitle(title, { url: "", $ }), "This Is the Real Title");
   });
   it("trims extraneous spaces", () => {
     const title = " This Is a Great Title That You'll Love ";
     const $ = import_cheerio.default.load(
       "<div><h1>This Is the <em>Real</em> Title</h1></div>"
     );
-    import_assert.default.equal((0, import_index.cleanTitle)(title, { url: "", $ }), title.trim());
+    import_assert.default.equal(cleanTitle(title, { url: "", $ }), title.trim());
   });
 });

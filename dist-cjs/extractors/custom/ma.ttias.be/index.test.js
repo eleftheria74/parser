@@ -25,7 +25,7 @@ var import_url = __toESM(require("url"));
 var import_cheerio = __toESM(require("cheerio"));
 var import_mercury = __toESM(require("mercury"));
 var import_get_extractor = __toESM(require("extractors/get-extractor"));
-var import_text = require("utils/text");
+const { excerptContent } = require("utils/text");
 const fs = require("fs");
 describe("MaTtiasBeExtractor", () => {
   describe("initial test case", () => {
@@ -76,7 +76,7 @@ describe("MaTtiasBeExtractor", () => {
       import_assert.default.equal(ul.length, 1);
       const nav = $("nav");
       import_assert.default.equal(nav.length, 0);
-      const first13 = (0, import_text.excerptContent)(
+      const first13 = excerptContent(
         $("*").first().text(),
         13
       );

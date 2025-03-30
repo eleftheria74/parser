@@ -21,24 +21,24 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 var import_assert = __toESM(require("assert"));
-var import_index = require("./index");
+const { resolveSplitTitle } = require("./index");
 describe("resolveSplitTitle(text)", () => {
   it("does nothing if title not splittable", () => {
     const title = "This Is a Normal Title";
-    import_assert.default.equal((0, import_index.resolveSplitTitle)(title), title);
+    import_assert.default.equal(resolveSplitTitle(title), title);
   });
   it("extracts titles from breadcrumb-like titles", () => {
     const title = "The Best Gadgets on Earth : Bits : Blogs : NYTimes.com";
-    import_assert.default.equal((0, import_index.resolveSplitTitle)(title), "The Best Gadgets on Earth ");
+    import_assert.default.equal(resolveSplitTitle(title), "The Best Gadgets on Earth ");
   });
   it("cleans domains from titles at the front", () => {
     const title = "NYTimes - The Best Gadgets on Earth";
     const url = "https://www.nytimes.com/bits/blog/etc/";
-    import_assert.default.equal((0, import_index.resolveSplitTitle)(title, url), "The Best Gadgets on Earth");
+    import_assert.default.equal(resolveSplitTitle(title, url), "The Best Gadgets on Earth");
   });
   it("cleans domains from titles at the back", () => {
     const title = "The Best Gadgets on Earth | NYTimes";
     const url = "https://www.nytimes.com/bits/blog/etc/";
-    import_assert.default.equal((0, import_index.resolveSplitTitle)(title, url), "The Best Gadgets on Earth");
+    import_assert.default.equal(resolveSplitTitle(title, url), "The Best Gadgets on Earth");
   });
 });

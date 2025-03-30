@@ -21,8 +21,8 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 var import_cheerio = __toESM(require("cheerio"));
-var import_test_helpers = require("test-helpers");
-var import_index = require("./index");
+const { assertClean } = require("test-helpers");
+const { cleanTags } = require("./index");
 describe("cleanTags($)", () => {
   it("drops a matching node with a negative score", () => {
     const $ = import_cheerio.default.load(`
@@ -37,8 +37,8 @@ describe("cleanTags($)", () => {
         <p>What do you think?</p>
       </div>
     `);
-    const result = (0, import_index.cleanTags)($("*").first(), $);
-    (0, import_test_helpers.assertClean)(
+    const result = cleanTags($("*").first(), $);
+    assertClean(
       result.html(),
       import_cheerio.default.browser ? `
           <div score="5">
@@ -79,9 +79,9 @@ describe("cleanTags($)", () => {
         <p>What do you think?</p>
       </div>
     `);
-    const result = (0, import_index.cleanTags)($("*").first(), $);
+    const result = cleanTags($("*").first(), $);
     $("[score]").each((i, e) => $(e).removeAttr("score"));
-    (0, import_test_helpers.assertClean)(
+    assertClean(
       result.html(),
       `
       <div>
@@ -110,9 +110,9 @@ describe("cleanTags($)", () => {
         </div>
       </div>
     `);
-    const result = (0, import_index.cleanTags)($("*").first(), $);
+    const result = cleanTags($("*").first(), $);
     $("[score]").each((i, e) => $(e).removeAttr("score"));
-    (0, import_test_helpers.assertClean)(
+    assertClean(
       result.html(),
       `
       <div>
@@ -149,9 +149,9 @@ describe("cleanTags($)", () => {
         </ul>
       </div>
     `);
-    const result = (0, import_index.cleanTags)($("*").first(), $);
+    const result = cleanTags($("*").first(), $);
     $("[score]").each((i, e) => $(e).removeAttr("score"));
-    (0, import_test_helpers.assertClean)(
+    assertClean(
       result.html(),
       `
       <div>
@@ -193,9 +193,9 @@ describe("cleanTags($)", () => {
         </ul>
       </div>
     `);
-    const result = (0, import_index.cleanTags)($("*").first(), $);
+    const result = cleanTags($("*").first(), $);
     $("[score]").each((i, e) => $(e).removeAttr("score"));
-    (0, import_test_helpers.assertClean)(
+    assertClean(
       result.html(),
       `
       <div>
@@ -231,8 +231,8 @@ describe("cleanTags($)", () => {
       </div>
     `;
     const $ = import_cheerio.default.load(html);
-    const result = (0, import_index.cleanTags)($("*").first(), $);
-    (0, import_test_helpers.assertClean)(result.html(), html);
+    const result = cleanTags($("*").first(), $);
+    assertClean(result.html(), html);
   });
   it("keeps anything with a class of entry-content-asset", () => {
     const html = `
@@ -247,7 +247,7 @@ describe("cleanTags($)", () => {
       </div>
     `;
     const $ = import_cheerio.default.load(html);
-    const result = (0, import_index.cleanTags)($("*").first(), $);
-    (0, import_test_helpers.assertClean)(result.html(), html);
+    const result = cleanTags($("*").first(), $);
+    assertClean(result.html(), html);
   });
 });

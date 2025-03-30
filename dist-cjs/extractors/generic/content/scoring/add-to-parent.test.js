@@ -22,14 +22,14 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var import_assert = __toESM(require("assert"));
 var import_cheerio = __toESM(require("cheerio"));
-var import_index = require("./index");
+const { addToParent, getScore } = require("./index");
 describe("Scoring utils", () => {
   describe("addToParent(node, $, amount)", () => {
     it("adds 1/4 of a node's score it its parent", () => {
       const $ = import_cheerio.default.load('<div score="25"><p score="40">Foo</p></div>');
-      const $node = (0, import_index.addToParent)($("p").first(), $, 40);
-      import_assert.default.equal((0, import_index.getScore)($node.parent()), 35);
-      import_assert.default.equal((0, import_index.getScore)($node), 40);
+      const $node = addToParent($("p").first(), $, 40);
+      import_assert.default.equal(getScore($node.parent()), 35);
+      import_assert.default.equal(getScore($node), 40);
     });
   });
 });

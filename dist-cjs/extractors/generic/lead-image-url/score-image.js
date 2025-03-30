@@ -25,7 +25,12 @@ __export(score_image_exports, {
   scoreImageUrl: () => scoreImageUrl
 });
 module.exports = __toCommonJS(score_image_exports);
-var import_constants = require("./constants");
+const {
+  POSITIVE_LEAD_IMAGE_URL_HINTS_RE,
+  NEGATIVE_LEAD_IMAGE_URL_HINTS_RE,
+  GIF_RE,
+  JPG_RE
+} = require("./constants");
 const { PHOTO_HINTS_RE } = require("../content/scoring/constants");
 function getSig($node) {
   return `${$node.attr("class") || ""} ${$node.attr("id") || ""}`;
@@ -33,16 +38,16 @@ function getSig($node) {
 function scoreImageUrl(url) {
   url = url.trim();
   let score = 0;
-  if (import_constants.POSITIVE_LEAD_IMAGE_URL_HINTS_RE.test(url)) {
+  if (POSITIVE_LEAD_IMAGE_URL_HINTS_RE.test(url)) {
     score += 20;
   }
-  if (import_constants.NEGATIVE_LEAD_IMAGE_URL_HINTS_RE.test(url)) {
+  if (NEGATIVE_LEAD_IMAGE_URL_HINTS_RE.test(url)) {
     score -= 20;
   }
-  if (import_constants.GIF_RE.test(url)) {
+  if (GIF_RE.test(url)) {
     score -= 10;
   }
-  if (import_constants.JPG_RE.test(url)) {
+  if (JPG_RE.test(url)) {
     score += 10;
   }
   return score;

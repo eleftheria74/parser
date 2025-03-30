@@ -1,16 +1,27 @@
-var import_dom = require("utils/dom");
+const {
+  cleanAttributes,
+  cleanHeaders,
+  cleanHOnes,
+  cleanImages,
+  cleanTags,
+  removeEmpty,
+  rewriteTopLevel,
+  markToKeep,
+  stripJunkTags,
+  makeLinksAbsolute
+} = require("utils/dom");
 module.exports = function extractCleanNode(article, { $, cleanConditionally = true, title = "", url = "", defaultCleaner = true }) {
-  (0, import_dom.rewriteTopLevel)(article, $);
+  rewriteTopLevel(article, $);
   if (defaultCleaner)
-    (0, import_dom.cleanImages)(article, $);
-  (0, import_dom.makeLinksAbsolute)(article, $, url);
-  (0, import_dom.markToKeep)(article, $, url);
-  (0, import_dom.stripJunkTags)(article, $);
-  (0, import_dom.cleanHOnes)(article, $);
-  (0, import_dom.cleanHeaders)(article, $, title);
+    cleanImages(article, $);
+  makeLinksAbsolute(article, $, url);
+  markToKeep(article, $, url);
+  stripJunkTags(article, $);
+  cleanHOnes(article, $);
+  cleanHeaders(article, $, title);
   if (defaultCleaner)
-    (0, import_dom.cleanTags)(article, $, cleanConditionally);
-  (0, import_dom.removeEmpty)(article, $);
-  (0, import_dom.cleanAttributes)(article, $);
+    cleanTags(article, $, cleanConditionally);
+  removeEmpty(article, $);
+  cleanAttributes(article, $);
   return article;
 };

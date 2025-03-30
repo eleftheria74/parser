@@ -22,20 +22,20 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var import_assert = __toESM(require("assert"));
 var import_cheerio = __toESM(require("cheerio"));
-var import_index = require("./index");
+const { addScore, getScore } = require("./index");
 describe("Scoring utils", () => {
   describe("addScore(node, $, amount)", () => {
     it("adds the specified amount to a node's score", () => {
       const $ = import_cheerio.default.load('<p score="25">Foo</p>');
       const $node = $("p").first();
-      (0, import_index.addScore)($node, $, 25);
-      import_assert.default.equal((0, import_index.getScore)($node), 50);
+      addScore($node, $, 25);
+      import_assert.default.equal(getScore($node), 50);
     });
     it("adds score if score not yet set (assumes score is 0)", () => {
       const $ = import_cheerio.default.load("<p>Foo</p>");
       const $node = $("p").first();
-      (0, import_index.addScore)($node, $, 25);
-      import_assert.default.equal((0, import_index.getScore)($node), 25);
+      addScore($node, $, 25);
+      import_assert.default.equal(getScore($node), 25);
     });
   });
 });

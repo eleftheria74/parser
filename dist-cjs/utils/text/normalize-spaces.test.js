@@ -22,7 +22,7 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var import_assert = __toESM(require("assert"));
 var import_cheerio = __toESM(require("cheerio"));
-var import_index = require("./index");
+const { normalizeSpaces } = require("./index");
 describe("normalizeSpaces(text)", () => {
   it("normalizes spaces from text", () => {
     const $ = import_cheerio.default.load(`
@@ -30,7 +30,7 @@ describe("normalizeSpaces(text)", () => {
         <p>What do you think?</p>
       </div>
     `);
-    const result = (0, import_index.normalizeSpaces)(
+    const result = normalizeSpaces(
       $("*").first().text()
     );
     import_assert.default.equal(result, "What do you think?");
@@ -42,7 +42,7 @@ describe("normalizeSpaces(text)", () => {
         <pre>  What     happens to        spaces?    </pre>
       </div>
     `);
-    const result = (0, import_index.normalizeSpaces)($.html());
+    const result = normalizeSpaces($.html());
     import_assert.default.equal(
       result,
       "<div> <p>What do you think?</p> <pre>  What     happens to        spaces?    </pre> </div>"

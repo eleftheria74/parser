@@ -22,8 +22,8 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var import_cheerio = __toESM(require("cheerio"));
 var import_assert = __toESM(require("assert"));
-var import_test_helpers = require("test-helpers");
 var import_rewrite_top_level = __toESM(require("./rewrite-top-level"));
+const { assertClean } = require("test-helpers");
 describe("rewriteTopLevel(node, $)", () => {
   it("turns html and body tags into divs", () => {
     const $ = import_cheerio.default.load(`
@@ -33,7 +33,7 @@ describe("rewriteTopLevel(node, $)", () => {
     import_assert.default.equal(result("html").length, 0);
     import_assert.default.equal(result("body").length, 0);
     if (!import_cheerio.default.browser) {
-      (0, import_test_helpers.assertClean)(
+      assertClean(
         result.html(),
         `
         <div><div><div><p><a href="">Wow how about that</a></p></div></div></div>

@@ -26,7 +26,7 @@ var import_cheerio = __toESM(require("cheerio"));
 var import_moment = __toESM(require("moment"));
 var import_mercury = __toESM(require("mercury"));
 var import_get_extractor = __toESM(require("extractors/get-extractor"));
-var import_text = require("utils/text");
+const { excerptContent } = require("utils/text");
 const fs = require("fs");
 describe("MSNExtractor", () => {
   describe("initial test case", () => {
@@ -64,7 +64,7 @@ describe("MSNExtractor", () => {
     it("returns the content", async () => {
       const { content } = await result;
       const $ = import_cheerio.default.load(content || "");
-      const first13 = (0, import_text.excerptContent)(
+      const first13 = excerptContent(
         $("*").first().text(),
         13
       );

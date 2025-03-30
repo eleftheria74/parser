@@ -22,9 +22,9 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var import_cheerio = __toESM(require("cheerio"));
 var import_assert = __toESM(require("assert"));
-var import_test_helpers = require("test-helpers");
-var import_index = require("./index");
-var import_constants = require("./constants");
+const { assertClean } = require("test-helpers");
+const { markToKeep } = require("./index");
+const { KEEP_CLASS } = require("./constants");
 describe("markToKeep($)", () => {
   it("marks elements that should be kept", () => {
     const $ = import_cheerio.default.load(`
@@ -35,10 +35,10 @@ describe("markToKeep($)", () => {
         <iframe src="https://player.vimeo.com/video/57712615"></iframe>
       </div>
     `);
-    const result = (0, import_index.markToKeep)($("*").first(), $);
+    const result = markToKeep($("*").first(), $);
     import_assert.default.equal(result("iframe.mercury-parser-keep").length, 2);
     if (!$.browser) {
-      (0, import_test_helpers.assertClean)(
+      assertClean(
         result.html(),
         `
         <div>
@@ -55,8 +55,8 @@ describe("markToKeep($)", () => {
     const $ = import_cheerio.default.load(
       '<div><iframe src="https://medium.com/foo/bar"></iframe></div>'
     );
-    const result = (0, import_index.markToKeep)($("*").first(), $, "https://medium.com/foo");
-    const keptHtml = `<div><iframe src="https://medium.com/foo/bar" class="${import_constants.KEEP_CLASS}"></iframe></div>`;
-    (0, import_test_helpers.assertClean)(result.html(), keptHtml);
+    const result = markToKeep($("*").first(), $, "https://medium.com/foo");
+    const keptHtml = `<div><iframe src="https://medium.com/foo/bar" class="${KEEP_CLASS}"></iframe></div>`;
+    assertClean(result.html(), keptHtml);
   });
 });

@@ -21,8 +21,8 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 var import_cheerio = __toESM(require("cheerio"));
-var import_test_helpers = require("test-helpers");
 var import_convert_to_paragraphs = __toESM(require("./convert-to-paragraphs"));
+const { assertClean } = require("test-helpers");
 describe("convertToParagraphs($)", () => {
   it("performs simple conversions", () => {
     if (!import_cheerio.default.browser) {
@@ -48,7 +48,7 @@ describe("convertToParagraphs($)", () => {
       `;
       let $ = import_cheerio.default.load(before);
       $ = (0, import_convert_to_paragraphs.default)($);
-      (0, import_test_helpers.assertClean)($.html(), after);
+      assertClean($.html(), after);
     }
   });
   it("does not convert a div with nested p children", () => {
@@ -63,6 +63,6 @@ describe("convertToParagraphs($)", () => {
     `;
     let $ = import_cheerio.default.load(html);
     $ = (0, import_convert_to_paragraphs.default)($);
-    (0, import_test_helpers.assertClean)($.html(), html);
+    assertClean($.html(), html);
   });
 });

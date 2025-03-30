@@ -26,7 +26,7 @@ var import_cheerio = __toESM(require("cheerio"));
 var import_moment_timezone = __toESM(require("moment-timezone"));
 var import_mercury = __toESM(require("mercury"));
 var import_get_extractor = __toESM(require("extractors/get-extractor"));
-var import_text = require("utils/text");
+const { excerptContent } = require("utils/text");
 const fs = require("fs");
 describe("WwwRedditComExtractor", () => {
   describe("initial test case", () => {
@@ -70,7 +70,7 @@ describe("WwwRedditComExtractor", () => {
     it("returns the content for text posts", async () => {
       const { content } = await result;
       const $ = import_cheerio.default.load(content || "");
-      const first13 = (0, import_text.excerptContent)(
+      const first13 = excerptContent(
         $("*").first().text(),
         13
       );
@@ -86,7 +86,7 @@ describe("WwwRedditComExtractor", () => {
       const uri = "https://www.reddit.com/r/AskReddit/comments/axtih6/what_is_the_most_worth_it_item_you_have_ever/";
       const { content } = await import_mercury.default.parse(uri, { html });
       const $ = import_cheerio.default.load(content || "");
-      const first13 = (0, import_text.excerptContent)(
+      const first13 = excerptContent(
         $("*").first().text(),
         13
       );

@@ -22,27 +22,27 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var import_assert = __toESM(require("assert"));
 var import_cheerio = __toESM(require("cheerio"));
-var import_index = require("./index");
+const { linkDensity } = require("./index");
 describe("linkDensity($)", () => {
   it("returns 0.5 if half of the text is a link", () => {
     const $ = import_cheerio.default.load(`
       <div><p>Some text!</p><p><a href="">Some text!</a></p> </div>
     `);
-    const density = (0, import_index.linkDensity)($("div").first(), $);
+    const density = linkDensity($("div").first(), $);
     import_assert.default.equal(density, 0.5);
   });
   it("returns 1 if all of the text is a link", () => {
     const $ = import_cheerio.default.load(`
       <div><p><a href="">Some text!</a></p></div>
     `);
-    const density = (0, import_index.linkDensity)($("div").first(), $);
+    const density = linkDensity($("div").first(), $);
     import_assert.default.equal(density, 1);
   });
   it("returns 0 if there's no text", () => {
     const $ = import_cheerio.default.load(`
       <div><p><a href=""></a></p></div>
     `);
-    const density = (0, import_index.linkDensity)($("div").first());
+    const density = linkDensity($("div").first());
     import_assert.default.equal(density, 0);
   });
 });

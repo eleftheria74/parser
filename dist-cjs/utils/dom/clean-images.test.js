@@ -21,8 +21,8 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 var import_cheerio = __toESM(require("cheerio"));
-var import_test_helpers = require("test-helpers");
-var import_index = require("./index");
+const { assertClean } = require("test-helpers");
+const { cleanImages } = require("./index");
 describe("cleanImages($)", () => {
   it("removes images with small heights/widths", () => {
     const $ = import_cheerio.default.load(`
@@ -31,8 +31,8 @@ describe("cleanImages($)", () => {
         <img width="50" />
       </div>
     `);
-    const result = (0, import_index.cleanImages)($("*").first(), $);
-    (0, import_test_helpers.assertClean)(
+    const result = cleanImages($("*").first(), $);
+    assertClean(
       result.html(),
       `
       <div>
@@ -47,8 +47,8 @@ describe("cleanImages($)", () => {
         <img width="50" height="50" />
       </div>
     `);
-    const result = (0, import_index.cleanImages)($("*").first(), $);
-    (0, import_test_helpers.assertClean)(
+    const result = cleanImages($("*").first(), $);
+    assertClean(
       result.html(),
       `
       <div>
@@ -65,8 +65,8 @@ describe("cleanImages($)", () => {
         <p>Some text</p>
       </div>
     `);
-    const result = (0, import_index.cleanImages)($("*").first(), $);
-    (0, import_test_helpers.assertClean)(
+    const result = cleanImages($("*").first(), $);
+    assertClean(
       result.html(),
       `
       <div>

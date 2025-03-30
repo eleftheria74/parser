@@ -22,8 +22,8 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var import_assert = __toESM(require("assert"));
 var import_cheerio = __toESM(require("cheerio"));
-var import_test_helpers = require("test-helpers");
 var import_strip_unlikely_candidates = __toESM(require("./strip-unlikely-candidates"));
+const { assertClean } = require("test-helpers");
 describe("Generic Extractor Utils", () => {
   describe("stripUnlikelyCandidates(node)", () => {
     it("returns original doc if no matches found", () => {
@@ -50,7 +50,7 @@ describe("Generic Extractor Utils", () => {
       `;
       let $ = import_cheerio.default.load(before);
       $ = (0, import_strip_unlikely_candidates.default)($);
-      (0, import_test_helpers.assertClean)($.html(), after);
+      assertClean($.html(), after);
     });
     it("keeps likely matches even when they also match the blacklist", () => {
       const before = `
@@ -65,7 +65,7 @@ describe("Generic Extractor Utils", () => {
       `;
       let $ = import_cheerio.default.load(before);
       $ = (0, import_strip_unlikely_candidates.default)($);
-      (0, import_test_helpers.assertClean)($.html(), after);
+      assertClean($.html(), after);
     });
     it("removed likely matches when inside blacklist node", () => {
       const before = `
@@ -85,7 +85,7 @@ describe("Generic Extractor Utils", () => {
       `;
       let $ = import_cheerio.default.load(before);
       $ = (0, import_strip_unlikely_candidates.default)($);
-      (0, import_test_helpers.assertClean)($.html(), after);
+      assertClean($.html(), after);
     });
   });
 });

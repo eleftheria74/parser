@@ -22,18 +22,18 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var import_assert = __toESM(require("assert"));
 var import_score_base_url = __toESM(require("./score-base-url"));
-var import_score_links = require("../score-links");
+const { makeBaseRegex } = require("../score-links");
 describe("scoreBaseUrl(href, baseRegex)", () => {
   it("returns -25 if url does not contain the base url", () => {
     const baseUrl = "http://example.com/foo/bar";
     const badUrl = "http://foo.com/foo/bar";
-    const baseRegex = (0, import_score_links.makeBaseRegex)(baseUrl);
+    const baseRegex = makeBaseRegex(baseUrl);
     import_assert.default.equal((0, import_score_base_url.default)(badUrl, baseRegex), -25);
   });
   it("returns 0 if url contains the base url", () => {
     const baseUrl = "http://example.com/foo/bar";
     const badUrl = "http://example.com/foo/bar/bat";
-    const baseRegex = (0, import_score_links.makeBaseRegex)(baseUrl);
+    const baseRegex = makeBaseRegex(baseUrl);
     import_assert.default.equal((0, import_score_base_url.default)(badUrl, baseRegex), 0);
   });
 });

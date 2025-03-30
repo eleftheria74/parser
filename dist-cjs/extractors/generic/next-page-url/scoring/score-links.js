@@ -20,10 +20,21 @@ __export(score_links_exports, {
   makeBaseRegex: () => makeBaseRegex
 });
 module.exports = __toCommonJS(score_links_exports);
-var import_utils = require("./utils");
 const URL = require("url");
 const { getAttrs, isWordpress } = require("../../../../resource/utils/dom");
 const { removeAnchor, pageNumFromUrl } = require("../../../../utils/text");
+const {
+  scoreSimilarity,
+  scoreLinkText,
+  scorePageInLink,
+  scoreExtraneousLinks,
+  scoreByParents,
+  scorePrevLink,
+  shouldScore,
+  scoreBaseUrl,
+  scoreCapLinks,
+  scoreNextLinkText
+} = require("./utils");
 function makeBaseRegex(baseUrl) {
   return new RegExp(`^${baseUrl}`, "i");
 }
@@ -50,7 +61,7 @@ module.exports = function scoreLinks({
     const href = removeAnchor(attrs.href);
     const $link = $(link);
     const linkText = $link.text();
-    if (!(0, import_utils.shouldScore)(href, articleUrl, baseUrl, parsedUrl, linkText, previousUrls)) {
+    if (!shouldScore(href, articleUrl, baseUrl, parsedUrl, linkText, previousUrls)) {
       return possiblePages;
     }
     if (!possiblePages[href]) {
@@ -65,15 +76,15 @@ module.exports = function scoreLinks({
     const possiblePage = possiblePages[href];
     const linkData = makeSig($link, linkText);
     const pageNum = pageNumFromUrl(href);
-    let score = (0, import_utils.scoreBaseUrl)(href, baseRegex);
-    score += (0, import_utils.scoreNextLinkText)(linkData);
-    score += (0, import_utils.scoreCapLinks)(linkData);
-    score += (0, import_utils.scorePrevLink)(linkData);
-    score += (0, import_utils.scoreByParents)($link);
-    score += (0, import_utils.scoreExtraneousLinks)(href);
-    score += (0, import_utils.scorePageInLink)(pageNum, isWp);
-    score += (0, import_utils.scoreLinkText)(linkText, pageNum);
-    score += (0, import_utils.scoreSimilarity)(score, articleUrl, href);
+    let score = scoreBaseUrl(href, baseRegex);
+    score += scoreNextLinkText(linkData);
+    score += scoreCapLinks(linkData);
+    score += scorePrevLink(linkData);
+    score += scoreByParents($link);
+    score += scoreExtraneousLinks(href);
+    score += scorePageInLink(pageNum, isWp);
+    score += scoreLinkText(linkText, pageNum);
+    score += scoreSimilarity(score, articleUrl, href);
     possiblePage.score = score;
     return possiblePages;
   }, {});

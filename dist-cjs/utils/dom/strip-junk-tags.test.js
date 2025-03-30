@@ -22,8 +22,8 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var import_cheerio = __toESM(require("cheerio"));
 var import_assert = __toESM(require("assert"));
-var import_test_helpers = require("test-helpers");
-var import_index = require("./index");
+const { assertClean } = require("test-helpers");
+const { stripJunkTags } = require("./index");
 describe("stripJunkTags($)", () => {
   it("strips script and other junk tags", () => {
     const $ = import_cheerio.default.load(`
@@ -37,8 +37,8 @@ describe("stripJunkTags($)", () => {
         <hr />
       </div>
     `);
-    const result = (0, import_index.stripJunkTags)($("*").first(), $);
-    (0, import_test_helpers.assertClean)(
+    const result = stripJunkTags($("*").first(), $);
+    assertClean(
       result.html(),
       `
       <div>
@@ -58,7 +58,7 @@ describe("stripJunkTags($)", () => {
         <hr />
       </div>
     `);
-    $ = (0, import_index.stripJunkTags)($("*").first(), $);
+    $ = stripJunkTags($("*").first(), $);
     import_assert.default.equal($('iframe[src^="https://www.youtube.com"]').length, 1);
   });
 });

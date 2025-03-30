@@ -22,7 +22,7 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var import_assert = __toESM(require("assert"));
 var import_cheerio = __toESM(require("cheerio"));
-var import_index = require("./index");
+const { scoreContent, getScore } = require("./index");
 const fs = require("fs");
 describe("scoreContent($, weightNodes)", () => {
   it("loves hNews content", () => {
@@ -31,8 +31,8 @@ describe("scoreContent($, weightNodes)", () => {
         <p class="entry-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu.</p>
       </div>
     `);
-    (0, import_index.scoreContent)($);
-    import_assert.default.equal((0, import_index.getScore)($("div").first()), 140);
+    scoreContent($);
+    import_assert.default.equal(getScore($("div").first()), 140);
   });
   it("is so-so about non-hNews content", () => {
     const $ = import_cheerio.default.load(`
@@ -41,8 +41,8 @@ describe("scoreContent($, weightNodes)", () => {
         <p class="entry-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu.</p>
       </div>
     `);
-    (0, import_index.scoreContent)($);
-    import_assert.default.equal((0, import_index.getScore)($("div").first()), 65);
+    scoreContent($);
+    import_assert.default.equal(getScore($("div").first()), 65);
   });
   it("scores this Wired article the same", () => {
     const html = fs.readFileSync(
@@ -50,8 +50,8 @@ describe("scoreContent($, weightNodes)", () => {
       "utf-8"
     );
     const $ = import_cheerio.default.load(html);
-    (0, import_index.scoreContent)($);
-    import_assert.default.equal((0, import_index.getScore)($("article").first()), 65.5);
+    scoreContent($);
+    import_assert.default.equal(getScore($("article").first()), 65.5);
   });
   it("scores this Vulture article", () => {
     const html = fs.readFileSync(
@@ -59,10 +59,10 @@ describe("scoreContent($, weightNodes)", () => {
       "utf-8"
     );
     let $ = import_cheerio.default.load(html);
-    $ = (0, import_index.scoreContent)($);
+    $ = scoreContent($);
     import_assert.default.equal($("p[score]").length, 62);
     const itemprop = $("[itemprop=articleBody]").first();
-    import_assert.default.equal((0, import_index.getScore)(itemprop) > 500, true);
+    import_assert.default.equal(getScore(itemprop) > 500, true);
   });
   it("gives its parent all of the children scores", () => {
     const html = `
@@ -92,7 +92,7 @@ describe("scoreContent($, weightNodes)", () => {
       </div>
     `;
     const $ = import_cheerio.default.load(html);
-    (0, import_index.scoreContent)($);
+    scoreContent($);
     import_assert.default.equal(
       $("p").first().attr("score"),
       "5"

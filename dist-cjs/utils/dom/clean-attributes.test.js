@@ -21,8 +21,8 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 var import_cheerio = __toESM(require("cheerio"));
-var import_test_helpers = require("test-helpers");
-var import_index = require("./index");
+const { assertClean } = require("test-helpers");
+const { cleanAttributes } = require("./index");
 describe("cleanAttributes($)", () => {
   it("removes style attributes from nodes", () => {
     const $ = import_cheerio.default.load(`
@@ -30,8 +30,8 @@ describe("cleanAttributes($)", () => {
         <p style="color: red;">What do you think?</p>
       </div>
     `);
-    const result = (0, import_index.cleanAttributes)($("*").first(), $);
-    (0, import_test_helpers.assertClean)(
+    const result = cleanAttributes($("*").first(), $);
+    assertClean(
       $.html(result),
       `
       <div>
@@ -46,8 +46,8 @@ describe("cleanAttributes($)", () => {
         <p style="color: red;" align="center">What do you think?</p>
       </div>
     `);
-    const result = (0, import_index.cleanAttributes)($("*").first(), $);
-    (0, import_test_helpers.assertClean)(
+    const result = cleanAttributes($("*").first(), $);
+    assertClean(
       $.html(result),
       `
       <div>

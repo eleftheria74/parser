@@ -21,8 +21,8 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 var import_cheerio = __toESM(require("cheerio"));
-var import_test_helpers = require("test-helpers");
-var import_index = require("./index");
+const { assertClean } = require("test-helpers");
+const { removeEmpty } = require("./index");
 describe("removeEmpty($)", () => {
   it("removes empty P tags", () => {
     const $ = import_cheerio.default.load(`
@@ -31,8 +31,8 @@ describe("removeEmpty($)", () => {
         <p></p>
       </div>
     `);
-    const result = (0, import_index.removeEmpty)($("*").first(), $);
-    (0, import_test_helpers.assertClean)(
+    const result = removeEmpty($("*").first(), $);
+    assertClean(
       result.html(),
       `
       <div>
@@ -44,8 +44,8 @@ describe("removeEmpty($)", () => {
   it("removes P tags with only space", () => {
     const html = "<div><p>  </p></div>";
     const $ = import_cheerio.default.load(html);
-    const result = (0, import_index.removeEmpty)($("*").first(), $);
-    (0, import_test_helpers.assertClean)(result.html(), "<div></div>");
+    const result = removeEmpty($("*").first(), $);
+    assertClean(result.html(), "<div></div>");
   });
   it("does not remove empty DIV tags", () => {
     const $ = import_cheerio.default.load(`
@@ -54,8 +54,8 @@ describe("removeEmpty($)", () => {
         <p></p>
       </div>
     `);
-    const result = (0, import_index.removeEmpty)($("*").first(), $);
-    (0, import_test_helpers.assertClean)(
+    const result = removeEmpty($("*").first(), $);
+    assertClean(
       result.html(),
       `
       <div>
@@ -67,7 +67,7 @@ describe("removeEmpty($)", () => {
   it("does not remove empty p tags containing an iframe", () => {
     const html = '<div><p><span><iframe src="foo"></iframe></span></p></div>';
     const $ = import_cheerio.default.load(html);
-    const result = (0, import_index.removeEmpty)($("*").first(), $);
-    (0, import_test_helpers.assertClean)(result.html(), html);
+    const result = removeEmpty($("*").first(), $);
+    assertClean(result.html(), html);
   });
 });

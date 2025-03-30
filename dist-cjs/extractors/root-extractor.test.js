@@ -22,9 +22,9 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var import_assert = __toESM(require("assert"));
 var import_cheerio = __toESM(require("cheerio"));
-var import_test_helpers = require("test-helpers");
 var import_root_extractor = __toESM(require("./root-extractor"));
-var import_nymag = require("./custom/nymag.com");
+const { assertClean } = require("test-helpers");
+const { NYMagExtractor } = require("./custom/nymag.com");
 const fs = require("fs");
 describe("RootExtractor", () => {
   it("only returns what the custom parser gives it if fallback is disabled", () => {
@@ -34,7 +34,7 @@ describe("RootExtractor", () => {
       "utf8"
     );
     const $ = import_cheerio.default.load(html);
-    const { url } = import_root_extractor.default.extract(import_nymag.NYMagExtractor, {
+    const { url } = import_root_extractor.default.extract(NYMagExtractor, {
       url: fullUrl,
       html,
       $,
@@ -87,7 +87,7 @@ describe("transformElements($content, $, { transforms })", () => {
       </div>
     `;
     $content = (0, import_root_extractor.transformElements)($content, $, opts);
-    (0, import_test_helpers.assertClean)($.html($content), after);
+    assertClean($.html($content), after);
   });
   it("performs a complex transformation on matched elements", () => {
     const html = `
@@ -128,7 +128,7 @@ describe("transformElements($content, $, { transforms })", () => {
       </div>
     `;
     $content = (0, import_root_extractor.transformElements)($content, $, opts);
-    (0, import_test_helpers.assertClean)($.html($content), after);
+    assertClean($.html($content), after);
   });
 });
 describe("select(opts)", () => {
@@ -180,7 +180,7 @@ describe("select(opts)", () => {
       extractHtml: true
     };
     const result = (0, import_root_extractor.select)(opts);
-    (0, import_test_helpers.assertClean)(result, html);
+    assertClean(result, html);
   });
   it("handles multiple matches when the content selector is an array", () => {
     const html = `
