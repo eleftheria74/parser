@@ -9,7 +9,7 @@ const {
   markToKeep,
   stripJunkTags,
   makeLinksAbsolute
-} = require("utils/dom");
+} = require("../resource/utils/dom");
 module.exports = function extractCleanNode(article, { $, cleanConditionally = true, title = "", url = "", defaultCleaner = true }) {
   rewriteTopLevel(article, $);
   if (defaultCleaner)
