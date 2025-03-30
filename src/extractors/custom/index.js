@@ -54,7 +54,6 @@ const observer_com = require('./observer.com');
 const people_com = require('./people.com');
 const www_usmagazine_com = require('./www.usmagazine.com');
 const www_rollingstone_com = require('./www.rollingstone.com');
-module.exports['247sports_com'] = require('./247sports.com');
 const uproxx_com = require('./uproxx.com');
 const www_eonline_com = require('./www.eonline.com');
 const www_miamiherald_com = require('./www.miamiherald.com');
@@ -199,7 +198,6 @@ module.exports = {
   ...people_com,
   ...www_usmagazine_com,
   ...www_rollingstone_com,
-  ...247sports_com,
   ...uproxx_com,
   ...www_eonline_com,
   ...www_miamiherald_com,
