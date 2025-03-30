@@ -1,0 +1,31 @@
+name: Fix invalid export syntax
+
+on:
+  workflow_dispatch:
+
+jobs:
+  fix-invalid-exports:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Run fix-invalid-exports.js
+        run: node scripts/fix-invalid-exports.js
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add .
+          git diff --cached --quiet || git commit -m "fix: correct invalid export syntax"
+          git push
