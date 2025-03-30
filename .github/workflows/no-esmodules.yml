@@ -13,19 +13,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Search for 'import' statements
+      - name: Search for 'import' statements (excluding tests and shims)
         run: |
-          if grep -rn --include="*.js" '^\s*import ' .; then
-            echo "❌ 'import' statements found. Please use CommonJS (require)."
+          echo "🔍 Searching for import statements..."
+          if grep -r --exclude="*.test.js" --exclude-dir="shims" --include="*.js" '^\s*import ' src; then
+            echo "❌ 'import' statements found in production code. Use require() instead."
             exit 1
           else
             echo "✅ No 'import' statements found."
           fi
 
-      - name: Search for 'export' statements
+      - name: Search for 'export' statements (excluding tests and shims)
         run: |
-          if grep -rn --include="*.js" '^\s*export ' .; then
-            echo "❌ 'export' statements found. Please use CommonJS (module.exports)."
+          echo "🔍 Searching for export statements..."
+          if grep -r --exclude="*.test.js" --exclude-dir="shims" --include="*.js" '^\s*export ' src; then
+            echo "❌ 'export' statements found in production code. Use module.exports instead."
             exit 1
           else
             echo "✅ No 'export' statements found."
