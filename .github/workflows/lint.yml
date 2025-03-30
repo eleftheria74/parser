@@ -22,6 +22,19 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Run ESLint
-        run: yarn lint
+      - name: Run ESLint and list affected files
+        run: |
+          echo "🔍 Running ESLint..."
+          yarn lint --format unix > eslint-output.txt || true
+
+          echo "📁 Affected files:"
+          awk -F: '{print $1}' eslint-output.txt | sort | uniq
+
+          echo "🔴 ESLint finished. You can review the errors above."
+
+          # Exit with non-zero status if errors found
+          if [ -s eslint-output.txt ]; then
+            exit 1
+          fi
+
 
