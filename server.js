@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const Parser = require'./src/mercury');
+const Parser = require('./src/mercury');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
