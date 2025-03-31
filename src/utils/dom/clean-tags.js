@@ -1,10 +1,4 @@
-const {
-  getScore,
-  setScore,
-  getOrInitScore,
-  scoreCommas,
-} = require('../../extractors/generic/content/scoring');
-
+const { getScore, setScore, getOrInitScore, scoreCommas } = require('../../extractors/generic/content/scoring');
 const { CLEAN_CONDITIONALLY_TAGS, KEEP_CLASS } = require('./constants');
 const { normalizeSpaces } = require('../text');
 const { linkDensity } = require('./index');
@@ -44,7 +38,6 @@ function removeUnlessContent($node, $, weight) {
 
     // Too high of link density, is probably a menu or
     // something similar.
-    // console.log(weight, density, contentLength)
     if (weight < 25 && density > 0.2 && contentLength > 75) {
       $node.remove();
       return;
@@ -57,58 +50,4 @@ function removeUnlessContent($node, $, weight) {
       // previous sibling starts with a colon though. That
       // means it's probably content.
       const tagName = $node.get(0).tagName.toLowerCase();
-      const nodeIsList = tagName === 'ol' || tagName === 'ul';
-      if (nodeIsList) {
-        const previousNode = $node.prev();
-        if (
-          previousNode &&
-          normalizeSpaces(previousNode.text()).slice(-1) === ':'
-        ) {
-          return;
-        }
-      }
-
-      $node.remove();
-      return;
-    }
-
-    const scriptCount = $('script', $node).length;
-
-    // Too many script tags, not enough content.
-    if (scriptCount > 0 && contentLength < 150) {
-      $node.remove();
-    }
-  }
-}
-
-// Given an article, clean it of some superfluous content specified by
-// tags. Things like forms, ads, etc.
-//
-// Tags is an array of tag name's to search through. (like div, form,
-// etc)
-//
-// Return this same doc.
-module.exports = function cleanTags($article, $) {
-  $(CLEAN_CONDITIONALLY_TAGS, $article).each((index, node) => {
-    const $node = $(node);
-    // If marked to keep, skip it
-    if ($node.hasClass(KEEP_CLASS) || $node.find(`.${KEEP_CLASS}`).length > 0)
-      return;
-
-    let weight = getScore($node);
-    if (!weight) {
-      weight = getOrInitScore($node, $);
-      setScore($node, $, weight);
-    }
-
-    // drop node if its weight is < 0
-    if (weight < 0) {
-      $node.remove();
-    } else {
-      // deteremine if node seems like content
-      removeUnlessContent($node, $, weight);
-    }
-  });
-
-  return $;
-}
+      const nodeIsList = tagName === 'ol' || tagName === '
