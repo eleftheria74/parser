@@ -1,61 +1,47 @@
-// scripts/break-circular-require.js
 const fs = require('fs');
 const path = require('path');
 const madge = require('madge');
 
-const SRC_PATH = path.join(__dirname, '../src');
-
-function read(filePath) {
-  return fs.readFileSync(filePath, 'utf-8');
-}
-
-function write(filePath, content) {
-  fs.writeFileSync(filePath, content, 'utf-8');
-}
-
-function log(...args) {
-  console.log('[DEBUG]', ...args);
-}
+const SRC_DIR = path.join(__dirname, '../src');
 
 (async () => {
-  const result = await madge(SRC_PATH, { baseDir: SRC_PATH });
+  const result = await madge(SRC_DIR, { baseDir: SRC_DIR });
   const circularPaths = result.circular();
 
-  if (!circularPaths.length) {
+  if (circularPaths.length === 0) {
     console.log('✅ No circular dependencies found.');
     return;
   }
 
-  console.log(`❌ Found ${circularPaths.length} circular dependencies!`);
+  console.log(`\n❌ Found ${circularPaths.length} circular dependencies!`);
 
-  const changedFiles = new Set();
+  const filesToPatch = new Set();
 
-  for (const cycle of circularPaths) {
+  circularPaths.forEach((cycle) => {
     for (let i = 0; i < cycle.length; i++) {
-      const file = path.resolve(SRC_PATH, cycle[i] + '.js');
-      if (!fs.existsSync(file)) continue;
+      const from = path.resolve(SRC_DIR, cycle[i]);
+      const to = path.resolve(SRC_DIR, cycle[(i + 1) % cycle.length]);
 
-      let code = read(file);
-      let modified = false;
-
-      // Find require('./index') style circular imports
-      const pattern = /const (\w+) = require\(['"]\.\/index['"]\)/g;
-      code = code.replace(pattern, (match, varName) => {
-        log(`🔍 Found circular require in ${file}`);
-        modified = true;
-        return `let ${varName};
-try { ${varName} = require('./index'); } catch (e) { ${varName} = {}; }`;
-      });
-
-      if (modified) {
-        write(file, code);
-        changedFiles.add(file);
-        log(`🛠️ Patched ${file}`);
-      }
+      filesToPatch.add(from);
     }
-  }
+  });
 
-  if (changedFiles.size === 0) {
-    log('⚠️ Script ran, but no circular require statements were changed.');
-  }
+  filesToPatch.forEach((filePath) => {
+    let code = fs.readFileSync(filePath, 'utf-8');
+    let original = code;
+
+    const requireRegex = /const\s+(\w+)\s*=\s*require\(['"](\.\.\/.*?|.*)['"]\);?/g;
+
+    code = code.replace(requireRegex, (match, varName, requirePath) => {
+      if (requirePath.startsWith('.') || requirePath.startsWith('..')) {
+        return `function ${varName}() { return require('${requirePath}'); }`;
+      }
+      return match;
+    });
+
+    if (code !== original) {
+      fs.writeFileSync(filePath, code, 'utf-8');
+      console.log(`🛠️ Patched circular require in: ${path.relative(SRC_DIR, filePath)}`);
+    }
+  });
 })();
