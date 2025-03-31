@@ -1,9 +1,9 @@
-const { range } = require("utils");
+const { range } = require("../../../../../resource/utils");
 const {
   NEGATIVE_SCORE_RE,
   POSITIVE_SCORE_RE,
   PAGE_RE
-} = require("utils/dom/constants");
+} = require("../../../../../resource/utils/dom/constants");
 const { EXTRANEOUS_LINK_HINTS_RE } = require("../constants");
 function makeSig($link) {
   return `${$link.attr("class") || ""} ${$link.attr("id") || ""}`;
