@@ -1,4 +1,4 @@
-const { textLength, linkDensity } = require('../../../../../utils/dom/link-density');
+const { textLength, linkDensity } = require('../../../../utils/dom/link-density');
 
 function scoreLinkText($node) {
   const linkText = $node.text();
