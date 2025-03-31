@@ -1,4 +1,4 @@
-const { addScore } = require('./index');
+const addScore = require('./add-score');
 
 // Adds 1/4 of a child's score to its parent
 module.exports = function addToParent(node, $, score) {
