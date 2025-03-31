@@ -1,4 +1,4 @@
-const { scoreParagraph } = require('./index');
+const scoreParagraph = require('./score-paragraph').default;
 const {
   PARAGRAPH_SCORE_TAGS,
   CHILD_CONTENT_TAGS,
@@ -10,9 +10,6 @@ const {
 module.exports = function scoreNode($node) {
   const { tagName } = $node.get(0);
 
-  // TODO: Consider ordering by most likely.
-  // E.g., if divs are a more common tag on a page,
-  // Could save doing that regex test on every node – AP
   if (PARAGRAPH_SCORE_TAGS.test(tagName)) {
     return scoreParagraph($node);
   }
@@ -30,4 +27,4 @@ module.exports = function scoreNode($node) {
   }
 
   return 0;
-}
+};
