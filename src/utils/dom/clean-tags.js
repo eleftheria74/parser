@@ -1,8 +1,8 @@
-const { getScore, setScore, getOrInitScore, scoreCommas } = require('../../extractors/generic/content/scoring');
+const { getScore, scoreCommas } = require('../../extractors/generic/content/scoring');
 const { CLEAN_CONDITIONALLY_TAGS, KEEP_CLASS } = require('./constants');
 const { normalizeSpaces } = require('../text');
 
-// Lazy load για αποφυγή circular require
+// Lazy loading για αποφυγή circular require
 function getLinkDensity() {
   return require('./link-density').linkDensity;
 }
@@ -41,3 +41,24 @@ function removeUnlessContent($node, $, weight) {
     if (weight >= 25 && density > 0.5) {
       const tagName = $node.get(0).tagName.toLowerCase();
       const nodeIsList = tagName === 'ol' || tagName === 'ul';
+
+      const prevText = $node.prev().text();
+      const startsWithColon = prevText && prevText.trim().endsWith(':');
+
+      if (!nodeIsList || !startsWithColon) {
+        $node.remove();
+        return;
+      }
+    }
+  }
+}
+
+module.exports = function cleanTags($, $content) {
+  $content.find(CLEAN_CONDITIONALLY_TAGS).each((_, node) => {
+    const $node = $(node);
+    if ($node.hasClass(KEEP_CLASS)) return;
+
+    const weight = getScore($node, $);
+    removeUnlessContent($node, $, weight);
+  });
+};
