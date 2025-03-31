@@ -10,6 +10,7 @@ on:
 jobs:
   detect-circular:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -19,14 +20,14 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install dependencies
+      - name: Install project dependencies
         run: npm install --legacy-peer-deps
 
       - name: Install madge
-        run: npm install --save-dev madge
+        run: npm install --save-dev madge --legacy-peer-deps
 
       - name: Detect circular dependencies
         run: |
           npx madge --circular src || (
-            echo "\n❌ Circular dependencies detected!" && exit 1
+            echo "❌ Circular dependencies detected!" && exit 1
           )
