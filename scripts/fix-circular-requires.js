@@ -1,53 +1,58 @@
-// scripts/fix-circular-requires.js
+// scripts/break-circular-require.js
 
 const madge = require('madge');
 const fs = require('fs');
 const path = require('path');
-const glob = require('glob');
 
-(async () => {
-  const result = await madge(path.join(__dirname, '../src'), {
-    baseDir: path.join(__dirname, '../src'),
+const ROOT_DIR = path.join(__dirname, '../src');
+
+function getCircularModules(tree) {
+  return tree.circular();
+}
+
+function commentRequire(filePath, targetModule) {
+  let content = fs.readFileSync(filePath, 'utf-8');
+
+  const regex = new RegExp(
+    `(^|\n)(\s*)const (\w+) = require\(['"](.*${targetModule})['"]\];`,
+    'g'
+  );
+
+  let modified = false;
+  content = content.replace(regex, (match, newline, spaces, varName, importPath) => {
+    modified = true;
+    return `${newline}${spaces}// 🚨 Removed to break circular require: const ${varName} = require('${importPath}');`;
   });
 
-  const circularPaths = result.circular();
+  if (modified) {
+    fs.writeFileSync(filePath, content, 'utf-8');
+    console.log(`💥 Commented circular require to '${targetModule}' in ${filePath}`);
+  }
+}
 
-  if (circularPaths.length === 0) {
+(async () => {
+  const res = await madge(ROOT_DIR, { baseDir: ROOT_DIR });
+  const circular = getCircularModules(res);
+
+  if (circular.length === 0) {
     console.log('✅ No circular dependencies found.');
     return;
   }
 
-  console.log(`\n❌ Found ${circularPaths.length} circular dependencies!`);
+  console.log(`❌ Found ${circular.length} circular dependencies!`);
 
-  const filesToFix = new Set();
-  for (const cycle of circularPaths) {
-    for (const file of cycle) {
-      filesToFix.add(file);
+  for (const cycle of circular) {
+    // For each circular group, comment out require in last file of the cycle
+    for (let i = 0; i < cycle.length; i++) {
+      const current = cycle[i];
+      const next = cycle[(i + 1) % cycle.length];
+
+      const currentPath = path.join(ROOT_DIR, `${current}.js`);
+      const targetModule = next.split('/').pop();
+
+      if (fs.existsSync(currentPath)) {
+        commentRequire(currentPath, targetModule);
+      }
     }
-  }
-
-  for (const file of filesToFix) {
-    const fullPath = path.join(__dirname, '../src', file);
-    let content = fs.readFileSync(fullPath, 'utf-8');
-
-    // Εντοπίζει exports που έχουν αναφορές στον εαυτό τους ή σε imports που δημιουργούν κύκλο
-    const exportPattern = /module\.exports\s*=\s*\{([\s\S]*?)\};/gm;
-    let match;
-    while ((match = exportPattern.exec(content)) !== null) {
-      const body = match[1];
-      const lines = body.split(/[,\n]/).map(l => l.trim()).filter(Boolean);
-
-      const cleaned = lines.filter(line => {
-        // κρατάμε μόνο ό,τι είναι ήδη ορισμένο
-        const definedRegex = new RegExp(`(const|let|var|function)\\s+${line.split(':')[0].trim()}`);
-        return definedRegex.test(content);
-      });
-
-      const newExport = `module.exports = {\n  ${cleaned.join(',\n  ')}\n};`;
-      content = content.replace(match[0], newExport);
-    }
-
-    fs.writeFileSync(fullPath, content, 'utf-8');
-    console.log(`🛠️ Fixed circular exports in: ${file}`);
   }
 })();
