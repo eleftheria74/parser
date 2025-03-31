@@ -1,55 +1,97 @@
-const madge = require('madge');
+// scripts/break-circular-require.js
+
 const fs = require('fs');
 const path = require('path');
+const madge = require('madge');
+const recast = require('recast');
+const glob = require('glob');
 
-async function run() {
-  console.log('\n[DEBUG] 🚀 Starting circular dependency check...\n');
+console.log('[DEBUG] 🚀 Starting circular dependency check...');
 
-  const res = await madge('src', {
-    fileExtensions: ['js'],
-    tsConfig: false // ✅ Απενεργοποιούμε TypeScript parsing
-  });
+const SRC_DIR = path.join(__dirname, '../src');
 
+madge(SRC_DIR, { baseDir: SRC_DIR }).then((res) => {
   const circular = res.circular();
-  if (!circular.length) {
-    console.log('[DEBUG] ✅ No circular dependencies found!');
-    return;
+  if (circular.length === 0) {
+    console.log('[DEBUG] ✅ No circular dependencies found.');
+    process.exit(0);
   }
 
   console.log(`[DEBUG] ❌ Found ${circular.length} circular dependencies!`);
 
-  const patched = new Set();
-
+  const circularEdges = new Set();
   circular.forEach((cycle) => {
-    for (let i = 0; i < cycle.length; i++) {
-      const from = path.resolve('src', cycle[i]);
-      const to = path.resolve('src', cycle[(i + 1) % cycle.length]);
-
-      console.log(`[DEBUG] 🔍 Checking ${from} -> ${to}`);
-
-      if (!fs.existsSync(from) || !fs.existsSync(to)) continue;
-
-      const content = fs.readFileSync(from, 'utf8');
-      const relativeTo = './' + path.relative(path.dirname(from), to).replace(/\\/g, '/');
-      const basenameTo = path.basename(to).replace(/\.js$/, '');
-      const requireRegex = new RegExp(`require\\(['"]${relativeTo}['"]\\)`, 'g');
-
-      const updatedContent = content.replace(requireRegex, `() => require('${relativeTo}')`);
-
-      if (updatedContent !== content) {
-        fs.writeFileSync(from, updatedContent);
-        patched.add(from);
-      }
+    for (let i = 0; i < cycle.length - 1; i++) {
+      const from = cycle[i];
+      const to = cycle[i + 1];
+      circularEdges.add(`${from}=>${to}`);
     }
   });
 
-  if (patched.size > 0) {
-    for (const file of patched) {
-      console.log(`🛠️ Patched circular require in: ${path.relative(process.cwd(), file)}`);
-    }
-  } else {
-    console.log('[DEBUG] ⚠️ Script ran, but no circular require statements were changed.');
-  }
-}
+  const jsFiles = glob.sync(`${SRC_DIR}/**/*.js`);
+  let changedFiles = 0;
 
-run();
+  jsFiles.forEach((filePath) => {
+    let code = fs.readFileSync(filePath, 'utf8');
+    let ast;
+
+    try {
+      ast = recast.parse(code);
+    } catch (err) {
+      console.warn(`[WARN] Skipping ${filePath}: ${err.message}`);
+      return;
+    }
+
+    let modified = false;
+
+    recast.types.visit(ast, {
+      visitVariableDeclaration(pathVar) {
+        const decls = pathVar.node.declarations;
+
+        decls.forEach((decl) => {
+          if (
+            decl.init &&
+            decl.init.type === 'CallExpression' &&
+            decl.init.callee.name === 'require' &&
+            decl.init.arguments.length === 1 &&
+            decl.init.arguments[0].type === 'Literal'
+          ) {
+            const requiredPath = decl.init.arguments[0].value;
+            const currentModule = filePath.replace(`${SRC_DIR}/`, '').replace(/\\/g, '/');
+            const resolvedModule = path.join(path.dirname(currentModule), requiredPath).replace(/\\/g, '/');
+
+            const fullEdge = `${currentModule}=>${resolvedModule}`;
+            if (circularEdges.has(fullEdge)) {
+              // Replace require(...) with () => require(...)
+              decl.init = {
+                type: 'ArrowFunctionExpression',
+                params: [],
+                body: decl.init,
+                expression: true,
+              };
+              modified = true;
+              console.log(`🔧 Patched circular require in: ${filePath}`);
+            }
+          }
+        });
+
+        this.traverse(pathVar);
+      },
+    });
+
+    if (modified) {
+      const newCode = recast.print(ast).code;
+      fs.writeFileSync(filePath, newCode, 'utf8');
+      changedFiles++;
+    }
+  });
+
+  if (changedFiles === 0) {
+    console.log('[DEBUG] ⚠️ Script ran, but no circular require statements were changed.');
+  } else {
+    console.log(`[DEBUG] ✅ Script patched ${changedFiles} files.`);
+  }
+}).catch((err) => {
+  console.error('[ERROR]', err);
+  process.exit(1);
+});
