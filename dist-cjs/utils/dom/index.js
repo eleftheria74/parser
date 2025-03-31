@@ -14,8 +14,13 @@ module.exports = {
   cleanHeaders: require("./clean-headers"),
   rewriteTopLevel: require("./rewrite-top-level"),
   makeLinksAbsolute: require("./make-links-absolute"),
-  textLength: require("./link-density").textLength,
-  linkDensity: require("./link-density").linkDensity,
+  // Avoid circular dependency by lazy-loading
+  get textLength() {
+    return require("./link-density").textLength;
+  },
+  get linkDensity() {
+    return require("./link-density").linkDensity;
+  },
   extractFromMeta: require("./extract-from-meta"),
   extractFromSelectors: require("./extract-from-selectors"),
   stripTags: require("./strip-tags"),
