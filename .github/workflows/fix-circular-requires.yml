@@ -21,6 +21,10 @@ jobs:
 
       - name: Install madge
         run: npm install madge --legacy-peer-deps
+      
+      - name: Install recast
+        run: npm install recast --legacy-peer-deps
+
 
       - name: Install glob if not present
         run: npm install --save-dev glob --legacy-peer-deps
