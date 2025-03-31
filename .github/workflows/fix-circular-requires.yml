@@ -20,7 +20,7 @@ jobs:
         run: npm install --legacy-peer-deps
 
       - name: Install glob if not present
-        run: npm install --save-dev glob
+        run: npm install --save-dev glob --legacy-peer-deps
 
       - name: Run fix-circular-requires script
         run: node scripts/fix-circular-requires.js
