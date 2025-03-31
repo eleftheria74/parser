@@ -1,1 +1,1 @@
-module.exports = require("../../../../utils/dom/get-attrs");
+module.exports = require("../../../utils/dom/get-attrs");
