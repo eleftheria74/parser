@@ -23,7 +23,7 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 var import_assert = __toESM(require("assert"));
 var import_cheerio = __toESM(require("cheerio"));
 var import_index = __toESM(require("./index"));
-const { getEncoding } = require("utils/text");
+const { getEncoding } = require("./utils/text");
 const { record } = require("test-helpers");
 describe("Resource", () => {
   const recorder = record("resource-test");

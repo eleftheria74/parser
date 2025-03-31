@@ -1,5 +1,5 @@
 const { extractFromMeta } = require("../../../resource/utils/dom");
-const { cleanImage } = require("cleaners");
+const { cleanImage } = require("../../../cleaners");
 const {
   LEAD_IMAGE_URL_META_TAGS,
   LEAD_IMAGE_URL_SELECTORS

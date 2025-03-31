@@ -1,4 +1,4 @@
-const { cleanDatePublished } = require("cleaners");
+const { cleanDatePublished } = require("../../../cleaners");
 const { extractFromMeta, extractFromSelectors } = require("../../../resource/utils/dom");
 const { extractFromUrl } = require("../../../utils/text");
 const {
