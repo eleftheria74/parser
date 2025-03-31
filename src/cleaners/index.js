@@ -3,7 +3,6 @@ const cleanImage = require('./lead-image-url');
 const cleanDek = require('./dek');
 const cleanDatePublished = require('./date-published');
 const cleanContent = require('./content');
-const cleanTitle = require('./title');
 const resolveSplitTitle = require('./resolve-split-title');
 
 const Cleaners = {
@@ -12,7 +11,11 @@ const Cleaners = {
   dek: cleanDek,
   date_published: cleanDatePublished,
   content: cleanContent,
-  title: cleanTitle,
+
+  // Lazy-load για αποφυγή circular require
+  get title() {
+    return require('./title');
+  },
 };
 
 module.exports = {
@@ -22,6 +25,8 @@ module.exports = {
   cleanDek,
   cleanDatePublished,
   cleanContent,
-  cleanTitle,
+  get cleanTitle() {
+    return require('./title');
+  },
   resolveSplitTitle
 };
