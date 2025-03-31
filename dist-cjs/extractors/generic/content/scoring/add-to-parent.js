@@ -1,4 +1,4 @@
-const { addScore } = require("./index");
+const addScore = require("./add-score");
 module.exports = function addToParent(node, $, score) {
   const parent = node.parent();
   if (parent) {
