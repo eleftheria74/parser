@@ -1,28 +1,44 @@
-name: Fix Aliases to Relative Paths
+const fs = require('fs');
+const path = require('path');
 
-on:
-  workflow_dispatch:
+const aliasMap = {
+  'cleaners': 'src/cleaners',
+  'utils/dom': 'src/resource/utils/dom',
+  'utils/text': 'src/resource/utils/text',
+};
 
-jobs:
-  fix-aliases:
-    runs-on: ubuntu-latest
+const SRC_DIR = path.join(__dirname, '../../src');
 
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+function walk(dir, callback) {
+  fs.readdirSync(dir, { withFileTypes: true }).forEach(entry => {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      walk(fullPath, callback);
+    } else if (entry.name.endsWith('.js')) {
+      callback(fullPath);
+    }
+  });
+}
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
+function replaceAliasInFile(filePath) {
+  let content = fs.readFileSync(filePath, 'utf8');
+  let modified = false;
 
-      - name: Run alias fixer script
-        run: node .github/scripts/fix-aliases.js
+  for (const [alias, targetPath] of Object.entries(aliasMap)) {
+    const regex = new RegExp(`require\\(['"]${alias}['"]\\)`, 'g');
+    if (regex.test(content)) {
+      const fromDir = path.dirname(filePath);
+      const relPath = path.relative(fromDir, path.join(__dirname, '../../', targetPath)).replace(/\\/g, '/');
+      const fixedPath = relPath.startsWith('.') ? relPath : './' + relPath;
+      content = content.replace(regex, `require('${fixedPath}')`);
+      modified = true;
+    }
+  }
 
-      - name: Commit changes
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "actions@github.com"
-          git add .
-          git commit -m "fix: replace module aliases with relative paths" || echo "No changes to commit"
-          git push
+  if (modified) {
+    fs.writeFileSync(filePath, content, 'utf8');
+    console.log(`✔ Fixed aliases in: ${filePath}`);
+  }
+}
+
+walk(SRC_DIR, replaceAliasInFile);
