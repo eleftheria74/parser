@@ -1,4 +1,4 @@
-const { cleanAuthor } = require("../../../../cleaners");
+const { cleanAuthor } = require("../../../cleaners");
 const { extractFromMeta, extractFromSelectors } = require("../../../resource/utils/dom");
 const {
   AUTHOR_META_TAGS,
