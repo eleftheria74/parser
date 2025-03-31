@@ -26,7 +26,7 @@ function fixImports(filePath) {
   let modified = false;
 
   for (const [alias, realPath] of Object.entries(ALIASES)) {
-    const aliasRegex = new RegExp(`require\\(['"]${alias}(\\/[^'"]*)['"]\\)`, 'g');
+   const aliasRegex = new RegExp(`require\\(['"]${alias}(\\/[^'"]*)?['"]\\)`, 'g');
     content = content.replace(aliasRegex, (_, subpath) => {
       const fromDir = path.dirname(filePath);
       const toPath = path.join(realPath, subpath);
