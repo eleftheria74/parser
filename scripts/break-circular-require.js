@@ -27,11 +27,14 @@ async function run() {
 
       console.log(`[DEBUG] 🔍 Checking ${from} -> ${to}`);
 
-      const content = fs.readFileSync(from, 'utf8');
-      const relPath = path.relative(path.dirname(from), to).replace(/\\/g, '/');
-      const requireRegex = new RegExp(`require\\(['"](?:\\.{1,2}\\/)?${relPath}['"]\\)`, 'g');
+      if (!fs.existsSync(from) || !fs.existsSync(to)) continue;
 
-      const updatedContent = content.replace(requireRegex, `() => require('./${path.basename(to)}')`);
+      const content = fs.readFileSync(from, 'utf8');
+      const relativeTo = './' + path.relative(path.dirname(from), to).replace(/\\/g, '/');
+      const basenameTo = path.basename(to).replace(/\.js$/, '');
+      const requireRegex = new RegExp(`require\\(['"]${relativeTo}['"]\\)`, 'g');
+
+      const updatedContent = content.replace(requireRegex, `() => require('${relativeTo}')`);
 
       if (updatedContent !== content) {
         fs.writeFileSync(from, updatedContent);
@@ -42,3 +45,11 @@ async function run() {
 
   if (patched.size > 0) {
     for (const file of patched) {
+      console.log(`🛠️ Patched circular require in: ${path.relative(process.cwd(), file)}`);
+    }
+  } else {
+    console.log('[DEBUG] ⚠️ Script ran, but no circular require statements were changed.');
+  }
+}
+
+run();
