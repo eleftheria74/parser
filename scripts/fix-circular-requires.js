@@ -3,80 +3,51 @@
 const madge = require('madge');
 const fs = require('fs');
 const path = require('path');
-
-// Root source directory
-const SRC_DIR = path.join(__dirname, '../src');
-
-function getRequirePaths(content) {
-  const requireRegex = /require\(['"](\.{1,2}\/[^'"]+)['"]\)/g;
-  const paths = [];
-  let match;
-  while ((match = requireRegex.exec(content))) {
-    paths.push(match[1]);
-  }
-  return paths;
-}
-
-function fixRequireInFile(filePath, fixMap) {
-  let content = fs.readFileSync(filePath, 'utf8');
-  let modified = false;
-
-  for (const [from, to] of Object.entries(fixMap)) {
-    const requirePattern = new RegExp(`require\(['"]${from}['"]\)`, 'g');
-    if (requirePattern.test(content)) {
-      const relativePath = path.relative(path.dirname(filePath), path.join(SRC_DIR, to));
-      let fixedPath = relativePath.replace(/\\/g, '/');
-      if (!fixedPath.startsWith('.')) fixedPath = './' + fixedPath;
-      content = content.replace(requirePattern, `require('${fixedPath}')`);
-      modified = true;
-    }
-  }
-
-  if (modified) {
-    fs.writeFileSync(filePath, content, 'utf8');
-    console.log(`✅ Fixed circular require in: ${filePath}`);
-  }
-}
+const glob = require('glob');
 
 (async () => {
-  const result = await madge(SRC_DIR, { baseDir: SRC_DIR });
-  const circular = result.circular();
+  const result = await madge(path.join(__dirname, '../src'), {
+    baseDir: path.join(__dirname, '../src'),
+  });
 
-  if (circular.length === 0) {
+  const circularPaths = result.circular();
+
+  if (circularPaths.length === 0) {
     console.log('✅ No circular dependencies found.');
     return;
   }
 
-  console.log(`❌ Found ${circular.length} circular dependencies!\n`);
-  const fixMap = {};
+  console.log(`\n❌ Found ${circularPaths.length} circular dependencies!`);
 
-  // Build a map from circular chains
-  for (const cycle of circular) {
-    for (let i = 0; i < cycle.length; i++) {
-      const from = cycle[i];
-      const to = cycle[(i + 1) % cycle.length];
-
-      // Example: if from is "a/index.js" and to is "a/util.js" then we change require('./') to './util'
-      if (path.basename(from) === 'index.js') {
-        const fromDir = path.dirname(from);
-        const toRel = path.relative(fromDir, to).replace(/\\/g, '/');
-        fixMap[`./${fromDir === '.' ? '' : fromDir}`] = toRel;
-      }
+  const filesToFix = new Set();
+  for (const cycle of circularPaths) {
+    for (const file of cycle) {
+      filesToFix.add(file);
     }
   }
 
-  // Walk all source files and apply fixes
-  function walk(dir) {
-    for (const file of fs.readdirSync(dir)) {
-      const fullPath = path.join(dir, file);
-      const stat = fs.statSync(fullPath);
-      if (stat.isDirectory()) {
-        walk(fullPath);
-      } else if (file.endsWith('.js')) {
-        fixRequireInFile(fullPath, fixMap);
-      }
-    }
-  }
+  for (const file of filesToFix) {
+    const fullPath = path.join(__dirname, '../src', file);
+    let content = fs.readFileSync(fullPath, 'utf-8');
 
-  walk(SRC_DIR);
+    // Εντοπίζει exports που έχουν αναφορές στον εαυτό τους ή σε imports που δημιουργούν κύκλο
+    const exportPattern = /module\.exports\s*=\s*\{([\s\S]*?)\};/gm;
+    let match;
+    while ((match = exportPattern.exec(content)) !== null) {
+      const body = match[1];
+      const lines = body.split(/[,\n]/).map(l => l.trim()).filter(Boolean);
+
+      const cleaned = lines.filter(line => {
+        // κρατάμε μόνο ό,τι είναι ήδη ορισμένο
+        const definedRegex = new RegExp(`(const|let|var|function)\\s+${line.split(':')[0].trim()}`);
+        return definedRegex.test(content);
+      });
+
+      const newExport = `module.exports = {\n  ${cleaned.join(',\n  ')}\n};`;
+      content = content.replace(match[0], newExport);
+    }
+
+    fs.writeFileSync(fullPath, content, 'utf-8');
+    console.log(`🛠️ Fixed circular exports in: ${file}`);
+  }
 })();
