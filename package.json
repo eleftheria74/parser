@@ -50,7 +50,7 @@
   "test:build:esm": "node ./scripts/proxy-browser-test.js",
   "watch:test": "jest --watch",
   "generate-parser": "node ./dist/generate-custom-parser.js",
-  "start": "node ./src/mercury.js",
+  "start": "node server.js",
   "fix:require-names": "node scripts/fix-invalid-require-names.js",
   "build:cjs": "node scripts/build-to-cjs.js"
 
