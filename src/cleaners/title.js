@@ -2,25 +2,27 @@ const { stripTags } = require('../resource/utils/dom');
 const { normalizeSpaces } = require('../utils/text');
 
 const { TITLE_SPLITTERS_RE } = require('./constants');
-const { resolveSplitTitle } = require('./index');
 
+// Χρήση δυναμικής φόρτωσης για να αποφύγουμε κυκλική εξάρτηση
+let resolveSplitTitle;
 module.exports = function cleanTitle(title, { url, $ }) {
-  // If title has |, :, or - in it, see if
-  // we can clean it up.
+  // Αν το title έχει |, :, ή - στη μέση, προσπαθούμε να το καθαρίσουμε
   if (TITLE_SPLITTERS_RE.test(title)) {
+    if (!resolveSplitTitle) {
+      resolveSplitTitle = require('./index').resolveSplitTitle; // Φορτώνεται μόνο όταν είναι απαραίτητο
+    }
     title = resolveSplitTitle(title, url);
   }
 
-  // Final sanity check that we didn't get a crazy title.
-  // if (title.length > 150 || title.length < 15) {
+  // Τελικός έλεγχος για να δούμε αν το τίτλο είναι πολύ μεγάλο ή μικρό
   if (title.length > 150) {
-    // If we did, return h1 from the document if it exists
+    // Αν είναι πολύ μεγάλο, παίρνουμε το h1 από το έγγραφο αν υπάρχει
     const h1 = $('h1');
     if (h1.length === 1) {
       title = h1.text();
     }
   }
 
-  // strip any html tags in the title text
+  // Αφαιρούμε τα HTML tags από το τίτλο
   return normalizeSpaces(stripTags(title, $).trim());
-}
+};
