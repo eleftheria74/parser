@@ -1,4 +1,4 @@
-const { scoreParagraph } = require("./index");
+const scoreParagraph = require("./score-paragraph").default;
 const {
   PARAGRAPH_SCORE_TAGS,
   CHILD_CONTENT_TAGS,
