@@ -18,6 +18,5 @@ const GenericExcerptExtractor = {
 };
 module.exports = {
   GenericExcerptExtractor,
-  textLength,
   linkDensity
 };
