@@ -1,7 +1,6 @@
 const ellipsize = require('ellipsize');
 
-const { extractFromMeta, stripTags } = require('../../../resource/utils/dom');
-
+const { extractFromMeta, stripTags, textLength, linkDensity } = require('../../../resource/utils/dom');
 const { EXCERPT_META_SELECTORS } = require('./constants');
 
 function clean(content, $, maxLength = 200) {
@@ -22,8 +21,8 @@ const GenericExcerptExtractor = {
   },
 };
 
-module.exports = GenericExcerptExtractor;
 module.exports = {
+  GenericExcerptExtractor,
   textLength,
   linkDensity,
 };
