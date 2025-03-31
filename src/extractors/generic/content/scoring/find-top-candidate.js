@@ -1,5 +1,5 @@
 const { NON_TOP_CANDIDATE_TAGS_RE } = require('./constants');
-const { getScore } = require('./index');
+const getScore = require('./get-score').default;
 const mergeSiblings = require('./merge-siblings');
 
 // After we've calculated scores, loop through all of the possible
@@ -32,4 +32,4 @@ module.exports = function findTopCandidate($) {
   $candidate = mergeSiblings($candidate, topScore, $);
 
   return $candidate;
-}
+};
