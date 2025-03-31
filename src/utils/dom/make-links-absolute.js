@@ -1,6 +1,7 @@
 const URL = require('url');
-const { getAttrs, setAttr } = require('../dom');
+const { getAttrs, setAttr } = require('../../utils/dom');
 
+// Λειτουργία που μετατρέπει τα URLs σε absolute URLs για τα attributes href και src
 function absolutize($, rootUrl, attr) {
   const baseUrl = $('base').attr('href');
 
@@ -14,6 +15,7 @@ function absolutize($, rootUrl, attr) {
   });
 }
 
+// Λειτουργία για να μετατρέψει το srcset σε absolute URLs
 function absolutizeSet($, rootUrl, $content) {
   $('[srcset]', $content).each((_, node) => {
     const attrs = getAttrs(node);
@@ -38,6 +40,7 @@ function absolutizeSet($, rootUrl, $content) {
   });
 }
 
+// Κύρια λειτουργία που εφαρμόζει το absolutize στις ετικέτες href και src
 function makeLinksAbsolute($content, $, url) {
   ['href', 'src'].forEach(attr => absolutize($, url, attr));
   absolutizeSet($, url, $content);
@@ -46,4 +49,3 @@ function makeLinksAbsolute($content, $, url) {
 }
 
 module.exports = makeLinksAbsolute;
-
