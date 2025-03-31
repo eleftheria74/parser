@@ -20,7 +20,8 @@ jobs:
         run: npm install --legacy-peer-deps
       
       - name: Install madge
-        run: npm install madge
+        run: npm install madge --legacy-peer-deps
+
 
 
       - name: Install glob if not present
