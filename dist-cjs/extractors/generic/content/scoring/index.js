@@ -1,24 +1,14 @@
-const getWeight = require("./get-weight").default;
-module.exports = { getWeight };
-const getScore = require("./get-score").default;
-module.exports = { getScore };
-const scoreCommas = require("./score-commas").default;
-module.exports = { scoreCommas };
-const scoreLength = require("./score-length").default;
-module.exports = { scoreLength };
-const scoreParagraph = require("./score-paragraph").default;
-module.exports = { scoreParagraph };
-const setScore = require("./set-score").default;
-module.exports = { setScore };
-const addScore = require("./add-score").default;
-module.exports = { addScore };
-const addToParent = require("./add-to-parent").default;
-module.exports = { addToParent };
-const getOrInitScore = require("./get-or-init-score").default;
-module.exports = { getOrInitScore };
-const scoreNode = require("./score-node").default;
-module.exports = { scoreNode };
-const scoreContent = require("./score-content").default;
-module.exports = { scoreContent };
-const findTopCandidate = require("./find-top-candidate").default;
-module.exports = { findTopCandidate };
+module.exports = {
+  getWeight: require("./get-weight").default,
+  getScore: require("./get-score").default,
+  scoreCommas: require("./score-commas").default,
+  scoreLength: require("./score-length").default,
+  scoreParagraph: require("./score-paragraph").default,
+  setScore: require("./set-score").default,
+  addScore: require("./add-score").default,
+  addToParent: require("./add-to-parent").default,
+  getOrInitScore: require("./get-or-init-score").default,
+  scoreNode: require("./score-node").default,
+  scoreContent: require("./score-content").default,
+  findTopCandidate: require("./find-top-candidate").default
+};
