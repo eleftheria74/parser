@@ -1,56 +1,62 @@
-// scripts/break-circular-require.js
-
 const fs = require('fs');
 const path = require('path');
-const glob = require('glob');
+const madge = require('madge');
 
-// Patterns που προκαλούν πρόβλημα σε circular require
-const CIRCULAR_EXPORTS = [
-  'getAttrs',
-  'setAttr',
-  'linkDensity',
-  'paragraphize',
-  'getOrInitScore',
-  'getScore',
-  'setScore',
-  'addScore',
-  'scoreNode',
-  'scoreCommas',
-  'scoreParagraph',
-  'getWeight',
-  'resolveSplitTitle',
-];
+const projectRoot = path.resolve(__dirname, '../src');
 
-// Ψάχνει αρχεία μέσα στη src
-const files = glob.sync(path.join(__dirname, '../src/**/*.js'));
+function log(...args) {
+  console.log('[DEBUG]', ...args);
+}
 
-files.forEach((file) => {
-  let content = fs.readFileSync(file, 'utf-8');
-  let modified = false;
+function breakCircularRequire(filePath, dependencyPath) {
+  const content = fs.readFileSync(filePath, 'utf-8');
+  const importPath = path.relative(path.dirname(filePath), dependencyPath).replace(/\\/g, '/');
+  const importRegex = new RegExp(
+    `((const|let|var)\\s+\\w+\\s*=\\s*require\\(['"].*?)${importPath}(['"]\\))`,
+    'g'
+  );
 
-  CIRCULAR_EXPORTS.forEach((prop) => {
-    const regex = new RegExp(
-      `const\s*\{([^}]*?)\}\s*=\s*require\(['\"](\.{1,2}\/.*?|.*index)['\"]\)`,
-      'g'
-    );
-
-    content = content.replace(regex, (match, props, modPath) => {
-      const propsArr = props.split(',').map((p) => p.trim());
-      if (propsArr.includes(prop)) {
-        const filtered = propsArr.filter((p) => p !== prop);
-        const newLine = filtered.length
-          ? `const { ${filtered.join(', ')} } = require('${modPath}')`
-          : '';
-        const lazyLine = `const ${prop} = () => require('${modPath}').${prop};`;
-        modified = true;
-        return [newLine, lazyLine].filter(Boolean).join('\n');
-      }
-      return match;
-    });
+  const newContent = content.replace(importRegex, (_match, p1, _p2, p3) => {
+    log(`\u{1F6E0} Rewriting import in ${filePath}:`, p1 + './' + p3);
+    return p1 + './' + p3;
   });
 
-  if (modified) {
-    fs.writeFileSync(file, content, 'utf-8');
-    console.log(`🧹 Rewrote circular require in: ${file}`);
+  if (newContent !== content) {
+    fs.writeFileSync(filePath, newContent);
+    log(`\u{2705} Fixed circular require in:`, filePath);
+    return true;
   }
-});
+  return false;
+}
+
+(async () => {
+  const result = await madge(projectRoot, {
+    baseDir: projectRoot,
+    fileExtensions: ['js'],
+  });
+
+  const circularPaths = result.circular();
+
+  if (circularPaths.length === 0) {
+    log('✅ No circular dependencies found.');
+    return;
+  }
+
+  log(`\u{274C} Found ${circularPaths.length} circular dependencies!`);
+  let totalFixed = 0;
+
+  for (const cycle of circularPaths) {
+    for (let i = 0; i < cycle.length; i++) {
+      const file = path.resolve(projectRoot, cycle[i]);
+      const dep = path.resolve(projectRoot, cycle[(i + 1) % cycle.length]);
+
+      log(`\u{1F50D} Checking ${file} -> ${dep}`);
+      const fixed = breakCircularRequire(file, dep);
+      if (fixed) totalFixed++;
+    }
+  }
+
+  if (totalFixed === 0) {
+    log('⚠️ Script ran, but no circular require statements were changed.');
+  }
+})();
