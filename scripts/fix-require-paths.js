@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
+// Define aliases and their actual paths
 const ALIASES = {
   'utils': 'src/resource/utils',
   'extractors': 'src/extractors',
@@ -9,6 +10,7 @@ const ALIASES = {
   'dom': 'src/utils/dom'
 };
 
+// Recursively walk through the directory
 function walk(dir, callback) {
   fs.readdirSync(dir).forEach(f => {
     const fullPath = path.join(dir, f);
@@ -21,15 +23,16 @@ function walk(dir, callback) {
   });
 }
 
+// Replace alias imports with relative paths
 function fixImports(filePath) {
   let content = fs.readFileSync(filePath, 'utf-8');
   let modified = false;
 
   for (const [alias, realPath] of Object.entries(ALIASES)) {
-   const aliasRegex = new RegExp(`require\\(['"]${alias}(\\/[^'"]*)?['"]\\)`, 'g');
+    const aliasRegex = new RegExp(`require\\(['"]${alias}(\\/[^'"]*)?['"]\\)`, 'g');
     content = content.replace(aliasRegex, (_, subpath) => {
       const fromDir = path.dirname(filePath);
-      const toPath = path.join(realPath, subpath);
+      const toPath = subpath ? path.join(realPath, subpath) : realPath;
       let relative = path.relative(fromDir, toPath);
       if (!relative.startsWith('.')) {
         relative = './' + relative;
@@ -45,4 +48,5 @@ function fixImports(filePath) {
   }
 }
 
+// Start processing
 walk('./src', fixImports);
