@@ -1,7 +1,9 @@
-const { getScore, setScore, getOrInitScore, scoreCommas } = require("../../extractors/generic/content/scoring");
+const { getScore, scoreCommas } = require("../../extractors/generic/content/scoring");
 const { CLEAN_CONDITIONALLY_TAGS, KEEP_CLASS } = require("./constants");
 const { normalizeSpaces } = require("../text");
-const { linkDensity } = require("./index");
+function getLinkDensity() {
+  return require("./link-density").linkDensity;
+}
 function removeUnlessContent($node, $, weight) {
   if ($node.hasClass("entry-content-asset")) {
     return;
@@ -20,7 +22,7 @@ function removeUnlessContent($node, $, weight) {
       $node.remove();
       return;
     }
-    const density = linkDensity($node);
+    const density = getLinkDensity()($node);
     if (weight < 25 && density > 0.2 && contentLength > 75) {
       $node.remove();
       return;

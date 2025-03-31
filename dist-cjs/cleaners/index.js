@@ -9,11 +9,7 @@ const Cleaners = {
   lead_image_url: cleanImage,
   dek: cleanDek,
   date_published: cleanDatePublished,
-  content: cleanContent,
-  // Lazy-load για αποφυγή circular require
-  get title() {
-    return require("./title");
-  }
+  content: cleanContent
 };
 module.exports = {
   Cleaners,
@@ -22,8 +18,5 @@ module.exports = {
   cleanDek,
   cleanDatePublished,
   cleanContent,
-  get cleanTitle() {
-    return require("./title");
-  },
   resolveSplitTitle
 };
