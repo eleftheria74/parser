@@ -5,17 +5,13 @@ const cleanDatePublished = require('./date-published');
 const cleanContent = require('./content');
 const resolveSplitTitle = require('./resolve-split-title');
 
+// Σημαντικό: ΜΗΝ κάνεις require το title.js εδώ
 const Cleaners = {
   author: cleanAuthor,
   lead_image_url: cleanImage,
   dek: cleanDek,
   date_published: cleanDatePublished,
   content: cleanContent,
-
-  // Lazy-load για αποφυγή circular require
-  get title() {
-    return require('./title');
-  },
 };
 
 module.exports = {
@@ -25,8 +21,5 @@ module.exports = {
   cleanDek,
   cleanDatePublished,
   cleanContent,
-  get cleanTitle() {
-    return require('./title');
-  },
-  resolveSplitTitle
+  resolveSplitTitle,
 };
