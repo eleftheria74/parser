@@ -1,6 +1,6 @@
 import assert from 'assert';
 import cheerio from 'cheerio';
-const { getEncoding } = require('utils/text');
+const { getEncoding } = require('./utils/text');
 
 const { record } = require('test-helpers');
 import Resource from './index';

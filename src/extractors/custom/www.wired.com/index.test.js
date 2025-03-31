@@ -4,7 +4,7 @@ import cheerio from 'cheerio';
 
 import Mercury from 'mercury';
 import getExtractor from 'extractors/get-extractor';
-const { excerptContent } = require('utils/text');
+const { excerptContent } = require('../../../resource/utils/text');
 
 const fs = require('fs');
 
