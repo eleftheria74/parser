@@ -1,4 +1,4 @@
-const { getAttrs } = require('./get-attrs'); // ✅ Απευθείας import, όχι index.js
+const { getAttrs } = require('../../../utils/dom/get-attrs'); // ✅ Απευθείας import, όχι index.js
 
 const { IS_LINK, IS_IMAGE, IS_SRCSET } = require('./constants');
 
