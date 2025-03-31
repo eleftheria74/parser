@@ -1,8 +1,8 @@
 const URL = require('url');
-const { getAttrs, setAttr } = require('../../utils/dom');
 
 // Λειτουργία που μετατρέπει τα URLs σε absolute URLs για τα attributes href και src
 function absolutize($, rootUrl, attr) {
+  const { getAttrs, setAttr } = require('../../utils/dom/get-attrs'); // lazy require
   const baseUrl = $('base').attr('href');
 
   $(`[${attr}]`).each((_, node) => {
@@ -17,6 +17,7 @@ function absolutize($, rootUrl, attr) {
 
 // Λειτουργία για να μετατρέψει το srcset σε absolute URLs
 function absolutizeSet($, rootUrl, $content) {
+  const { getAttrs, setAttr } = require('../../utils/dom/get-attrs'); // lazy require
   $('[srcset]', $content).each((_, node) => {
     const attrs = getAttrs(node);
     const urlSet = attrs.srcset;
