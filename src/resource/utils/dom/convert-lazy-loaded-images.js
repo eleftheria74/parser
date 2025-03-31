@@ -1,12 +1,7 @@
-const { getAttrs } = require('./');
+const { getAttrs } = require('./get-attrs'); // ✅ Απευθείας import, όχι index.js
 
 const { IS_LINK, IS_IMAGE, IS_SRCSET } = require('./constants');
 
-// Convert all instances of images with potentially
-// lazy loaded images into normal images.
-// Many sites will have img tags with no source, or an image tag with a src
-// attribute that a is a placeholer. We need to be able to properly fill in
-// the src attribute so the images are no longer lazy loaded.
 module.exports = function convertLazyLoadedImages($) {
   const extractSrcFromJSON = str => {
     try {
@@ -33,7 +28,6 @@ module.exports = function convertLazyLoadedImages($) {
         IS_LINK.test(value) &&
         IS_IMAGE.test(value)
       ) {
-        // Is the value a JSON object? If so, we should attempt to extract the image src from the data.
         const existingSrc = extractSrcFromJSON(value);
         if (existingSrc) {
           $(img).attr('src', existingSrc);
@@ -45,4 +39,4 @@ module.exports = function convertLazyLoadedImages($) {
   });
 
   return $;
-}
+};
