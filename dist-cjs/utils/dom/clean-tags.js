@@ -1,9 +1,4 @@
-const {
-  getScore,
-  setScore,
-  getOrInitScore,
-  scoreCommas
-} = require("../../extractors/generic/content/scoring");
+const { getScore, setScore, getOrInitScore, scoreCommas } = require("../../extractors/generic/content/scoring");
 const { CLEAN_CONDITIONALLY_TAGS, KEEP_CLASS } = require("./constants");
 const { normalizeSpaces } = require("../text");
 const { linkDensity } = require("./index");
@@ -33,36 +28,21 @@ function removeUnlessContent($node, $, weight) {
     if (weight >= 25 && density > 0.5) {
       const tagName = $node.get(0).tagName.toLowerCase();
       const nodeIsList = tagName === "ol" || tagName === "ul";
-      if (nodeIsList) {
-        const previousNode = $node.prev();
-        if (previousNode && normalizeSpaces(previousNode.text()).slice(-1) === ":") {
-          return;
-        }
+      const prevText = $node.prev().text();
+      const startsWithColon = prevText && prevText.trim().endsWith(":");
+      if (!nodeIsList || !startsWithColon) {
+        $node.remove();
+        return;
       }
-      $node.remove();
-      return;
-    }
-    const scriptCount = $("script", $node).length;
-    if (scriptCount > 0 && contentLength < 150) {
-      $node.remove();
     }
   }
 }
-module.exports = function cleanTags($article, $) {
-  $(CLEAN_CONDITIONALLY_TAGS, $article).each((index, node) => {
+module.exports = function cleanTags($, $content) {
+  $content.find(CLEAN_CONDITIONALLY_TAGS).each((_, node) => {
     const $node = $(node);
-    if ($node.hasClass(KEEP_CLASS) || $node.find(`.${KEEP_CLASS}`).length > 0)
+    if ($node.hasClass(KEEP_CLASS))
       return;
-    let weight = getScore($node);
-    if (!weight) {
-      weight = getOrInitScore($node, $);
-      setScore($node, $, weight);
-    }
-    if (weight < 0) {
-      $node.remove();
-    } else {
-      removeUnlessContent($node, $, weight);
-    }
+    const weight = getScore($node, $);
+    removeUnlessContent($node, $, weight);
   });
-  return $;
 };

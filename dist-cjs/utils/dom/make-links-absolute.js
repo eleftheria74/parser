@@ -1,6 +1,6 @@
 const URL = require("url");
-const { getAttrs, setAttr } = require("../dom");
 function absolutize($, rootUrl, attr) {
+  const { getAttrs, setAttr } = require("../../utils/dom/get-attrs");
   const baseUrl = $("base").attr("href");
   $(`[${attr}]`).each((_, node) => {
     const attrs = getAttrs(node);
@@ -12,6 +12,7 @@ function absolutize($, rootUrl, attr) {
   });
 }
 function absolutizeSet($, rootUrl, $content) {
+  const { getAttrs, setAttr } = require("../../utils/dom/get-attrs");
   $("[srcset]", $content).each((_, node) => {
     const attrs = getAttrs(node);
     const urlSet = attrs.srcset;
