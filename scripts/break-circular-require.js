@@ -1,58 +1,59 @@
+// scripts/break-circular-require.js
 const fs = require('fs');
 const path = require('path');
 const madge = require('madge');
 
-const projectRoot = path.resolve(__dirname, '../src');
+const projectPath = path.resolve(__dirname, '../src');
 
-function findCircularDependencies() {
-  return madge(projectRoot).then((res) => res.circular());
+function log(msg) {
+  console.log(`[DEBUG] ${msg}`);
 }
 
-function patchRequire(filePath, targetModule) {
-  let content = fs.readFileSync(filePath, 'utf-8');
-  const requireRegex = new RegExp(
-    `(?:const|let|var)\s+([^=]+)\s*=\s*require\(['"](.*${targetModule})['"]\)`,
-    'g'
-  );
-
-  let changed = false;
-  content = content.replace(requireRegex, (match, vars, modPath) => {
-    if (!modPath.endsWith('.cjs')) {
-      changed = true;
-      return match.replace(modPath, modPath + '.cjs');
-    }
-    return match;
+(async () => {
+  const result = await madge(projectPath, {
+    baseDir: projectPath,
+    includeNpm: false,
+    tsConfig: path.resolve(__dirname, '../tsconfig.json'),
   });
 
-  if (changed) {
-    fs.writeFileSync(filePath, content, 'utf-8');
-    console.log(`🛠️ Patched circular require in: ${path.relative(projectRoot, filePath)}`);
+  const circularPaths = result.circular();
+
+  if (circularPaths.length === 0) {
+    log('✅ No circular dependencies found.');
+    process.exit(0);
   }
-}
 
-function breakCircularRequires() {
-  findCircularDependencies().then((cycles) => {
-    if (cycles.length === 0) {
-      console.log('✅ No circular dependencies found.');
-      return;
-    }
+  log(`❌ Found ${circularPaths.length} circular dependencies!`);
 
-    console.log(`\n❌ Found ${cycles.length} circular dependencies!`);
-    const visited = new Set();
+  const patchedFiles = new Set();
 
-    for (const cycle of cycles) {
-      for (let i = 0; i < cycle.length; i++) {
-        const current = path.resolve(projectRoot, cycle[i] + '.js');
-        const next = path.basename(cycle[(i + 1) % cycle.length]);
+  circularPaths.forEach((cycle, i) => {
+    log(`🔁 Cycle ${i + 1}: ${cycle.join(' -> ')}`);
 
-        const key = `${current} -> ${next}`;
-        if (!visited.has(key) && fs.existsSync(current)) {
-          patchRequire(current, next);
-          visited.add(key);
+    for (let j = 0; j < cycle.length - 1; j++) {
+      const from = cycle[j];
+      const to = cycle[j + 1];
+
+      const fromPath = path.resolve(projectPath, from + '.js');
+      const toPath = path.relative(path.dirname(fromPath), path.resolve(projectPath, to + '.js')).replace(/\\/g, '/');
+      const requirePattern = new RegExp(`require\(['"](\.\.?\/)*${path.basename(to)}['"]\)`, 'g');
+
+      if (fs.existsSync(fromPath)) {
+        let content = fs.readFileSync(fromPath, 'utf-8');
+
+        if (requirePattern.test(content)) {
+          const modified = content.replace(requirePattern, `require('${toPath.startsWith('.') ? toPath : './' + toPath}')`);
+          fs.writeFileSync(fromPath, modified);
+          patchedFiles.add(from);
+          log(`🛠️ Patched circular require in: ${from}`);
+        } else {
+          log(`⚠️ No matching require() in ${from} to ${to}`);
         }
       }
     }
   });
-}
 
-breakCircularRequires();
+  if (patchedFiles.size === 0) {
+    log('⚠️ Script ran, but no circular require statements were changed.');
+  }
+})();
