@@ -25,8 +25,8 @@ jobs:
       - name: Install glob if not present
         run: npm install --save-dev glob --legacy-peer-deps
 
-      - name: Run fix-circular-require script
-        run: node scripts/fix-circular-require.js
+      - name: Run break-circular-require script
+        run: node scripts/break-circular-require.js
 
       - name: Commit & Push changes
         run: |
