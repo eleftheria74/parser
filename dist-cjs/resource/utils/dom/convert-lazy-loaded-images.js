@@ -1,4 +1,4 @@
-const { getAttrs } = require("./");
+const { getAttrs } = require("./get-attrs");
 const { IS_LINK, IS_IMAGE, IS_SRCSET } = require("./constants");
 module.exports = function convertLazyLoadedImages($) {
   const extractSrcFromJSON = (str) => {
