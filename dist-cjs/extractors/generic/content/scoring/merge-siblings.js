@@ -1,7 +1,8 @@
-const { textLength, linkDensity } = require("../../../../resource/utils/dom");
+const { textLength } = require("../../../../resource/utils/dom/text-length");
+const { linkDensity } = require("../../../../resource/utils/dom/link-density");
 const { hasSentenceEnd } = require("../../../../utils/text");
 const { NON_TOP_CANDIDATE_TAGS_RE } = require("./constants");
-const { getScore } = require("./index");
+const getScore = require("./get-score").default;
 module.exports = function mergeSiblings($candidate, topScore, $) {
   if (!$candidate.parent().length) {
     return $candidate;
