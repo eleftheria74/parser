@@ -2,14 +2,12 @@ const { stripTags } = require('../resource/utils/dom');
 const { normalizeSpaces } = require('../utils/text');
 const { TITLE_SPLITTERS_RE } = require('./constants');
 
-// Lazy-load για αποφυγή circular require
-function getResolveSplitTitle() {
-  return require('./index').resolveSplitTitle;
-}
+// Απευθείας import χωρίς να αγγίζουμε το index.js (λύση circular dep)
+const resolveSplitTitle = require('./resolve-split-title');
 
 module.exports = function cleanTitle(title, { url, $ }) {
   if (TITLE_SPLITTERS_RE.test(title)) {
-    title = getResolveSplitTitle()(title, url);
+    title = resolveSplitTitle(title, url);
   }
 
   if (title.length > 150) {
