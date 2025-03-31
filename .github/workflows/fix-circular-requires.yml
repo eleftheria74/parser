@@ -22,21 +22,15 @@ jobs:
       - name: Install madge
         run: npm install madge --legacy-peer-deps
 
-      - name: Install glob
+      - name: Install glob if not present
         run: npm install --save-dev glob --legacy-peer-deps
 
-      - name: Run fix-circular-requires script
+      - name: Run fix-circular-require script
         run: node scripts/fix-circular-require.js
 
-      - name: Commit & Push changes if any
+      - name: Commit & Push changes
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-
-          if [[ -n "$(git status --porcelain)" ]]; then
-            git add .
-            git commit -m "🔁 Fix circular requires"
-            git push
-          else
-            echo "✅ No changes to commit"
-          fi
+          git add .
+          git diff --quiet && echo "✅ No changes" || (git commit -m "🔁 Fix circular requires" && git push)
