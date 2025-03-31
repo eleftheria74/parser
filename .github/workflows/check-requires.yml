@@ -1,0 +1,42 @@
+name: Check require() paths
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  check-require-paths:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./src
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm ci || npm install
+
+      - name: Check require paths
+        run: |
+          find . -name "*.js" | while read file; do
+            echo "Checking $file"
+            node -e "
+              try {
+                require('./$file');
+              } catch (err) {
+                console.error('❌ Failed to load $file');
+                console.error(err.message);
+                process.exitCode = 1;
+              }
+            "
+          done
