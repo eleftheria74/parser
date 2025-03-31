@@ -1,4 +1,4 @@
-const { paragraphize } = require("./index");
+const paragraphize = require("./paragraphize");
 module.exports = function brsToPs($) {
   let collapsing = false;
   $("br").each((index, element) => {
