@@ -14,20 +14,26 @@ module.exports = {
   cleanHeaders: require("./clean-headers"),
   rewriteTopLevel: require("./rewrite-top-level"),
   makeLinksAbsolute: require("./make-links-absolute"),
-  // Avoid circular dependency by lazy-loading
-  get textLength() {
-    return require("./link-density").textLength;
-  },
-  get linkDensity() {
-    return require("./link-density").linkDensity;
-  },
   extractFromMeta: require("./extract-from-meta"),
   extractFromSelectors: require("./extract-from-selectors"),
   stripTags: require("./strip-tags"),
   withinComment: require("./within-comment"),
   nodeIsSufficient: require("./node-is-sufficient"),
   isWordpress: require("./is-wordpress"),
-  getAttrs: require("./get-attrs"),
-  setAttr: require("./set-attr"),
-  setAttrs: require("./set-attrs")
+  // Shared utils with lazy-loading για αποφυγή circular requires
+  get getAttrs() {
+    return require("./get-attrs");
+  },
+  get setAttr() {
+    return require("./set-attr");
+  },
+  get setAttrs() {
+    return require("./set-attrs");
+  },
+  get textLength() {
+    return require("./link-density").textLength;
+  },
+  get linkDensity() {
+    return require("./link-density").linkDensity;
+  }
 };
