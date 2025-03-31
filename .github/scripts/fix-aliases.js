@@ -16,10 +16,6 @@ jobs:
         with:
           node-version: '18'
 
-      # ⚠️ Δεν χρειάζεται npm install γιατί το script δεν εξαρτάται από npm πακέτα
-      # - name: Install dependencies
-      #   run: npm install
-
       - name: Run alias fixer script
         run: node .github/scripts/fix-aliases.js
 
