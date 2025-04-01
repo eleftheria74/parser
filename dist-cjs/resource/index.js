@@ -1,63 +1,101 @@
 const cheerio = require("cheerio");
-const iconv = require("iconv-lite");
-const { getEncoding } = require("../utils/text");
-const { fetchResource } = require("./utils");
-const { normalizeMetaTags, convertLazyLoadedImages, clean } = require("./utils/dom");
-const Resource = {
-  async create(url, preparedResponse, parsedUrl, headers = {}) {
-    let result;
-    if (preparedResponse) {
-      const validResponse = {
-        statusMessage: "OK",
-        statusCode: 200,
-        headers: {
-          "content-type": "text/html",
-          "content-length": 500
-        }
+const TurndownService = require("turndown");
+const Resource = require("./resource");
+const { validateUrl } = require("./utils");
+const addCustomExtractor = require("./extractors/add-extractor");
+const getExtractor = require("./extractors/get-extractor");
+const RootExtractor = require("./extractors/root-extractor");
+const { selectExtendedTypes } = require("./extractors/root-extractor");
+const collectAllPages = require("./extractors/collect-all-pages");
+const Parser = {
+  async parse(url, { html, ...opts } = {}) {
+    const {
+      fetchAllPages = true,
+      fallback = true,
+      contentType = "html",
+      headers = {},
+      extend,
+      customExtractor
+    } = opts;
+    if (!url && cheerio.browser) {
+      url = window.location.href;
+      html = html || cheerio.html();
+    }
+    let parsedUrl;
+    try {
+      parsedUrl = new URL(url);
+    } catch (e) {
+      return {
+        error: true,
+        message: "The url parameter passed does not look like a valid URL. Please check your URL and try again."
       };
-      result = {
-        body: preparedResponse,
-        response: validResponse,
-        alreadyDecoded: true
-      };
+    }
+    const defaultHeaders = {
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "Accept-Language": "en-US,en;q=0.9"
+    };
+    const $ = await Resource.create(url, html, parsedUrl, { ...defaultHeaders, ...headers });
+    if ($.failed) {
+      return $;
+    }
+    if (customExtractor) {
+      addCustomExtractor(customExtractor);
+    }
+    const Extractor = getExtractor(url, parsedUrl, $);
+    if (!html) {
+      html = $.html();
+    }
+    const metaCache = $("meta").map((_, node) => $(node).attr("name")).toArray();
+    let extendedTypes = {};
+    if (extend) {
+      extendedTypes = selectExtendedTypes(extend, { $, url, html });
+    }
+    let result = RootExtractor.extract(Extractor, {
+      url,
+      html,
+      $,
+      metaCache,
+      parsedUrl,
+      fallback,
+      contentType
+    });
+    const { title, next_page_url } = result;
+    if (fetchAllPages && next_page_url) {
+      result = await collectAllPages({
+        Extractor,
+        next_page_url,
+        html,
+        $,
+        metaCache,
+        result,
+        title,
+        url
+      });
     } else {
-      result = await fetchResource(url, parsedUrl, headers);
+      result = {
+        ...result,
+        total_pages: 1,
+        rendered_pages: 1
+      };
     }
-    if (result.error) {
-      result.failed = true;
-      return result;
+    if (contentType === "markdown") {
+      const turndownService = new TurndownService();
+      result.content = turndownService.turndown(result.content);
+    } else if (contentType === "text") {
+      result.content = $.text($(result.content));
     }
-    return this.generateDoc(result);
+    return { ...result, ...extendedTypes };
   },
-  generateDoc({ body: content, response, alreadyDecoded = false }) {
-    const { "content-type": contentType = "" } = response.headers;
-    if (!contentType.includes("html") && !contentType.includes("text")) {
-      throw new Error("Content does not appear to be text.");
-    }
-    let $ = this.encodeDoc({ content, contentType, alreadyDecoded });
-    if ($.root().children().length === 0) {
-      throw new Error("No children, likely a bad parse.");
-    }
-    $ = normalizeMetaTags($);
-    $ = convertLazyLoadedImages($);
-    $ = clean($);
-    return $;
+  browser: !!cheerio.browser,
+  fetchResource(url) {
+    const defaultHeaders = {
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      "Accept-Language": "en-US,en;q=0.9"
+    };
+    return Resource.create(url, null, new URL(url), defaultHeaders);
   },
-  encodeDoc({ content, contentType, alreadyDecoded = false }) {
-    if (alreadyDecoded) {
-      return cheerio.load(content);
-    }
-    const encoding = getEncoding(contentType);
-    let decodedContent = iconv.decode(content, encoding);
-    let $ = cheerio.load(decodedContent);
-    const contentTypeSelector = cheerio.browser ? "meta[http-equiv=content-type]" : "meta[http-equiv=content-type i]";
-    const metaContentType = $(contentTypeSelector).attr("content") || $("meta[charset]").attr("charset");
-    const properEncoding = getEncoding(metaContentType);
-    if (metaContentType && properEncoding !== encoding) {
-      decodedContent = iconv.decode(content, properEncoding);
-      $ = cheerio.load(decodedContent);
-    }
-    return $;
+  addExtractor(extractor) {
+    return addCustomExtractor(extractor);
   }
 };
-module.exports = Resource;
+module.exports = Parser;
