@@ -1,4 +1,3 @@
-const { URL } = require("url");
 const cheerio = require("cheerio");
 const TurndownService = require("turndown");
 const Resource = require("./resource");
@@ -22,7 +21,15 @@ const Parser = {
       url = window.location.href;
       html = html || cheerio.html();
     }
-    const parsedUrl = URL.parse(url);
+    let parsedUrl;
+    try {
+      parsedUrl = new URL(url);
+    } catch (e) {
+      return {
+        error: true,
+        message: "The url parameter passed does not look like a valid URL. Please check your URL and try again."
+      };
+    }
     if (!validateUrl(parsedUrl)) {
       return {
         error: true,
@@ -82,8 +89,6 @@ const Parser = {
     return { ...result, ...extendedTypes };
   },
   browser: !!cheerio.browser,
-  // A convenience method for getting a resource
-  // to work with, e.g., for custom extractor generator
   fetchResource(url) {
     return Resource.create(url);
   },
