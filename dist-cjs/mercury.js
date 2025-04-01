@@ -1,6 +1,6 @@
 const cheerio = require("cheerio");
 const TurndownService = require("turndown");
-const Resource = require("./resource");
+const Resource = require("./resource/index.js");
 const { validateUrl } = require("./utils");
 const addCustomExtractor = require("./extractors/add-extractor");
 const getExtractor = require("./extractors/get-extractor");
