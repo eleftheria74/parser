@@ -1,4 +1,4 @@
-const cheerio = require('cheerio')
+const cheerio = require('cheerio');
 const TurndownService = require('turndown');
 
 const Resource = require('./resource/index.js');
@@ -36,15 +36,12 @@ const Parser = {
       };
     }
 
-    if (!validateUrl(parsedUrl)) {
-      return {
-        error: true,
-        message:
-          'The url parameter passed does not look like a valid URL. Please check your URL and try again.',
-      };
-    }
+    const defaultHeaders = {
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+      'Accept-Language': 'en-US,en;q=0.9',
+    };
 
-    const $ = await Resource.create(url, html, parsedUrl, headers);
+    const $ = await Resource.create(url, html, parsedUrl, { ...defaultHeaders, ...headers });
 
     if ($.failed) {
       return $;
@@ -113,7 +110,11 @@ const Parser = {
   browser: !!cheerio.browser,
 
   fetchResource(url) {
-    return Resource.create(url);
+    const defaultHeaders = {
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+      'Accept-Language': 'en-US,en;q=0.9',
+    };
+    return Resource.create(url, null, new URL(url), defaultHeaders);
   },
 
   addExtractor(extractor) {
